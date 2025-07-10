@@ -9,7 +9,7 @@ export default defineConfig({
     react(),
     eslint({
       failOnWarning: false, // هشدار رو قطع نکن
-      failOnError: false, // ارور رو قطع نکن (مفیده تو dev)
+      failOnError: true, // ارور رو قطع نکن (مفیده تو dev)
       emitWarning: true,
       emitError: true,
     }),
