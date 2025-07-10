@@ -5,17 +5,5 @@ import eslint from "vite-plugin-eslint";
 // https://vite.dev/config/
 
 export default defineConfig({
-  plugins: [
-    react(),
-    eslint({
-      failOnWarning: false, // هشدار رو قطع نکن
-      failOnError: true, // ارور رو قطع نکن (مفیده تو dev)
-      emitWarning: true,
-      emitError: true,
-    }),
-  ],
+  plugins: [react(), eslint()],
 });
-
-// export default defineConfig({
-//   plugins: [react(), ESLint()],
-// });
