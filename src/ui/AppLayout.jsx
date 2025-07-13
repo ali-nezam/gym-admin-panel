@@ -13,7 +13,7 @@ const StyledAppLayout = styled.div`
 
 const MainContent = styled.main`
   display: grid;
-  grid-template-columns: 1fr 26rem;
+  grid-template-columns: 26rem 1fr;
   gap: 2.4rem;
   padding: 2.4rem;
   height: 100%;
@@ -22,17 +22,17 @@ const MainContent = styled.main`
 const ContentArea = styled.main`
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  padding: 3.2rem;
+  padding: 4.2rem;
 `;
 function AppLayout() {
   return (
     <StyledAppLayout>
       <Header />
       <MainContent>
+        <SideBar />
         <ContentArea>
           <Outlet />
         </ContentArea>
-        <SideBar />
       </MainContent>
     </StyledAppLayout>
   );
