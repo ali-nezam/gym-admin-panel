@@ -5,22 +5,25 @@ import Dashboard from "./pages/Dashboard";
 import Members from "./pages/Members";
 import Settings from "./pages/Settings";
 import Enrollments from "./pages/Enrollments ";
+import GlobalStyles from "./styles/GlobalStyles";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<AppLayout />}>
-          <Route index element={<Navigate replace to="dashboard" />} />
-          <Route element={<Coaches />} path="coaches" />
-          <Route element={<Dashboard />} path="dashboard" />
-          <Route element={<Enrollments />} path="enrollments" />
-          <Route element={<Members />} path="members" />
-          <Route element={<Settings />} path="settings" />
-        </Route>
-        <Route></Route>/
-      </Routes>
-    </BrowserRouter>
+    <>
+      <GlobalStyles />
+      <BrowserRouter>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route index element={<Navigate replace to="dashboard" />} />
+            <Route element={<Coaches />} path="coaches" />
+            <Route element={<Dashboard />} path="dashboard" />
+            <Route element={<Enrollments />} path="enrollments" />
+            <Route element={<Members />} path="members" />
+            <Route element={<Settings />} path="settings" />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
