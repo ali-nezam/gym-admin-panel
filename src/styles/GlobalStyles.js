@@ -110,6 +110,7 @@ body {
   color: #2c3e50;
   color: var(--color-grey-700);
   color: #4f4f4f;
+  color: #99a0a6;
   transition: color 0.3s, background-color 0.3s;
   min-height: 100vh;
   line-height: 1.5;

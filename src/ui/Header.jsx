@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const StyledHeader = styled.header`
   padding: 2.4rem 2.4rem;
-  grid-column: 1/-1;
+  /* grid-column: 1/-1; */
   display: flex;
   flex-direction: column;
   align-items: end;

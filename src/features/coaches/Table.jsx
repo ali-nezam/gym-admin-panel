@@ -7,7 +7,7 @@ const StyledTable = styled.div`
   display: flex;
   flex-direction: column;
   background-color: var(--color-grey-50);
-  border-radius: 14px;
+  /* border-radius: 14px; */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   margin-top: 2.4rem;
 `;
@@ -15,10 +15,13 @@ const StyledTable = styled.div`
 const StyledTableHeader = styled.header`
   display: grid;
   grid-template-columns: 0.5fr 1.6fr 1.5fr 1.5fr 1.3fr 1.2fr;
+  grid-template-columns: 1.6fr 1.5fr 1.5fr 1.3fr 1.2fr;
   padding: 1.3rem 0.3rem 1.3rem 2.4rem;
   background-color: #f5ece3;
+
   border-top-right-radius: 14px;
   border-top-left-radius: 14px;
+  border-radius: 6px 6px 0 0;
   gap: 2.4rem;
   font-size: 1.8rem;
 `;
@@ -32,16 +35,16 @@ function Table() {
       <h1>مربیان</h1>
       <StyledTable>
         <StyledTableHeader>
-          <div> </div>
+          {/* <div> </div> */}
           <div>نام</div>
           <div>تخصص</div>
           <div>هزینه</div>
-          <div>وضعیت</div>
+          <div>تلفن</div>
           <div>عملیات</div>
         </StyledTableHeader>
 
-        {coaches.map((coach) => (
-          <RowDetail coach={coach} key={coach.id} />
+        {coaches.map((coach, index) => (
+          <RowDetail coach={coach} key={coach.id} index={index} />
         ))}
       </StyledTable>
     </>
