@@ -11,11 +11,15 @@ import supabase from "./supabase";
 // }
 
 export async function getCoaches() {
-  const { data, error } = await supabase.from("coaches").select("*");
+  const { data, error } = await supabase
+    .from("coaches")
+    .select("*")
+    .order("id", { ascending: true });
+
   if (error) {
     throw error;
   }
-  console.log(data);
+
   return data;
 }
 getCoaches();
