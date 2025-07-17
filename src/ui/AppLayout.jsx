@@ -4,25 +4,40 @@ import Header from "./Header";
 import SideBar from "./SideBar";
 
 const StyledAppLayout = styled.div`
+  height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
-  height: 100vh;
-  background-color: #e9eaec;
+  background-color: var(--color-grey-200);
+  background-color: #292f36;
+  background-color: #fcf9f2;
+
+  //new code from ai for fix bug for scroll jus content
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 `;
 
 const MainContent = styled.main`
   display: grid;
   grid-template-columns: 26rem 1fr;
   gap: 2.4rem;
-  padding: 2.4rem;
-  height: 100%;
+  padding: 0 2.4rem 2.4rem 2.4rem;
+
+  //new code from ai for fix bug for scroll jus content
+  flex: 1;
+  overflow: hidden;
 `;
 
 const ContentArea = styled.main`
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  padding: 4.2rem;
+  //new code from ai for fix bug for scroll jus content
+  overflow-y: auto;
+
+  //new code from ai for fix dealy scroll
+  scroll-behavior: smooth;
+  will-change: scroll-position;
+  -webkit-overflow-scrolling: touch;
+  contain: paint;
 `;
 function AppLayout() {
   return (

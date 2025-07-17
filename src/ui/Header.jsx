@@ -3,10 +3,8 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
-  background-color: #e9eaec;
   padding: 2.4rem 2.4rem;
   grid-column: 1/-1;
-  border-bottom: 1px solid var(--colorgrey-100);
   display: flex;
   flex-direction: column;
   align-items: end;
@@ -20,15 +18,14 @@ const StyledNavLink = styled(NavLink)`
     align-items: center;
     font-size: 2.6rem;
     font-weight: 700;
-    padding: 1.2rem 2.4rem;
-    transition: all 0.9s;
+    padding-right: 2.4rem;
+    padding-left: 2.4rem;
 
-    /* color: #e9eaec; */
+    transition: all 0.9s;
   }
   &:link svg,
   &:visited svg {
-    /* color: var(--gray-grey-50); */
-    color: #6c6c6c;
+    color: var(--color-grey-500);
     width: 3.4rem;
     height: 3.4rem;
   }

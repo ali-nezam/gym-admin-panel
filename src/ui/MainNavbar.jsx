@@ -34,31 +34,37 @@ const StyledNavLink = styled(NavLink)`
     width: 2.4rem;
     height: 2.4rem;
   }
+  &:hover svg,
+  &:active svg,
+  &.active:link svg,
+  &.active:visited svg {
+    /* color: #ff7c0a; */
+    color: rgba(0.47 0.157 37.304);
+    color: #d9480f;
+  }
 `;
 
 function MainNavbar() {
   return (
     <StyledNavList>
-      <StyledNavLink>
+      <StyledNavLink to="/dashboard">
         <HiHome />
         <span>داشبورد</span>
       </StyledNavLink>
-      <StyledNavLink>
+      <StyledNavLink to="/members">
         <HiMiniUser />
         <span>اعضا</span>
       </StyledNavLink>
-      <StyledNavLink>
+      <StyledNavLink to="/coaches">
         <MdOutlineSports />
         <span>مربی ها</span>
       </StyledNavLink>
-      <StyledNavLink>
+      <StyledNavLink to="/Enrollments">
         <CgGym />
         <span>کلاس ها</span>
       </StyledNavLink>
-      <StyledNavLink>
-        {/* <HiCog /> */}
+      <StyledNavLink to="/settings">
         <HiOutlineAdjustmentsHorizontal />
-        {/* <HiOutlineCog8Tooth /> */}
         <span>تنظیمات</span>
       </StyledNavLink>
     </StyledNavList>

@@ -7,11 +7,14 @@ const StyledSideBar = styled.aside`
   flex-direction: column;
   gap: 0.8rem;
   height: 100%;
-  background-color: #fff;
+  background-color: var(--color-grey-50);
+  background-color: #f4ede3;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   padding: 2.4rem;
-  position: relative;
+
+  //new code from ai for fix bug for scroll jus content
+  overflow-y: auto;
 `;
 
 function SideBar() {
