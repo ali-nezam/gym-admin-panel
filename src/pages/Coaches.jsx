@@ -1,5 +1,7 @@
+import Table from "../features/coaches/table";
+
 function Coaches() {
-  return <div>Coaches</div>;
+  return <Table />;
 }
 
 export default Coaches;
