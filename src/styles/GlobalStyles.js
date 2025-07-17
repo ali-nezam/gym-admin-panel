@@ -17,9 +17,12 @@ const GlobalStyles = createGlobalStyle`
   --color-grey-50: #f9fafb;
   --color-grey-100: #f3f4f6;
   --color-grey-200: #e5e7eb;
-  --color-grey-300: #d1d5db;
-  --color-grey-400: #9ca3af;
-  --color-grey-500: #6b7280;
+    /* background-color: #e9eaec; */
+    
+    --color-grey-300: #d1d5db;
+    --color-grey-400: #9ca3af;
+    --color-grey-500: #6b7280;
+    /* color: #6c6c6c; */
   --color-grey-600: #4b5563;
   --color-grey-700: #374151;
   --color-grey-800: #1f2937;
@@ -71,11 +74,42 @@ html {
   font-size: 62.5%;
 }
 
-body {
-  /* font-family: "Poppins", sans-serif; */
-   font-family: 'Vazirmatn', sans-serif;
-  color: var(--color-grey-700);
 
+@font-face {
+  font-family: 'IRANRounded';
+  src:url('/fonts/IRAN-Rounded.woff') format('woff'); 
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'IRAN-family';
+  src: url('/fonts/IRAN.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'nika';
+  src: url('/fonts/Nika-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Shabnam';
+  src: url('/fonts/Shabnam.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Poppis", sans-serif;
+  font-family: 'Vazirmatn', sans-serif;
+  font-family: 'IRANRounded' ,sans-serif;
+  font-family: 'IRAN-family' ,sans-serif;
+  font-family: 'nika' ,sans-serif;
+  font-family: 'Shabnam' ,sans-serif;
+  color: #2c3e50;
+  color: var(--color-grey-700);
+  color: #4f4f4f;
   transition: color 0.3s, background-color 0.3s;
   min-height: 100vh;
   line-height: 1.5;
