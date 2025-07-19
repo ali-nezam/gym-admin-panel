@@ -74,7 +74,7 @@ html {
   font-size: 62.5%;
 }
 
-
+/* 
 @font-face {
   font-family: 'IRANRounded';
   src:url('/fonts/IRAN-Rounded.woff') format('woff'); 
@@ -98,15 +98,38 @@ html {
   src: url('/fonts/Shabnam.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+} */
+/////////////////////////////////////morabba
+
+@font-face {
+  font-family: Morabba;
+  font-style: normal;
+  font-weight: normal;
+  src: url("/fonts/Morabba/woff2/Morabba-Regular.woff2") format("woff2");
+}
+@font-face {
+	font-family: Morabba;
+	font-style: normal;
+	font-weight: 500;
+	src: url("/fonts/Morabba/woff2/Morabba-Medium.woff2") format("woff2");
+}
+@font-face {
+	font-family: Morabba;
+	font-style: normal;
+	font-weight: 800;
+	src: url("/fonts/Morabba/woff2/Morabba-ExtraBold.woff2") format("woff2");
 }
 
+
+
 body {
-  font-family: "Poppis", sans-serif;
+  /* font-family: "Poppis", sans-serif;
   font-family: 'Vazirmatn', sans-serif;
   font-family: 'IRANRounded' ,sans-serif;
   font-family: 'IRAN-family' ,sans-serif;
   font-family: 'nika' ,sans-serif;
-  font-family: 'Shabnam' ,sans-serif;
+  font-family: 'Shabnam' ,sans-serif; */
+  font-family: Morabba ,sans-serif;
   color: #2c3e50;
   color: var(--color-grey-700);
   color: #4f4f4f;
@@ -116,6 +139,8 @@ body {
   line-height: 1.5;
   font-size: 1.6rem;
 }
+
+
 
 input,
 button,
