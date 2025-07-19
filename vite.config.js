@@ -6,4 +6,7 @@ import eslint from "vite-plugin-eslint";
 
 export default defineConfig({
   plugins: [react(), eslint()],
+  server: {
+    host: "127.0.0.1",
+  },
 });
