@@ -5,11 +5,10 @@ import Logo from "./Logo";
 const StyledSideBar = styled.aside`
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 4.8rem;
   /* height: 100%; */
   background-color: var(--color-grey-50);
-  background-color: #f4ede3;
-  background-color: #f4ece3;
+  background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   padding: 2.4rem;

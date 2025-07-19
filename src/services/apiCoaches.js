@@ -14,7 +14,8 @@ export async function getCoaches() {
   const { data, error } = await supabase
     .from("coaches")
     .select("*")
-    .order("id", { ascending: true });
+    .order("id", { ascending: true })
+    .range(0, 8);
 
   if (error) {
     throw error;

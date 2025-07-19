@@ -1,4 +1,4 @@
-import Table from "../features/coaches/table";
+import Table from "../features/coaches/Table";
 
 function Coaches() {
   return <Table />;

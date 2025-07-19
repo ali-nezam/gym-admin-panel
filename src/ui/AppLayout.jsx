@@ -6,11 +6,12 @@ import SideBar from "./SideBar";
 const StyledAppLayout = styled.div`
   height: 100vh;
   display: grid;
-  grid-template-columns: 26rem 1fr;
+  grid-template-columns: 30rem 1fr;
   grid-template-rows: 1fr 1fr;
   background-color: var(--color-grey-200);
   background-color: #292f36;
   background-color: #fcf9f2;
+  background-color: #fafbff;
 
   //new code from ai for fix bug for scroll jus content
   /* display: flex;
