@@ -89,13 +89,8 @@ const CoachesDashboard = styled.div`
 `;
 
 const CardDashboard = styled.div`
-  /* background-color: #ffffff; */
-  /* width: fit-content; */
-  /* border-left: 0.3rem solid #f0f0f0; */
-
   display: grid;
   grid-template-columns: 1fr 2.5fr;
-  /* background-color: #ffffff; */
   gap: 2rem;
   svg {
     width: 8.4rem;
@@ -119,6 +114,8 @@ const CardDashboard = styled.div`
     font-size: 1.4rem;
   }
   h4 {
+    color: #333333;
+    font-weight: 400;
     display: flex;
     gap: 0.2rem;
     font-size: 1.2rem;
@@ -140,22 +137,22 @@ function Table() {
     <>
       <CoachesDashboard>
         <CardDashboard>
-          <HiOutlineUserGroup />
-          <div>
-            <h3>مشتریان </h3>
-            <h2>15,423</h2>
-            <h4>
-              <span>{toPersianDigits("24%")}</span> <p>رشد در این ماه</p>
-            </h4>
-          </div>
-        </CardDashboard>
-        <CardDashboard>
           <RiUserFollowLine />
           <div>
             <h3>همه مربی ها</h3>
             <h2>5,423</h2>
             <h4>
               <span>{toPersianDigits("14%")}</span> <p>رشد در این ماه</p>
+            </h4>
+          </div>
+        </CardDashboard>
+        <CardDashboard>
+          <HiOutlineUserGroup />
+          <div>
+            <h3>مشتریان </h3>
+            <h2>15,423</h2>
+            <h4>
+              <span>{toPersianDigits("24%")}</span> <p>رشد در این ماه</p>
             </h4>
           </div>
         </CardDashboard>
