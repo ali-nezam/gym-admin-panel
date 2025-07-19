@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import {
+  HiChevronLeft,
   HiHome,
   HiMiniUser,
   HiOutlineAdjustmentsHorizontal,
@@ -12,6 +13,7 @@ const StyledNavList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+  color: #9197b3;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -23,24 +25,42 @@ const StyledNavLink = styled(NavLink)`
     font-size: 1.6rem;
     font-weight: 500;
     padding: 1.2rem 2.4rem;
-    transition: all 0.9s;
+    border-radius: 8px;
 
-    /* color: #e9eaec; */
+    transition: all 0.9s;
   }
+
+  span {
+    flex: 1;
+  }
+
   &:link svg,
   &:visited svg {
-    /* color: var(--gray-grey-50); */
-    color: #6c6c6c;
+    color: #9197b3;
     width: 2.4rem;
     height: 2.4rem;
+    flex-shrink: 0;
+  }
+  &:hover,
+  &:active,
+  &.active:link,
+  &.active:visited {
+    color: rgba(0.47 0.157 37.304);
+    color: #ffffff;
+    background-color: #5932ea;
+    border-radius: 8px;
   }
   &:hover svg,
   &:active svg,
   &.active:link svg,
   &.active:visited svg {
-    /* color: #ff7c0a; */
     color: rgba(0.47 0.157 37.304);
-    color: #d9480f;
+    color: #ffffff;
+  }
+  svg:last-of-type {
+    margin-right: auto; /* این باعث میشه فلش بره سمت چپ */
+    width: 1.6rem;
+    height: 1.6rem;
   }
 `;
 
@@ -50,22 +70,29 @@ function MainNavbar() {
       <StyledNavLink to="/dashboard">
         <HiHome />
         <span>داشبورد</span>
+        <HiChevronLeft />
       </StyledNavLink>
       <StyledNavLink to="/members">
         <HiMiniUser />
         <span>اعضا</span>
+        <HiChevronLeft />
       </StyledNavLink>
+
       <StyledNavLink to="/coaches">
         <MdOutlineSports />
         <span>مربی ها</span>
+        <HiChevronLeft />
       </StyledNavLink>
+
       <StyledNavLink to="/Enrollments">
         <CgGym />
         <span>کلاس ها</span>
+        <HiChevronLeft />
       </StyledNavLink>
       <StyledNavLink to="/settings">
         <HiOutlineAdjustmentsHorizontal />
         <span>تنظیمات</span>
+        <HiChevronLeft />
       </StyledNavLink>
     </StyledNavList>
   );
