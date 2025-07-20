@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import useCoaches from "./useCoaches";
-import RowDetail from "./RowDetail";
 import Spinner from "../../ui/Spinner";
 import DashboardCoaches from "./DashboardCoaches";
 import TableHeader from "./TableHeader";
 import TablePagination from "./TablePagination";
 import TableColumnHeaders from "./TableColumnHeaders";
+import RowCoaches from "./RowCoaches";
 
 const TableContainer = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ function MainCoaches() {
         <TableColumnHeaders />
 
         {coaches.map((coach, index) => (
-          <RowDetail coach={coach} key={coach.id} index={index} />
+          <RowCoaches coach={coach} key={coach.id} index={index} />
         ))}
         <TablePagination />
       </TableContainer>
