@@ -1,7 +1,7 @@
-import Table from "../features/coaches/Table";
+import MainCoaches from "../features/coaches/MainCoaches";
 
 function Coaches() {
-  return <Table />;
+  return <MainCoaches />;
 }
 
 export default Coaches;
