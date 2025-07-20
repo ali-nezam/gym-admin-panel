@@ -1,8 +1,16 @@
 import { GrEdit } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
+import { HiEye } from "react-icons/hi2";
 import styled, { css } from "styled-components";
 import { toPersianDate } from "../../utils/convertDate";
 import { toPersianDigits } from "../../utils/convertNumberToPersianDigits";
+
+const hoverColors = {
+  delete: "#cc1f3d",
+  edit: "#0c8599",
+  details: "#37b24d",
+};
+
 const StyledRowDetail = styled.div`
   display: grid;
   grid-template-columns: 0.5fr 1.6fr 1.5fr 1.5fr 1.3fr 1.2fr 0.5fr;
@@ -33,32 +41,24 @@ const Name = styled.div`
   color: #292d32;
 `;
 
-const EditIcon = styled(GrEdit)`
-  cursor: pointer;
-  transition: color 80ms ease-in-out;
-  width: 2rem;
-  height: 2rem;
-  color: #6e6b7b;
-  &:hover {
-    color: #1669bb;
-  }
-`;
-
-const DeleteIcon = styled(MdDelete)`
-  cursor: pointer;
-  transition: color 80ms ease-in-out;
-  width: 2rem;
-  height: 2rem;
-  color: #6e6b7b;
-  &:hover {
-    color: #cc1f3d;
-  }
-`;
-
 const Actions = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1.2rem;
+`;
+
+const Icon = styled.div`
+  cursor: pointer;
+  transition: color 80ms ease-in-out;
+  color: #6e6b7b;
+  svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  & :hover {
+    color: ${({ type }) => hoverColors[type] || "#6e6b7b"};
+  }
 `;
 
 const Status = styled.div`
@@ -107,8 +107,15 @@ function RowDetail({ coach, index }) {
       )}
       <Name>{toPersianDigits(phone)}</Name>
       <Actions>
-        <EditIcon />
-        <DeleteIcon />
+        <Icon type="edit">
+          <GrEdit />
+        </Icon>
+        <Icon type="delete">
+          <MdDelete />
+        </Icon>
+        <Icon type="details">
+          <HiEye />
+        </Icon>
       </Actions>
     </StyledRowDetail>
   );
