@@ -15,7 +15,7 @@ export async function getCoaches() {
     .from("coaches")
     .select("*")
     .order("id", { ascending: true })
-    .range(0, 8);
+    .range(0, 5);
 
   if (error) {
     throw error;
