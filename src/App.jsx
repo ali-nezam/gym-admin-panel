@@ -8,6 +8,7 @@ import Enrollments from "./pages/Enrollments ";
 import GlobalStyles from "./styles/GlobalStyles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ function App() {
               <Route element={<Enrollments />} path="enrollments" />
               <Route element={<Members />} path="members" />
               <Route element={<Settings />} path="settings" />
+              <Route element={<PageNotFound />} path="*" />
             </Route>
           </Routes>
         </BrowserRouter>
