@@ -32,7 +32,7 @@ function Filter({ options }) {
   return (
     <StyledFilter>
       {options.map((option) => (
-        <FilterButton>{option}</FilterButton>
+        <FilterButton key={option}>{option}</FilterButton>
       ))}
     </StyledFilter>
   );
