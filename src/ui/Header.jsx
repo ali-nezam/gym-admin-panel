@@ -3,6 +3,7 @@ import SearchBox from "./SearchBox";
 
 const StyledHeader = styled.header`
   padding: 2.4rem 2.4rem;
+  padding-bottom: 0;
   display: flex;
   flex-direction: row;
   align-items: center;

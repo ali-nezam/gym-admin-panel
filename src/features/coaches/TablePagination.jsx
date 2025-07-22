@@ -4,7 +4,9 @@ const StyledTablePagination = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 1.4rem;
+  /* margin-bottom: 1.4rem; */
+  padding: 0.7rem 1.4rem;
+  padding-bottom: 0;
   align-items: center;
 
   h2 {

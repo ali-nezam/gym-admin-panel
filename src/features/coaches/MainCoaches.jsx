@@ -6,7 +6,8 @@ import TableHeader from "./TableHeader";
 import TablePagination from "./TablePagination";
 import TableColumnHeaders from "./TableColumnHeaders";
 import RowCoaches from "./RowCoaches";
-
+// import NoContent from "../../ui/NoContent";
+import EmptyState from "../../ui/EmptyState";
 const TableContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -14,21 +15,19 @@ const TableContainer = styled.div`
   border-radius: 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   margin-top: 2.4rem;
-  padding: 2.4rem 3.2rem 2.4rem 3.2rem;
+  padding: 2rem 3.2rem 2rem 3.2rem;
 `;
 
 function MainCoaches() {
   const { coaches, isLoading /*error*/ } = useCoaches();
-
   if (isLoading) return <Spinner />;
-
+  if (coaches.length < 1) return <EmptyState />;
   return (
     <>
       <DashboardCoaches />
       <TableContainer>
         <TableHeader />
         <TableColumnHeaders />
-
         {coaches.map((coach, index) => (
           <RowCoaches coach={coach} key={coach.id} index={index} />
         ))}
