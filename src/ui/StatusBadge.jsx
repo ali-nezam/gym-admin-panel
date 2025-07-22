@@ -40,9 +40,12 @@ const StyledStatusBadge = styled.div`
   color: ${({ type }) => getColor[type]};
   background-color: ${({ type }) => getBackground[type]};
 `;
-
 function StatusBadge({ type }) {
   // return <StyledStatusBadge type={type}>{content}</StyledStatusBadge>;
-  return <StyledStatusBadge type={type}>{getContent[type]}</StyledStatusBadge>;
+  return (
+    <StyledStatusBadge type={toString.type}>
+      {getContent[type]}
+    </StyledStatusBadge>
+  );
 }
 export default StatusBadge;
