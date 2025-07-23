@@ -23,4 +23,17 @@ export async function getCoaches() {
 
   return data;
 }
-getCoaches();
+
+export async function createNewCoach(newCoach) {
+  const { data, error } = await supabase
+    .from("coaches")
+    .insert([{ ...newCoach }])
+    .select("*");
+  // console.log(newCoach);
+  // console.log(data);
+  if (error) {
+    console.error(error);
+    throw new Error("Failed to add coach");
+  }
+  return data;
+}

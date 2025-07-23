@@ -1,80 +1,101 @@
-// components/modals/AddCoachForm.jsx
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import { useState } from "react";
+import { createNewCoach } from "../services/apiCoaches";
+import toast from "react-hot-toast";
 
 function ModalForm({ onClose }) {
-  const [formData, setFormData] = useState({
-    name: "",
-    expertise: "",
-    phone: "",
-    joinDate: "",
-    status: "active",
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const queryClient = useQueryClient();
+
+  const onSubmit = (NewCoach) => {
+    mutate({ ...NewCoach });
+  };
+
+  const { mutate, isLoading } = useMutation({
+    mutationFn: createNewCoach,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["coaches"] });
+      toast.success("new cabin successfuly created");
+      reset();
+      onClose();
+    },
+    onError: (error) => {
+      toast.error("Error creating coach:");
+      reset();
+      onClose();
+    },
   });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // اینجا می‌تونی API بفرستی یا react-query mutation بزنی
-    console.log("🔁 داده‌ی ارسال‌شده:", formData);
-    onClose(); // بعد از ثبت، مودال بسته بشه
-  };
-
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <Label>
         نام:
         <Input
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
+          id="full_name"
+          type="text"
+          disabled={isLoading}
+          {...register("full_name", { required: "نام اجباری است" })}
         />
+        {errors?.full_name?.message && (
+          <ErrorMessage>{errors.full_name.message}</ErrorMessage>
+        )}
       </Label>
 
       <Label>
         تخصص:
         <Input
-          name="expertise"
-          value={formData.expertise}
-          onChange={handleChange}
-          required
+          disabled={isLoading}
+          id="expertise"
+          type="text"
+          {...register("expertise", {
+            required: "تخصص مربی مورد نظر را با دفت وارد کنید",
+          })}
         />
+        {errors?.expertise?.message && (
+          <ErrorMessage>{errors.expertise.message}</ErrorMessage>
+        )}
       </Label>
 
       <Label>
         شماره تماس:
         <Input
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          required
+          disabled={isLoading}
+          type="text"
+          id="phone"
+          {...register("phone", {
+            required: "شماره را بدون صفر و +98 وارد کنید",
+          })}
         />
+        {errors?.phone?.message && (
+          <ErrorMessage>{errors.phone.message}</ErrorMessage>
+        )}
       </Label>
-
-      <Label>
+      {/* <Label>
         تاریخ عضویت:
-        <Input
-          type="date"
-          name="joinDate"
-          value={formData.joinDate}
-          onChange={handleChange}
-        />
-      </Label>
+        <Input {...register("date-membership", { required: true })} />
+        </Label> */}
 
       <Label>
         وضعیت:
-        <Select name="status" value={formData.status} onChange={handleChange}>
-          <option value="active">فعال</option>
-          <option value="inactive">غیرفعال</option>
+        <Select
+          disabled={isLoading}
+          {...register("coach_status", { required: true })}
+        >
+          <option value="true">فعال</option>
+          <option value="false">غیرفعال</option>
         </Select>
       </Label>
 
       <Actions>
-        <Button type="submit">افزودن</Button>
+        <Button disabled={isLoading} type="submit">
+          افزودن
+        </Button>
         <CancelBtn type="button" onClick={onClose}>
           انصراف
         </CancelBtn>
@@ -130,4 +151,8 @@ const Button = styled.button`
 const CancelBtn = styled(Button)`
   background-color: #dee2e6;
   color: black;
+`;
+
+const ErrorMessage = styled.span`
+  color: red;
 `;
