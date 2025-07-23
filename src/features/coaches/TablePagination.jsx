@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import Button from "../../ui/Button";
 import { useState } from "react";
-import Modal from "../../ui/Modal";
+// import Modal from "../../ui/Modal";
+import Modal from "../../Compound component/Modal";
 // import { Icon } from "lucide-react";
 import { IoPersonAddOutline } from "react-icons/io5";
 import Icon from "../../ui/Icon";
+import ModalForm from "../../ui/ModalForm ";
 const StyledTablePagination = styled.div`
   display: flex;
   flex-direction: row;
@@ -31,7 +33,19 @@ function TablePagination() {
         <p>افزودن مربی جدید</p>
         <Icon type="create" icon={<IoPersonAddOutline />} />
       </Button>
-      {showForm && <Modal onClose={() => setShowForm((x) => !x)} />}
+
+      {showForm && (
+        <Modal onClose={() => setShowForm((x) => !x)}>
+          <Modal.Header>
+            <h2>افزودن مربی جدید</h2>
+            <Modal.CloseBtn onClick={() => setShowForm((x) => !x)} />
+          </Modal.Header>
+          <Modal.Body>
+            <ModalForm onClose={() => setShowForm((x) => !x)} />
+          </Modal.Body>
+        </Modal>
+      )}
+
       <h2>dsadsafsaf</h2>
     </StyledTablePagination>
   );
