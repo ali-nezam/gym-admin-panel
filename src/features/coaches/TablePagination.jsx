@@ -1,17 +1,14 @@
 import styled from "styled-components";
 import Button from "../../ui/Button";
-import { useState } from "react";
-// import Modal from "../../ui/Modal";
 import Modal from "../../Compound component/Modal";
-// import { Icon } from "lucide-react";
 import { IoPersonAddOutline } from "react-icons/io5";
 import Icon from "../../ui/Icon";
 import ModalForm from "../../ui/ModalForm ";
+import Filter from "../../ui/Filter";
 const StyledTablePagination = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* margin-bottom: 1.4rem; */
   padding: 0.7rem 1.4rem;
   padding-bottom: 0;
   align-items: center;
@@ -24,29 +21,24 @@ const StyledTablePagination = styled.div`
 `;
 
 function TablePagination() {
-  const [showForm, setShowForm] = useState(false);
-
   return (
     <StyledTablePagination>
       <h2>نمایش اطلاعات 1 تا 8 از 256 داده</h2>
-      <Button onClick={() => setShowForm((x) => !x)}>
-        <p>افزودن مربی جدید</p>
-        <Icon type="create" icon={<IoPersonAddOutline />} />
-      </Button>
 
-      {showForm && (
-        <Modal onClose={() => setShowForm((x) => !x)}>
-          <Modal.Header>
-            <h2>افزودن مربی جدید</h2>
-            <Modal.CloseBtn onClick={() => setShowForm((x) => !x)} />
-          </Modal.Header>
-          <Modal.Body>
-            <ModalForm onClose={() => setShowForm((x) => !x)} />
-          </Modal.Body>
-        </Modal>
-      )}
+      <Modal>
+        <Modal.Open>
+          <Button>
+            <p>افزودن مربی جدید</p>
+            <Icon type="create" icon={<IoPersonAddOutline />} />
+          </Button>
+        </Modal.Open>
 
-      <h2>dsadsafsaf</h2>
+        <Modal.Body>
+          <ModalForm />
+        </Modal.Body>
+      </Modal>
+
+      <Filter options={["1", "2", "3", "...", "45", "46"]} />
     </StyledTablePagination>
   );
 }

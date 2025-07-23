@@ -1,0 +1,33 @@
+import { useController } from "react-hook-form";
+import DatePicker from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+import "react-multi-date-picker/styles/layouts/prime.css";
+import InputIcon from "react-multi-date-picker/components/input_icon";
+import "react-multi-date-picker/styles/colors/purple.css";
+
+import styled from "styled-components";
+
+const StyledDatepicker = styled.div``;
+
+export default function PersianDatePicker({ name, control }) {
+  const { field } = useController({
+    name,
+    control,
+    defaultValue: new Date(),
+  });
+
+  return (
+    <StyledDatepicker>
+      <DatePicker
+        render={<InputIcon />}
+        className="rmdp-prime purple"
+        calendar={persian}
+        locale={persian_fa}
+        value={field.value}
+        onChange={field.onChange}
+        calendarPosition="left"
+      />
+    </StyledDatepicker>
+  );
+}

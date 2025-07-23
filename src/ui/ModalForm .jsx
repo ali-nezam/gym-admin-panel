@@ -3,19 +3,26 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { createNewCoach } from "../services/apiCoaches";
 import toast from "react-hot-toast";
+import PersianDatePicker from "./PersianDatePicker";
 
 function ModalForm({ onClose }) {
   const {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm();
 
   const queryClient = useQueryClient();
 
-  const onSubmit = (NewCoach) => {
-    mutate({ ...NewCoach });
+  const onSubmit = (newCoach) => {
+    const pickerValue = newCoach.Membership_date;
+    // const shamsi = pickerValue?.format("MM/DD/YYYY"); // شمسی
+    // console.log(shamsi);
+    const miladi = pickerValue?.toDate().toISOString().split("T")[0];
+    newCoach.Membership_date = miladi; // میلادی
+    mutate({ ...newCoach });
   };
 
   const { mutate, isLoading } = useMutation({
@@ -27,7 +34,7 @@ function ModalForm({ onClose }) {
       onClose();
     },
     onError: (error) => {
-      toast.error("Error creating coach:");
+      toast.error(error || "Error creating coach");
       reset();
       onClose();
     },
@@ -76,10 +83,6 @@ function ModalForm({ onClose }) {
           <ErrorMessage>{errors.phone.message}</ErrorMessage>
         )}
       </Label>
-      {/* <Label>
-        تاریخ عضویت:
-        <Input {...register("date-membership", { required: true })} />
-        </Label> */}
 
       <Label>
         وضعیت:
@@ -91,6 +94,9 @@ function ModalForm({ onClose }) {
           <option value="false">غیرفعال</option>
         </Select>
       </Label>
+
+      <Label>تاریخ عضویت:</Label>
+      <PersianDatePicker name="Membership_date" control={control} />
 
       <Actions>
         <Button disabled={isLoading} type="submit">
@@ -139,7 +145,7 @@ const Actions = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: #5f3dc4;
+  background-color: #5932ea;
   color: white;
   padding: 0.8rem 1.6rem;
   border: none;

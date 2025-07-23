@@ -1,4 +1,46 @@
+import { cloneElement, useContext, useState } from "react";
 import styled from "styled-components";
+import { HiXMark } from "react-icons/hi2";
+import Icon from "../ui/Icon";
+import ModalContext from "../context/ModalContext";
+
+function Modal({ children }) {
+  const [isOpen, setIsopen] = useState(false);
+  function close() {
+    setIsopen(false);
+  }
+  function open() {
+    setIsopen(true);
+  }
+
+  return (
+    <ModalContext.Provider value={{ close, open, isOpen }}>
+      {children}
+    </ModalContext.Provider>
+  );
+}
+
+Modal.Body = function ModalBody({ children }) {
+  const { isOpen, close } = useContext(ModalContext);
+  if (!isOpen) return null;
+
+  return (
+    <Overlay onClick={close}>
+      <ModalContent onClick={(e) => e.stopPropagation()}>
+        <Icon icon={<HiXMark />} onClick={close} />
+        {cloneElement(children, { onClose: close })}
+      </ModalContent>
+    </Overlay>
+  );
+};
+
+Modal.Open = function ModalOpenButton({ children }) {
+  const { open } = useContext(ModalContext);
+  return <div onClick={open}>{children}</div>;
+};
+
+export default Modal;
+
 const Overlay = styled.div`
   position: fixed; // This will cover the entire viewport
   inset: 0; // This is a shorthand for top, right, bottom, left to 0
@@ -17,42 +59,3 @@ const ModalContent = styled.div`
   max-width: 90%; //
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 `;
-
-function Modal({ onClose, children }) {
-  return (
-    <Overlay onClick={onClose}>
-      <ModalContent onClick={(e) => e.stopPropagation()}>
-        {children}
-      </ModalContent>
-    </Overlay>
-  );
-}
-
-const Header = styled.div`
-  display: flex;
-
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-`;
-
-Modal.Header = function ModalHeader({ children }) {
-  return <Header>{children}</Header>;
-};
-
-const CloseBtn = styled.button`
-  background: none;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-`;
-
-Modal.CloseBtn = function ModalCloseBtn({ onClick }) {
-  return <CloseBtn onClick={onClick}>x</CloseBtn>;
-};
-
-Modal.Body = function ModalBody({ children }) {
-  return <div>{children}</div>;
-};
-
-export default Modal;
