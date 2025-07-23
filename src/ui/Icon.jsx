@@ -27,8 +27,13 @@ const StyleIcon = styled.div`
     color: ${({ type }) => hoverColors[type] || "#6e6b7b"};
   }
 `;
-function Icon({ type, icon }) {
-  return <StyleIcon type={type}> {icon} </StyleIcon>;
+function Icon({ type, icon, onClick }) {
+  return (
+    <StyleIcon onClick={onClick} type={type}>
+      {" "}
+      {icon}
+    </StyleIcon>
+  );
 }
 
 export default Icon;
