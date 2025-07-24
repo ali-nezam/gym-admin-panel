@@ -8,6 +8,7 @@ import TableColumnHeaders from "./TableColumnHeaders";
 import RowCoaches from "./RowCoaches";
 // import NoContent from "../../ui/NoContent";
 import EmptyState from "../../ui/EmptyState";
+import NotFound from "../../ui/NotFound";
 const TableContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,8 +21,10 @@ const TableContainer = styled.div`
 
 function MainCoaches() {
   const { coaches, isLoading /*error*/ } = useCoaches();
+  // const coaches = {};
   if (isLoading) return <Spinner />;
-  if (coaches.length < 1) return <EmptyState />;
+  if (!coaches) return <NotFound />;
+  if (Object.keys(coaches).length < 1) return <EmptyState />;
   return (
     <>
       <DashboardCoaches />
