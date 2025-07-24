@@ -7,6 +7,7 @@ import InputIcon from "react-multi-date-picker/components/input_icon";
 import "react-multi-date-picker/styles/colors/purple.css";
 
 import styled from "styled-components";
+import DateObject from "react-date-object";
 
 const StyledDatepicker = styled.div``;
 
@@ -14,7 +15,7 @@ export default function PersianDatePicker({ name, control }) {
   const { field } = useController({
     name,
     control,
-    defaultValue: new Date(),
+    defaultValue: new DateObject(),
   });
 
   return (
