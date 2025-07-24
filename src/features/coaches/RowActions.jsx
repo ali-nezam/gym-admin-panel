@@ -4,7 +4,7 @@ import { GrEdit } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 import { HiEye } from "react-icons/hi2";
 import Modal from "../../Compound component/Modal";
-import ModalForm from "../../ui/ModalForm ";
+import FormAddEditCoach from "./FormAddEditCoach";
 const StyledRowActions = styled.div`
   display: flex;
   flex-direction: row;
@@ -21,7 +21,7 @@ function RowActions({ coach }) {
           <Icon type="edit" icon={<GrEdit />} />
         </Modal.Open>
         <Modal.Body>
-          <ModalForm coach={coach} />
+          <FormAddEditCoach coach={coach} />
         </Modal.Body>
       </Modal>
     </StyledRowActions>

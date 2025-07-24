@@ -3,8 +3,8 @@ import Button from "../../ui/Button";
 import Modal from "../../Compound component/Modal";
 import { IoPersonAddOutline } from "react-icons/io5";
 import Icon from "../../ui/Icon";
-import ModalForm from "../../ui/ModalForm ";
 import Filter from "../../ui/Filter";
+import FormAddEditCoach from "./FormAddEditCoach";
 const StyledTablePagination = styled.div`
   display: flex;
   flex-direction: row;
@@ -34,7 +34,7 @@ function TablePagination() {
         </Modal.Open>
 
         <Modal.Body>
-          <ModalForm />
+          <FormAddEditCoach />
         </Modal.Body>
       </Modal>
 

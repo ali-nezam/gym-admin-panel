@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import PersianDatePicker from "./PersianDatePicker";
-import useCreateNewCoach from "../features/coaches/useCreateNewCoach";
-import useEditCoach from "../features/coaches/useEditCoach";
-function ModalForm({ onClose, coach = {} }) {
+import PersianDatePicker from "../../ui/PersianDatePicker";
+import useCreateNewCoach from "./useCreateNewCoach";
+import useEditCoach from "./useEditCoach";
+function FormAddEditCoach({ onClose, coach = {} }) {
   // console.log(coach);
   const editedSeasion = Boolean(coach.id);
   // console.log(editedSeasion);
@@ -127,7 +127,7 @@ function ModalForm({ onClose, coach = {} }) {
   );
 }
 
-export default ModalForm;
+export default FormAddEditCoach;
 
 const Form = styled.form`
   display: flex;
