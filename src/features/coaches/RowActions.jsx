@@ -11,7 +11,7 @@ const StyledRowActions = styled.div`
   gap: 1.2rem;
 `;
 
-function RowActions() {
+function RowActions({ coach }) {
   return (
     <StyledRowActions>
       <Icon type="delete" icon={<MdDelete />} />
@@ -21,7 +21,7 @@ function RowActions() {
           <Icon type="edit" icon={<GrEdit />} />
         </Modal.Open>
         <Modal.Body>
-          <ModalForm />
+          <ModalForm coach={coach} />
         </Modal.Body>
       </Modal>
     </StyledRowActions>

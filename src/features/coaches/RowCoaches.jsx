@@ -43,7 +43,7 @@ function RowCoaches({ coach, index }) {
 
       <RowCellText>{toPersianDigits(phone)}</RowCellText>
 
-      <RowActions />
+      <RowActions coach={coach} />
     </StyledRowCoaches>
   );
 }
