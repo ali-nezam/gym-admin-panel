@@ -1,33 +1,57 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import PersianDatePicker from "./PersianDatePicker";
-import { useCreateNewCoach } from "../features/coaches/useCreateNewCoach";
-function ModalForm({ onClose }) {
+import {
+  useCreateNewCoach,
+  useEditCoach,
+} from "../features/coaches/useCreateNewCoach";
+function ModalForm({ onClose, coach = {} }) {
+  // console.log(coach);
+  const editedSeasion = Boolean(coach.id);
+  // console.log(editedSeasion);
   const {
     register,
     handleSubmit,
     reset,
     control,
     formState: { errors },
-  } = useForm();
+  } = useForm({ defaultValues: editedSeasion ? coach : {} });
 
   const { createCoach, isCreating } = useCreateNewCoach();
+  const { editCoach, isEditing } = useEditCoach();
+  const isWorking = isCreating || isEditing;
 
   const onSubmit = (newCoach) => {
-    const pickerValue = newCoach.Membership_date;
-    // const shamsi = pickerValue?.format("MM/DD/YYYY"); // شمسی
-    // console.log(shamsi);
-    const miladi = pickerValue?.toDate().toISOString().split("T")[0];
-    newCoach.Membership_date = miladi; // میلادی
-    createCoach(
-      { ...newCoach },
-      {
-        onSuccess: () => {
-          reset();
-          onClose?.();
+    if (!editedSeasion) {
+      const pickerValue = newCoach.Membership_date;
+      const miladi = pickerValue?.toDate().toISOString().split("T")[0];
+      newCoach.Membership_date = miladi;
+    }
+
+    if (editedSeasion) {
+      editCoach(
+        {
+          coachEdited: { ...newCoach },
+          id: newCoach.id,
         },
-      }
-    );
+        {
+          onSuccess: () => {
+            reset();
+            onClose?.();
+          },
+        }
+      );
+    } else {
+      createCoach(
+        { ...newCoach },
+        {
+          onSuccess: () => {
+            reset();
+            onClose?.();
+          },
+        }
+      );
+    }
   };
 
   return (
@@ -37,7 +61,7 @@ function ModalForm({ onClose }) {
         <Input
           id="full_name"
           type="text"
-          disabled={isCreating}
+          disabled={isWorking}
           {...register("full_name", { required: "نام اجباری است" })}
         />
         {errors?.full_name?.message && (
@@ -48,7 +72,7 @@ function ModalForm({ onClose }) {
       <Label>
         تخصص:
         <Input
-          disabled={isCreating}
+          disabled={isWorking}
           id="expertise"
           type="text"
           {...register("expertise", {
@@ -63,7 +87,7 @@ function ModalForm({ onClose }) {
       <Label>
         شماره تماس:
         <Input
-          disabled={isCreating}
+          disabled={isWorking}
           type="text"
           id="phone"
           {...register("phone", {
@@ -78,7 +102,7 @@ function ModalForm({ onClose }) {
       <Label>
         وضعیت:
         <Select
-          disabled={isCreating}
+          disabled={isWorking}
           {...register("coach_status", { required: true })}
         >
           <option value="true">فعال</option>
@@ -87,13 +111,17 @@ function ModalForm({ onClose }) {
       </Label>
 
       <Label>تاریخ عضویت:</Label>
-      <PersianDatePicker name="Membership_date" control={control} />
+      <PersianDatePicker
+        disabled={isWorking}
+        name="Membership_date"
+        control={control}
+      />
 
       <Actions>
-        <Button disabled={isCreating} type="submit">
-          افزودن
+        <Button disabled={isWorking} type="submit">
+          {editedSeasion ? "ویرایش" : "افزودن"}
         </Button>
-        <CancelBtn type="button" onClick={onClose}>
+        <CancelBtn disabled={isWorking} type="button" onClick={onClose}>
           انصراف
         </CancelBtn>
       </Actions>
