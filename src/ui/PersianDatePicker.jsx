@@ -11,7 +11,7 @@ import DateObject from "react-date-object";
 
 const StyledDatepicker = styled.div``;
 
-export default function PersianDatePicker({ name, control }) {
+export default function PersianDatePicker({ name, control, disabled }) {
   const { field } = useController({
     name,
     control,
@@ -21,6 +21,7 @@ export default function PersianDatePicker({ name, control }) {
   return (
     <StyledDatepicker>
       <DatePicker
+        disabled={disabled}
         // render={<InputIcon />}
         className="rmdp-prime purple"
         calendar={persian}
