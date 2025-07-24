@@ -1,10 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import { createNewCoach } from "../services/apiCoaches";
-import toast from "react-hot-toast";
 import PersianDatePicker from "./PersianDatePicker";
-
+import { useCreateNewCoach } from "../features/coaches/useCreateNewCoach";
 function ModalForm({ onClose }) {
   const {
     register,
@@ -14,7 +11,7 @@ function ModalForm({ onClose }) {
     formState: { errors },
   } = useForm();
 
-  const queryClient = useQueryClient();
+  const { createCoach, isCreating } = useCreateNewCoach();
 
   const onSubmit = (newCoach) => {
     const pickerValue = newCoach.Membership_date;
@@ -22,23 +19,17 @@ function ModalForm({ onClose }) {
     // console.log(shamsi);
     const miladi = pickerValue?.toDate().toISOString().split("T")[0];
     newCoach.Membership_date = miladi; // میلادی
-    mutate({ ...newCoach });
+    createCoach(
+      { ...newCoach },
+      {
+        onSuccess: () => {
+          reset();
+          onClose?.();
+        },
+      }
+    );
   };
 
-  const { mutate, isLoading } = useMutation({
-    mutationFn: createNewCoach,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["coaches"] });
-      toast.success("new cabin successfuly created");
-      reset();
-      onClose();
-    },
-    onError: (error) => {
-      toast.error(error || "Error creating coach");
-      reset();
-      onClose();
-    },
-  });
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Label>
@@ -46,7 +37,7 @@ function ModalForm({ onClose }) {
         <Input
           id="full_name"
           type="text"
-          disabled={isLoading}
+          disabled={isCreating}
           {...register("full_name", { required: "نام اجباری است" })}
         />
         {errors?.full_name?.message && (
@@ -57,7 +48,7 @@ function ModalForm({ onClose }) {
       <Label>
         تخصص:
         <Input
-          disabled={isLoading}
+          disabled={isCreating}
           id="expertise"
           type="text"
           {...register("expertise", {
@@ -72,7 +63,7 @@ function ModalForm({ onClose }) {
       <Label>
         شماره تماس:
         <Input
-          disabled={isLoading}
+          disabled={isCreating}
           type="text"
           id="phone"
           {...register("phone", {
@@ -87,7 +78,7 @@ function ModalForm({ onClose }) {
       <Label>
         وضعیت:
         <Select
-          disabled={isLoading}
+          disabled={isCreating}
           {...register("coach_status", { required: true })}
         >
           <option value="true">فعال</option>
@@ -99,7 +90,7 @@ function ModalForm({ onClose }) {
       <PersianDatePicker name="Membership_date" control={control} />
 
       <Actions>
-        <Button disabled={isLoading} type="submit">
+        <Button disabled={isCreating} type="submit">
           افزودن
         </Button>
         <CancelBtn type="button" onClick={onClose}>
