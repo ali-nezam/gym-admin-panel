@@ -1,10 +1,8 @@
-import { useForm } from "react-hook-form";
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
 import PersianDatePicker from "./PersianDatePicker";
-import {
-  useCreateNewCoach,
-  useEditCoach,
-} from "../features/coaches/useCreateNewCoach";
+import useCreateNewCoach from "../features/coaches/useCreateNewCoach";
+import useEditCoach from "../features/coaches/useEditCoach";
 function ModalForm({ onClose, coach = {} }) {
   // console.log(coach);
   const editedSeasion = Boolean(coach.id);

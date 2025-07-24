@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createNewCoach, editCoachApi } from "../../services/apiCoaches";
+import { createNewCoach } from "../../services/apiCoaches";
 import toast from "react-hot-toast";
 
-export function useCreateNewCoach() {
+export default function useCreateNewCoach() {
   const queryClient = useQueryClient();
 
   const { mutate: createCoach, isPending: isCreating } = useMutation({
@@ -16,20 +16,4 @@ export function useCreateNewCoach() {
     },
   });
   return { createCoach, isCreating };
-}
-
-export function useEditCoach() {
-  const queryClient = useQueryClient();
-
-  const { mutate: editCoach, isPending: isEditing } = useMutation({
-    mutationFn: ({ coachEdited, id }) => editCoachApi(coachEdited, id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["coaches"] });
-      toast.success("اطلاعات مربی با موفقیت ویرایش شد");
-    },
-    onError: (error) => {
-      toast.error("خطا در ویرایش مربی :" + error.message);
-    },
-  });
-  return { editCoach, isEditing };
 }
