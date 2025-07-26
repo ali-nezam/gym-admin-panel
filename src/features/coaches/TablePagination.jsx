@@ -33,7 +33,7 @@ function TablePagination() {
           </Button>
         </Modal.Open>
 
-        <Modal.Body>
+        <Modal.Body title="اضافه کردن مربی">
           <FormAddEditCoach />
         </Modal.Body>
       </Modal>
