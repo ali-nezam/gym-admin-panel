@@ -1,8 +1,6 @@
-import NotFound from "../ui/NotFound";
-
+import MainMembers from "../features/members/MainMembers";
 function Members() {
-  // return <div>members</div>;
-  return <NotFound />;
+  return <MainMembers />;
 }
 
 export default Members;
