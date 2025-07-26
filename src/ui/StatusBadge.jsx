@@ -13,14 +13,20 @@ const getContent = {
   false: "غیرفعال",
 };
 
+const StyledStatusWarper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const StyledStatusBadge = styled.div`
   font-size: 1.2rem;
   font-weight: 500;
-  width: fit-content;
-  display: grid;
+  display: flex;
+  align-items: center;
   justify-content: center;
 
-  padding: 0.5rem 1rem;
+  width: 5.6rem;
+  height: 2.8rem;
   border-radius: 6px;
   /*   
   ${(props) =>
@@ -43,9 +49,9 @@ const StyledStatusBadge = styled.div`
 function StatusBadge({ type }) {
   // return <StyledStatusBadge type={type}>{content}</StyledStatusBadge>;
   return (
-    <StyledStatusBadge type={toString.type}>
-      {getContent[type]}
-    </StyledStatusBadge>
+    <StyledStatusWarper>
+      <StyledStatusBadge type={type}>{getContent[type]}</StyledStatusBadge>
+    </StyledStatusWarper>
   );
 }
 export default StatusBadge;

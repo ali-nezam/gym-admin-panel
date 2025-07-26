@@ -8,12 +8,12 @@ import RowCellText from "./RowCellText";
 
 const StyledRowCoaches = styled.div`
   display: grid;
-  grid-template-columns: 0.5fr 1.6fr 1.5fr 1.5fr 1.3fr 1.2fr 0.5fr;
-  padding-left: 1.2rem;
+  grid-template-columns: 0.5fr 1.6fr 1.5fr 1.5fr 1.3fr 1.2fr 0.7fr;
   align-items: center;
   background-color: ${({ $isEven }) => ($isEven ? "#fff" : "#f9f9f9")};
   gap: 2.4rem;
   font-size: 1.6rem;
+  padding: 0 1rem;
 `;
 
 function RowCoaches({ coach, index }) {

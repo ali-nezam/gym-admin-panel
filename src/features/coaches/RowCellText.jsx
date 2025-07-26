@@ -6,6 +6,9 @@ const StyledRowCellText = styled.div`
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
   color: #292d32;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 function RowCellText({ children }) {
