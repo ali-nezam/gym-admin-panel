@@ -9,6 +9,10 @@ const StyledRowCellText = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  p {
+    font-size: 1rem;
+    padding-right: 0.5rem;
+  }
 `;
 
 function RowCellText({ children }) {
