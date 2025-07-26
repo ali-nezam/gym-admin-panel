@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { toPersianDate } from "../../utils/convertDate";
 import RowCellText from "../../ui/RowCellText";
-import RowActions from "../coaches/RowActions";
+import RowActions from "../common/RowActions";
 
 import StatusBadge from "../../ui/StatusBadge";
 import AvatarPhoto from "../../ui/AvatarPhoto";
@@ -37,7 +37,7 @@ function RowMembers({ member, index }) {
 
       <RowPhoneNumber>{phone}</RowPhoneNumber>
 
-      <RowActions coach={member} type="members" />
+      <RowActions data={member} type="members" />
     </StyledRowMembers>
   );
 }
