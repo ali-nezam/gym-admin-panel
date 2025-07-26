@@ -39,7 +39,7 @@ function RowCoaches({ coach, index }) {
 
       <RowPhoneNumber>{phone}</RowPhoneNumber>
 
-      <RowActions coach={coach} />
+      <RowActions coach={coach} type="coaches" />
     </StyledRowCoaches>
   );
 }

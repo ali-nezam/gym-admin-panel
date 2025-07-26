@@ -37,7 +37,7 @@ function RowMembers({ member, index }) {
 
       <RowPhoneNumber>{phone}</RowPhoneNumber>
 
-      <RowActions coach={member} />
+      <RowActions coach={member} type="members" />
     </StyledRowMembers>
   );
 }
