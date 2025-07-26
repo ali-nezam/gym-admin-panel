@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { toPersianDate } from "../../utils/convertDate";
-import { toPersianDigits } from "../../utils/convertNumberToPersianDigits";
 import RowActions from "./RowActions";
 import AvatarPhoto from "../../ui/AvatarPhoto";
 import StatusBadge from "../../ui/StatusBadge";
-import RowCellText from "./RowCellText";
+import RowCellText from "../../ui/RowCellText";
+import RowPhoneNumber from "../../ui/RowPhoneNumber";
 
 const StyledRowCoaches = styled.div`
   display: grid;
@@ -35,13 +35,9 @@ function RowCoaches({ coach, index }) {
 
       <RowCellText>{toPersianDate(Membership_date)}</RowCellText>
 
-      {coach_status ? (
-        <StatusBadge type={coach_status} />
-      ) : (
-        <StatusBadge type={coach_status} />
-      )}
+      <StatusBadge type={coach_status} />
 
-      <RowCellText>{toPersianDigits(phone)}</RowCellText>
+      <RowPhoneNumber>{phone}</RowPhoneNumber>
 
       <RowActions coach={coach} />
     </StyledRowCoaches>
