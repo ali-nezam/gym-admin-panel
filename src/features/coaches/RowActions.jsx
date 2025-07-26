@@ -5,7 +5,7 @@ import { MdDelete } from "react-icons/md";
 import { HiEye } from "react-icons/hi2";
 import Modal from "../../Compound component/Modal";
 import FormAddEditCoach from "./FormAddEditCoach";
-import ConfirmDelete from "./ConfirmDelete";
+import ConfirmDelete from "../../ui/ConfirmDelete";
 const StyledRowActions = styled.div`
   display: flex;
   flex-direction: row;
@@ -13,15 +13,28 @@ const StyledRowActions = styled.div`
   justify-content: center;
 `;
 
-function RowActions({ coach }) {
+const instructions = {
+  members: {
+    titleDelete: "حذف کردن عضو",
+    titleEdit: "ویرایش عضو",
+  },
+  coaches: {
+    titleDelete: "حذف کردن مربی",
+    titleEdit: "ویرایش مربی",
+  },
+};
+
+function RowActions({ coach, type }) {
+  const { titleDelete, titleEdit } = instructions[type];
+
   return (
     <StyledRowActions>
       <Modal>
         <Modal.Open>
           <Icon type="delete" icon={<MdDelete />} />
         </Modal.Open>
-        <Modal.Body title="حذف کردن مربی">
-          <ConfirmDelete id={coach.id} />
+        <Modal.Body title={titleDelete}>
+          <ConfirmDelete id={coach.id} type={type} />
         </Modal.Body>
       </Modal>
 
@@ -31,7 +44,8 @@ function RowActions({ coach }) {
         <Modal.Open>
           <Icon type="edit" icon={<GrEdit />} />
         </Modal.Open>
-        <Modal.Body title="ویرایش مربی">
+        {/* <Modal.Body title="ویرایش مربی"> */}
+        <Modal.Body title={titleEdit}>
           <FormAddEditCoach coach={coach} />
         </Modal.Body>
       </Modal>
