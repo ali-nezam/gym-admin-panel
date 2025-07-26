@@ -13,3 +13,12 @@ export async function getMembers() {
   }
   return data;
 }
+
+export async function deleteMemberApi(id) {
+  const { data, error } = await supabase.from("members").delete().eq("id", id);
+  if (error) {
+    console.error(error);
+    throw new Error("Failed to edit member");
+  }
+  return data;
+}
