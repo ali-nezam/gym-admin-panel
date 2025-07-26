@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import useDeleteCoach from "../features/coaches/useDeleteCoach";
-import useDeleteMember from "../features/members/useDeleteMember";
+import useDeleteCoach from "../coaches/useDeleteCoach";
+import useDeleteMember from "../members/useDeleteMember";
 const warningsMessage = { coaches: "مربی", members: "عضو" };
 function ConfirmAction({ onClose, id, type }) {
   const { deleteCoach, isDeleting } = useDeleteCoach();
