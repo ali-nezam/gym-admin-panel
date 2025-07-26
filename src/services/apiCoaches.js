@@ -5,7 +5,7 @@ export async function getCoaches() {
     .from("coaches")
     .select("*")
     .order("id", { ascending: true })
-    .range(0, 5);
+    .range(0, 55);
 
   if (error) {
     throw error;
@@ -33,6 +33,15 @@ export async function editCoachApi(coachEdited, id) {
     .select()
     .single();
 
+  if (error) {
+    console.error(error);
+    throw new Error("Failed to edit coach");
+  }
+  return data;
+}
+
+export async function deleteCoachApi(id) {
+  const { data, error } = await supabase.from("coaches").delete().eq("id", id);
   if (error) {
     console.error(error);
     throw new Error("Failed to edit coach");
