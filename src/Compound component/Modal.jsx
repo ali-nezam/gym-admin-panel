@@ -20,14 +20,18 @@ function Modal({ children }) {
   );
 }
 
-Modal.Body = function ModalBody({ children }) {
+Modal.Body = function ModalBody({ children, title }) {
   const { isOpen, close } = useContext(ModalContext);
   if (!isOpen) return null;
 
   return (
     <Overlay onClick={close}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
-        <Icon icon={<HiXMark />} onClick={close} />
+        <HeaderWrapper>
+          <Title>{title}</Title>
+          <Icon icon={<HiXMark />} onClick={close} />
+        </HeaderWrapper>
+
         {cloneElement(children, { onClose: close })}
       </ModalContent>
     </Overlay>
@@ -58,4 +62,14 @@ const ModalContent = styled.div`
   width: 500px;
   max-width: 90%; //
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+`;
+const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const Title = styled.div`
+  font-weight: 800;
+  color: black;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
 `;
