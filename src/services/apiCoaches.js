@@ -1,16 +1,19 @@
+// import { useContext } from "react";
+// const { first, end } = useContext(StyledTablePagination);
 import supabase from "./supabase";
 
-export async function getCoaches() {
-  const { data, error } = await supabase
+export async function getCoaches(from, to) {
+  const { data, error, count } = await supabase
     .from("coaches")
-    .select("*")
+    .select("*", { count: "exact" })
     .order("id", { ascending: true })
-    .range(0, 55);
+    .range(from, to);
 
   if (error) {
     throw error;
   }
-  return data;
+  console.log();
+  return { data, count };
 }
 
 export async function createNewCoach(newCoach) {

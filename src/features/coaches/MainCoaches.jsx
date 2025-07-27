@@ -20,7 +20,7 @@ const TableContainer = styled.div`
 `;
 
 function MainCoaches() {
-  const { coaches, isLoading /*error*/ } = useCoaches();
+  const { coaches, isLoading, count /*error*/ } = useCoaches();
   // const coaches = {};
   if (isLoading) return <Spinner />;
   if (!coaches) return <NotFound />;
@@ -34,7 +34,7 @@ function MainCoaches() {
         {coaches.map((coach, index) => (
           <RowCoaches coach={coach} key={coach.id} index={index} />
         ))}
-        <TablePagination />
+        <TablePagination count={count} />
       </TableContainer>
     </>
   );
