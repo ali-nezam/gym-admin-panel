@@ -3,26 +3,12 @@ import Button from "../../ui/Button";
 import Modal from "../../Compound component/Modal";
 import { IoPersonAddOutline } from "react-icons/io5";
 import Icon from "../../ui/Icon";
-import FormAddEditCoach from "./FormAddEditCoach";
-// import { useState } from "react";
+import FormAddEditCoach from "../coaches/FormAddEditCoach";
 import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../../utils/constants";
-const StyledTablePagination = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 0.7rem 1.4rem;
-  padding-bottom: 0;
-  align-items: center;
+import FormAddEditMember from "../members/FormAddEditMember";
 
-  h2 {
-    font-size: 1.4rem;
-    color: #b5b7c0;
-    font-weight: 400;
-  }
-`;
-
-function TablePagination({ count }) {
+function TablePagination({ count, type }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const currentPage = !searchParams.get("page")
@@ -31,22 +17,28 @@ function TablePagination({ count }) {
   searchParams.set("page", currentPage);
 
   const pageCount = Math.ceil(count / PAGE_SIZE);
-  console.log(pageCount);
 
   const from = currentPage === 1 ? 1 : (currentPage - 1) * PAGE_SIZE + 1;
   const to = currentPage === pageCount ? count : from + PAGE_SIZE - 1;
 
   function handleNext() {
-    const next = currentPage === pageCount ? currentPage : currentPage + 1;
-    searchParams.set("page", next);
-    setSearchParams(searchParams);
+    if (currentPage < pageCount) {
+      searchParams.set("page", currentPage + 1);
+      setSearchParams(searchParams);
+    }
   }
 
   function handlePrev() {
-    const prev = currentPage === 1 ? currentPage : currentPage - 1;
-    searchParams.set("page", prev);
-    setSearchParams(searchParams);
+    if (currentPage > 1) {
+      searchParams.set("page", currentPage - 1);
+      setSearchParams(searchParams);
+    }
   }
+
+  const instructions = {
+    titleOpen: { coaches: "افزودن مربی جدید", members: "افزودن عضو جدید" },
+    titleModal: { coaches: "اضافه کردن مربی", members: "اضافه کردن عضو" },
+  };
 
   return (
     <StyledTablePagination>
@@ -56,13 +48,13 @@ function TablePagination({ count }) {
       <Modal>
         <Modal.Open>
           <Button>
-            <p>افزودن مربی جدید</p>
+            <p>{instructions.titleOpen[type]}</p>
             <Icon type="create" icon={<IoPersonAddOutline />} />
           </Button>
         </Modal.Open>
 
-        <Modal.Body title="اضافه کردن مربی">
-          <FormAddEditCoach />
+        <Modal.Body title={instructions.titleModal[type]}>
+          {type === "coaches" ? <FormAddEditCoach /> : <FormAddEditMember />}
         </Modal.Body>
       </Modal>
 
@@ -79,6 +71,21 @@ function TablePagination({ count }) {
 }
 
 export default TablePagination;
+
+const StyledTablePagination = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.7rem 1.4rem;
+  padding-bottom: 0;
+  align-items: center;
+
+  h2 {
+    font-size: 1.4rem;
+    color: #b5b7c0;
+    font-weight: 400;
+  }
+`;
 
 const Buttons = styled.div`
   display: flex;

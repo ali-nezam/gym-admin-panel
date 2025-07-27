@@ -3,7 +3,7 @@ import useCoaches from "./useCoaches";
 import Spinner from "../../ui/Spinner";
 import DashboardCoaches from "./DashboardCoaches";
 import TableHeader from "./TableHeader";
-import TablePagination from "./TablePagination";
+import TablePagination from "../common/TablePagination";
 import TableColumnHeaders from "./TableColumnHeaders";
 import RowCoaches from "./RowCoaches";
 // import NoContent from "../../ui/NoContent";
