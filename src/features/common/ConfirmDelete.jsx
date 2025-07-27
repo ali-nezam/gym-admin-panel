@@ -2,20 +2,22 @@ import styled from "styled-components";
 import useDeleteCoach from "../coaches/useDeleteCoach";
 import useDeleteMember from "../members/useDeleteMember";
 const warningsMessage = { coaches: "مربی", members: "عضو" };
-function ConfirmAction({ onClose, id, type }) {
+function ConfirmDelete({ onClose, id, type }) {
   const { deleteCoach, isDeleting } = useDeleteCoach();
   const { deleteMember, isDeletingMember } = useDeleteMember();
-  const disabeld = isDeleting || isDeletingMember;
+  const disabled = isDeleting || isDeletingMember;
 
   function handleSubmit() {
     if (type === "coaches")
       deleteCoach(id, {
         onSuccess: () => onClose(),
       });
-    else {
+    else if (type === "members") {
       deleteMember(id, {
         onSuccess: () => onClose(),
       });
+    } else {
+      onClose();
     }
   }
 
@@ -27,10 +29,10 @@ function ConfirmAction({ onClose, id, type }) {
         <br /> این اقدام قابل بازگشت نیست.
       </Warning>
       <StyledButtons>
-        <Button onClick={handleSubmit} disabled={disabeld}>
+        <Button onClick={handleSubmit} disabled={disabled}>
           حذف
         </Button>
-        <CancelBtn onClick={onClose} disabled={disabeld}>
+        <CancelBtn onClick={onClose} disabled={disabled}>
           لغو
         </CancelBtn>
       </StyledButtons>
@@ -38,7 +40,7 @@ function ConfirmAction({ onClose, id, type }) {
   );
 }
 
-export default ConfirmAction;
+export default ConfirmDelete;
 
 const Warning = styled.div`
   font-weight: 500;
