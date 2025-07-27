@@ -34,7 +34,7 @@ function MainCoaches() {
         {coaches.map((coach, index) => (
           <RowCoaches coach={coach} key={coach.id} index={index} />
         ))}
-        <TablePagination count={count} />
+        <TablePagination count={count} type="coaches" />
       </TableContainer>
     </>
   );
