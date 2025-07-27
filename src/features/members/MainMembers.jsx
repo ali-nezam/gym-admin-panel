@@ -8,6 +8,7 @@ import NotFound from "../../ui/NotFound";
 import useGetMembers from "./useGetMembers";
 import TableColumnHeaders from "./TableColumnHeaders";
 import RowMembers from "./RowMembers";
+import TablePagination from "../coaches/TablePagination";
 // import formatPhoneNumber from "../../utils/formatPhoneNumber";
 const TableContainer = styled.div`
   display: flex;
@@ -38,7 +39,7 @@ function MainMembers() {
         {members.map((member, index) => (
           <RowMembers member={member} key={member.id} index={index} />
         ))}
-        {/* <TablePagination /> } */}
+        <TablePagination type="members" />
       </TableContainer>
     </>
   );
