@@ -20,11 +20,12 @@ const StyledDashboardCoaches = styled.div`
     border-left: 0.3rem solid #f0f0f0;
   }
 `;
+
 export default function DashboardCoaches() {
   return (
     <StyledDashboardCoaches>
       <Card>
-        <RiUserFollowLine />
+        <HiOutlineUserGroup />
         <div>
           <h3>همه مربی ها</h3>
           <h2>5,423</h2>
@@ -34,19 +35,19 @@ export default function DashboardCoaches() {
         </div>
       </Card>
       <Card>
-        <HiOutlineUserGroup />
+        <RiUserFollowLine />
         <div>
-          <h3>مشتریان </h3>
+          <h3>مربیان فعال</h3>
           <h2>15,423</h2>
           <h4>
             <span>{toPersianDigits("24%")}</span> <p>رشد در این ماه</p>
           </h4>
         </div>
       </Card>
-      <Card>
+      <Card type="red">
         <PiDesktop />
         <div>
-          <h3>مربیان فعال</h3>
+          <h3>مربیان غیر فعال </h3>
           <h2>236</h2>
           <h4>
             <span>{toPersianDigits("4%")}</span> <p>رشد در این ماه</p>
