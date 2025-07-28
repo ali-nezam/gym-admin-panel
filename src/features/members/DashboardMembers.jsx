@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import Card from "../../ui/Card";
 import { RiPassExpiredLine, RiUserFollowLine } from "react-icons/ri";
-import { toPersianDigits } from "../../utils/convertNumberToPersianDigits";
 import { HiOutlineUserGroup } from "react-icons/hi2";
 import { PiMedalMilitaryDuotone } from "react-icons/pi";
 import useGetMembersStatus from "./useGetMembersStatus";
-import Spinner from "../../ui/Spinner";
 const StyledDashboardMembers = styled.div`
   display: flex;
   gap: 5rem;
@@ -24,49 +22,43 @@ const StyledDashboardMembers = styled.div`
 `;
 export default function DashboardMembers() {
   const { data: status, isLoading } = useGetMembersStatus();
-  if (isLoading) return <Spinner />;
+
   return (
     <StyledDashboardMembers>
-      <Card>
-        <HiOutlineUserGroup />
-        <div>
-          <h3>تعداد کل اعضا</h3>
-          <h2>{toPersianDigits(status?.total)}</h2>
-          <h4>
-            <span>{toPersianDigits("14%")}</span> <p>رشد در این ماه</p>
-          </h4>
-        </div>
-      </Card>
-      <Card>
-        <RiUserFollowLine />
-        <div>
-          <h3>اعضای فعال</h3>
-          <h2>{toPersianDigits(status?.active)}</h2>
-          <h4>
-            <span>{toPersianDigits("24%")}</span> <p>رشد در این ماه</p>
-          </h4>
-        </div>
-      </Card>
-      <Card type="gray">
-        <RiPassExpiredLine />
-        <div>
-          <h3>اعضای منقضی‌شده</h3>
-          <h2>{toPersianDigits(status?.expired)}</h2>
-          <h4>
-            <span>{toPersianDigits("4%")}</span> <p>رشد در این ماه</p>
-          </h4>
-        </div>
-      </Card>
-      <Card type="gold">
-        <PiMedalMilitaryDuotone />
-        <div>
-          <h3>اعضای با اشتراک طلایی</h3>
-          <h2>{toPersianDigits(status?.gold)}</h2>
-          <h4>
-            <span>{toPersianDigits("4%")}</span> <p>رشد در این ماه</p>
-          </h4>
-        </div>
-      </Card>
+      <Card
+        icon={<HiOutlineUserGroup />}
+        title="تعداد کل اعضا"
+        value={status?.total}
+        percent={"14%"}
+        percentText="رشد در این ماه"
+        isLoading={isLoading}
+      />
+      <Card
+        icon={<RiUserFollowLine />}
+        title="اعضای فعال"
+        value={status?.active}
+        percent={"24%"}
+        percentText="رشد در این ماه"
+        isLoading={isLoading}
+      />
+      <Card
+        icon={<RiPassExpiredLine />}
+        type="gray"
+        title="اعضای منقضی‌شده"
+        value={status?.expired}
+        percent={"4%"}
+        percentText="رشد در این ماه"
+        isLoading={isLoading}
+      />
+      <Card
+        icon={<PiMedalMilitaryDuotone />}
+        type="gold"
+        title="اعضای با اشتراک طلایی"
+        value={status?.gold}
+        percent={"4%"}
+        percentText="رشد در این ماه"
+        isLoading={isLoading}
+      />
     </StyledDashboardMembers>
   );
 }
