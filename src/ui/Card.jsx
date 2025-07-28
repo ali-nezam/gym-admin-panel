@@ -1,15 +1,27 @@
+import colors from "react-multi-date-picker/plugins/colors";
 import styled from "styled-components";
 
-const Card = styled.div`
+const instructions = {
+  green: { background: "#d3f9d8", color: "#37b24d" },
+  gray: { color: "#868e96", background: "#e9ecef" },
+  gold: { color: "#f59f00", background: "#fff3bf" },
+  gold: { color: "#FFD700", background: "#fff3bf" },
+  red: { color: "#f03e3e", background: "#ffc9c9" },
+};
+
+const StyledCard = styled.div`
   display: grid;
   grid-template-columns: 1fr 2.5fr;
   gap: 2rem;
   svg {
-    width: 8.4rem;
+    width: 8.9rem;
     height: 8.4rem;
     padding: 1rem;
     color: #37b24d;
     background-color: #d3f9d8;
+
+    color: ${({ $color }) => $color};
+    background-color: ${({ $background }) => $background};
 
     border-radius: 50%;
   }
@@ -36,8 +48,20 @@ const Card = styled.div`
   span {
     color: #00ac4f;
     font-size: 1.4rem;
-    font-weight: 400;
+    font-weight: 500;
   }
 `;
+
+function Card({ children, type }) {
+  const { color, background } = instructions[type] || {
+    color: "#37b24d",
+    background: "#d3f9d8",
+  };
+  return (
+    <StyledCard $color={color} $background={background}>
+      {children}
+    </StyledCard>
+  );
+}
 
 export default Card;
