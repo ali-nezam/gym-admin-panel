@@ -23,41 +23,35 @@ const StyledDashboardCoaches = styled.div`
 `;
 
 export default function DashboardCoaches() {
-  const { data, isLoading } = useGetcoachesStatus();
+  const { data: status, isLoading } = useGetcoachesStatus();
 
-  if (isLoading) return <Spinner />;
   return (
     <StyledDashboardCoaches>
-      <Card>
-        <HiOutlineUserGroup />
-        <div>
-          <h3>همه مربی ها</h3>
-          <h2>{toPersianDigits(data?.total)}</h2>
-          <h4>
-            <span>{toPersianDigits("14%")}</span> <p>رشد در این ماه</p>
-          </h4>
-        </div>
-      </Card>
-      <Card>
-        <RiUserFollowLine />
-        <div>
-          <h3>مربیان فعال</h3>
-          <h2>{toPersianDigits(data?.active)}</h2>
-          <h4>
-            <span>{toPersianDigits("24%")}</span> <p>رشد در این ماه</p>
-          </h4>
-        </div>
-      </Card>
-      <Card type="red">
-        <RiUserForbidLine />
-        <div>
-          <h3>مربیان غیر فعال </h3>
-          <h2>{toPersianDigits(data?.unactive)}</h2>
-          <h4>
-            <span>{toPersianDigits("4%")}</span> <p>رشد در این ماه</p>
-          </h4>
-        </div>
-      </Card>
+      <Card
+        icon={<HiOutlineUserGroup />}
+        title="تعداد کل مربی ها"
+        value={status?.total}
+        percent={"14%"}
+        percentText="رشد در این ماه"
+        isLoading={isLoading}
+      />
+      <Card
+        icon={<RiUserFollowLine />}
+        title="مربیان فعال"
+        value={status?.active}
+        percent={"14%"}
+        percentText="رشد در این ماه"
+        isLoading={isLoading}
+      />
+      <Card
+        type="red"
+        icon={<RiUserFollowLine />}
+        title="مربیان غیر فعال"
+        value={status?.unactive}
+        percent={"14%"}
+        percentText="رشد در این ماه"
+        isLoading={isLoading}
+      />
     </StyledDashboardCoaches>
   );
 }
