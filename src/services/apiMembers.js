@@ -1,17 +1,17 @@
 import supabase from "./supabase";
 
-export async function getMembers() {
-  const { data, error } = await supabase
+export async function getMembers(from, to) {
+  const { data, error, count } = await supabase
     .from("members")
     // .select("*")
-    .select(`*,coachData:coach_id ( full_name ,expertise)`)
+    .select(`*,coachData:coach_id ( full_name ,expertise)`, { count: "exact" })
     .order("id", { ascending: true })
-    .range(0, 55);
+    .range(from, to);
 
   if (error) {
     throw error;
   }
-  return data;
+  return { data, count };
 }
 
 export async function deleteMemberApi(id) {

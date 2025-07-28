@@ -25,7 +25,7 @@ function MainMembers() {
   //   console.log(formatPhoneNumber("09132106915"));
 
   // const { coaches, isLoading /*error*/ } = useCoaches();
-  const { members, isLoading /*error*/ } = useGetMembers();
+  const { members, isLoading, count /*error*/ } = useGetMembers();
   //   console.log(members);
   // const members = {};
   if (isLoading) return <Spinner />;
@@ -40,7 +40,7 @@ function MainMembers() {
         {members.map((member, index) => (
           <RowMembers member={member} key={member.id} index={index} />
         ))}
-        <TablePagination type="members" />
+        <TablePagination count={count} type="members" />
       </TableContainer>
     </>
   );
