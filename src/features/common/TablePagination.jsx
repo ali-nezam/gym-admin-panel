@@ -7,6 +7,7 @@ import FormAddEditCoach from "../coaches/FormAddEditCoach";
 import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../../utils/constants";
 import FormAddEditMember from "../members/FormAddEditMember";
+import { toPersianDigits } from "../../utils/convertNumberToPersianDigits";
 
 function TablePagination({ count, type }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -39,12 +40,14 @@ function TablePagination({ count, type }) {
     titleOpen: { coaches: "افزودن مربی جدید", members: "افزودن عضو جدید" },
     titleModal: { coaches: "اضافه کردن مربی", members: "اضافه کردن عضو" },
   };
-
   return (
     <StyledTablePagination>
-      <h2>
-        نمایش نتیجه {from} تا {to} از {count} داده
-      </h2>
+      <Result>
+        نمایش
+        <span> {toPersianDigits(from)}</span> تا
+        <span> {toPersianDigits(to)}</span> از
+        <span> {toPersianDigits(count)}</span> نتیجه
+      </Result>
       <Modal>
         <Modal.Open>
           <Button>
@@ -59,12 +62,12 @@ function TablePagination({ count, type }) {
       </Modal>
 
       <Buttons>
-        <Button disabled={currentPage === 1} onClick={handlePrev}>
+        <Buttonn disabled={currentPage === 1} onClick={handlePrev}>
           قبلی
-        </Button>
-        <Button disabled={currentPage === pageCount} onClick={handleNext}>
+        </Buttonn>
+        <Buttonn disabled={currentPage === pageCount} onClick={handleNext}>
           بعدی
-        </Button>
+        </Buttonn>
       </Buttons>
     </StyledTablePagination>
   );
@@ -90,4 +93,31 @@ const StyledTablePagination = styled.div`
 const Buttons = styled.div`
   display: flex;
   gap: 2rem;
+`;
+const Result = styled.div`
+  font-size: 1.3rem;
+  color: #868e96;
+  font-weight: 400;
+  text-align: left;
+  margin-top: 1.6rem;
+  word-spacing: 0.2rem;
+  span {
+    font-weight: 500;
+    color: #495057;
+  }
+`;
+
+const Buttonn = styled.button`
+  padding: 0.6rem 1.6rem;
+  font-size: 1.4rem;
+  border: 1px solid ${({ disabled }) => (disabled ? "#ced4da" : "#5932ea")};
+  background-color: ${({ disabled }) => (disabled ? "#f1f3f5" : "transparent")};
+  color: ${({ disabled }) => (disabled ? "#adb5bd" : "#5932ea")};
+  border-radius: 8px;
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: ${({ disabled }) => (disabled ? "#f1f3f5" : "#f3f0ff")};
+  }
 `;
