@@ -4,9 +4,7 @@ import PersianDatePicker from "../../ui/PersianDatePicker";
 import useCreateNewCoach from "./useCreateNewCoach";
 import useEditCoach from "./useEditCoach";
 function FormAddEditCoach({ onClose, coach = {} }) {
-  // console.log(coach);
   const editedSeasion = Boolean(coach.id);
-  // console.log(editedSeasion);
   const {
     register,
     handleSubmit,
@@ -20,7 +18,7 @@ function FormAddEditCoach({ onClose, coach = {} }) {
   const isWorking = isCreating || isEditing;
 
   const onSubmit = (newCoach) => {
-    if (!editedSeasion) {
+    if (coach.Membership_date !== newCoach.Membership_date) {
       const pickerValue = newCoach.Membership_date;
       const miladi = pickerValue?.toDate().toISOString().split("T")[0];
       newCoach.Membership_date = miladi;
