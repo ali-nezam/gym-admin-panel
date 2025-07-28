@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import Card from "../../ui/Card";
-import { RiUserFollowLine } from "react-icons/ri";
+import { RiUserFollowLine, RiUserForbidLine } from "react-icons/ri";
 import { toPersianDigits } from "../../utils/convertNumberToPersianDigits";
 import { HiOutlineUserGroup } from "react-icons/hi2";
-import { PiDesktop } from "react-icons/pi";
-
+// import { PiDesktop } from "react-icons/pi";
+import useGetcoachesStatus from "./useGetcoachesStatus";
+import Spinner from "../../ui/Spinner";
 const StyledDashboardCoaches = styled.div`
   display: flex;
   gap: 5rem;
@@ -22,13 +23,16 @@ const StyledDashboardCoaches = styled.div`
 `;
 
 export default function DashboardCoaches() {
+  const { data, isLoading } = useGetcoachesStatus();
+
+  if (isLoading) return <Spinner />;
   return (
     <StyledDashboardCoaches>
       <Card>
         <HiOutlineUserGroup />
         <div>
           <h3>همه مربی ها</h3>
-          <h2>5,423</h2>
+          <h2>{toPersianDigits(data?.total)}</h2>
           <h4>
             <span>{toPersianDigits("14%")}</span> <p>رشد در این ماه</p>
           </h4>
@@ -38,17 +42,17 @@ export default function DashboardCoaches() {
         <RiUserFollowLine />
         <div>
           <h3>مربیان فعال</h3>
-          <h2>15,423</h2>
+          <h2>{toPersianDigits(data?.active)}</h2>
           <h4>
             <span>{toPersianDigits("24%")}</span> <p>رشد در این ماه</p>
           </h4>
         </div>
       </Card>
       <Card type="red">
-        <PiDesktop />
+        <RiUserForbidLine />
         <div>
           <h3>مربیان غیر فعال </h3>
-          <h2>236</h2>
+          <h2>{toPersianDigits(data?.unactive)}</h2>
           <h4>
             <span>{toPersianDigits("4%")}</span> <p>رشد در این ماه</p>
           </h4>

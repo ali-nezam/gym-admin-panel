@@ -43,3 +43,21 @@ export async function getMembersStatusApi() {
     .eq("status", "gold");
   return { total, active, expired, gold };
 }
+
+export async function getcoachesStatus() {
+  const { count: total } = await supabase
+    .from("coaches")
+    .select("*", { count: "exact", head: true });
+
+  const { count: active } = await supabase
+    .from("coaches")
+    .select("*", { count: "exact", head: true })
+    .eq("coach_status", true);
+
+  const { count: unactive } = await supabase
+    .from("coaches")
+    .select("*", { count: "exact", head: true })
+    .eq("coach_status", false);
+
+  return { total, active, unactive };
+}
