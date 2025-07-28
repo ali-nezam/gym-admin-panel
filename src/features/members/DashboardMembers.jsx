@@ -11,6 +11,7 @@ const StyledDashboardMembers = styled.div`
   gap: 5rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
