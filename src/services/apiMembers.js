@@ -22,3 +22,24 @@ export async function deleteMemberApi(id) {
   }
   return data;
 }
+export async function getMembersStatusApi() {
+  const { count: total } = await supabase
+    .from("members")
+    .select("*", { count: "exact", head: true });
+
+  const { count: active } = await supabase
+    .from("members")
+    .select("*", { count: "exact", head: true })
+    .eq("status", "active");
+
+  const { count: expired } = await supabase
+    .from("members")
+    .select("*", { count: "exact", head: true })
+    .eq("status", "expired");
+
+  const { count: gold } = await supabase
+    .from("members")
+    .select("*", { count: "exact", head: true })
+    .eq("status", "gold");
+  return { total, active, expired, gold };
+}

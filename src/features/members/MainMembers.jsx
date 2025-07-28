@@ -9,6 +9,7 @@ import useGetMembers from "./useGetMembers";
 import TableColumnHeaders from "./TableColumnHeaders";
 import RowMembers from "./RowMembers";
 import TablePagination from "../common/TablePagination";
+import DashboardMembers from "./DashboardMembers";
 
 // import formatPhoneNumber from "../../utils/formatPhoneNumber";
 const TableContainer = styled.div`
@@ -33,6 +34,7 @@ function MainMembers() {
   if (Object.keys(members).length < 1) return <EmptyState />;
   return (
     <>
+      <DashboardMembers />
       {/* <DashboardCoaches /> */}
       <TableContainer>
         {/* <TableHeader /> */}
