@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import PersianDatePicker from "../../ui/PersianDatePicker";
 import useCreateNewCoach from "./useCreateNewCoach";
 import useEditCoach from "./useEditCoach";
+import Form from "../../Compound component/Form";
 function FormAddEditCoach({ onClose, coach = {} }) {
   const editedSeasion = Boolean(coach.id);
   const {
@@ -52,61 +53,47 @@ function FormAddEditCoach({ onClose, coach = {} }) {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <Label>
-        نام:
-        <Input
-          id="full_name"
-          type="text"
-          disabled={isWorking}
-          {...register("full_name", { required: "نام اجباری است" })}
-        />
-        {errors?.full_name?.message && (
-          <ErrorMessage>{errors.full_name.message}</ErrorMessage>
-        )}
-      </Label>
+      <Form.Label>نام:</Form.Label>
+      <Form.Input
+        id="full_name"
+        type="text"
+        error={errors?.full_name}
+        disabled={isWorking}
+        {...register("full_name", { required: "نام اجباری است" })}
+      />
 
-      <Label>
-        تخصص:
-        <Input
-          disabled={isWorking}
-          id="expertise"
-          type="text"
-          {...register("expertise", {
-            required: "تخصص مربی مورد نظر را با دفت وارد کنید",
-          })}
-        />
-        {errors?.expertise?.message && (
-          <ErrorMessage>{errors.expertise.message}</ErrorMessage>
-        )}
-      </Label>
+      <Form.Label>تخصص:</Form.Label>
+      <Form.Input
+        disabled={isWorking}
+        id="expertise"
+        type="text"
+        error={errors?.expertise}
+        {...register("expertise", {
+          required: "تخصص مربی مورد نظر را با دفت وارد کنید",
+        })}
+      />
 
-      <Label>
-        شماره تماس:
-        <Input
-          disabled={isWorking}
-          type="text"
-          id="phone"
-          {...register("phone", {
-            required: "شماره را بدون صفر و +98 وارد کنید",
-          })}
-        />
-        {errors?.phone?.message && (
-          <ErrorMessage>{errors.phone.message}</ErrorMessage>
-        )}
-      </Label>
+      <Form.Label>شماره تماس:</Form.Label>
+      <Form.Input
+        disabled={isWorking}
+        type="text"
+        error={errors?.phone}
+        id="phone"
+        {...register("phone", {
+          required: "شماره را بدون صفر و +98 وارد کنید",
+        })}
+      />
 
-      <Label>
-        وضعیت:
-        <Select
-          disabled={isWorking}
-          {...register("coach_status", { required: true })}
-        >
-          <option value="true">فعال</option>
-          <option value="false">غیرفعال</option>
-        </Select>
-      </Label>
+      <Form.Label>وضعیت:</Form.Label>
+      <Form.Select
+        disabled={isWorking}
+        {...register("coach_status", { required: true })}
+      >
+        <option value="true">فعال</option>
+        <option value="false">غیرفعال</option>
+      </Form.Select>
 
-      <Label>تاریخ عضویت:</Label>
+      <Form.Label>تاریخ عضویت:</Form.Label>
       <PersianDatePicker
         disabled={isWorking}
         name="Membership_date"
@@ -127,32 +114,6 @@ function FormAddEditCoach({ onClose, coach = {} }) {
 
 export default FormAddEditCoach;
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-`;
-
-const Label = styled.label`
-  display: flex;
-  flex-direction: column;
-  font-size: 1.4rem;
-`;
-
-const Input = styled.input`
-  padding: 0.8rem;
-  font-size: 1.2rem;
-  border-radius: 0.6rem;
-  border: 1px solid #ccc;
-`;
-
-const Select = styled.select`
-  padding: 0.8rem;
-  font-size: 1.2rem;
-  border-radius: 0.6rem;
-  border: 1px solid #ccc;
-`;
-
 const Actions = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -172,8 +133,4 @@ const Button = styled.button`
 const CancelBtn = styled(Button)`
   background-color: #dee2e6;
   color: black;
-`;
-
-const ErrorMessage = styled.span`
-  color: red;
 `;
