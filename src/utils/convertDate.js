@@ -11,3 +11,10 @@ export function toPersianDate(dateString) {
     .format("YYYY/MM/DD");
   return toPersianDigits(jalaliDate);
 }
+
+export function toMiladiDate(date) {
+  // console.log(date);
+  const miladi = date?.toDate().toISOString().split("T")[0];
+  // console.log(miladi);
+  return miladi;
+}
