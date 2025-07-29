@@ -101,12 +101,13 @@ function FormAddEditCoach({ onClose, coach = {} }) {
       />
 
       <Actions>
-        <Button disabled={isWorking} type="submit">
+        <Form.BtnSubmit disabled={isWorking} type="submit">
           {editedSeasion ? "ویرایش" : "افزودن"}
-        </Button>
-        <CancelBtn disabled={isWorking} type="button" onClick={onClose}>
+        </Form.BtnSubmit>
+
+        <Form.BtnCancel disabled={isWorking} onClick={onClose} type="button">
           انصراف
-        </CancelBtn>
+        </Form.BtnCancel>
       </Actions>
     </Form>
   );
@@ -118,19 +119,4 @@ const Actions = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
-`;
-
-const Button = styled.button`
-  background-color: #5932ea;
-  color: white;
-  padding: 0.8rem 1.6rem;
-  border: none;
-  border-radius: 0.6rem;
-  font-weight: 600;
-  cursor: pointer;
-`;
-
-const CancelBtn = styled(Button)`
-  background-color: #dee2e6;
-  color: black;
 `;

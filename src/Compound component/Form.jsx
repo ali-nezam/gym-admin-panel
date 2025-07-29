@@ -19,8 +19,6 @@ Form.Input = function FormInput(props, ref) {
   );
 };
 
-Form.Input = forwardRef(Form.Input);
-
 Form.Select = function FormSelect(props, ref) {
   const { error, children, ...rest } = props;
   return (
@@ -32,8 +30,17 @@ Form.Select = function FormSelect(props, ref) {
     </>
   );
 };
-Form.Select = forwardRef(Form.Select);
 
+Form.BtnSubmit = function FormBtnSubmit({ children, ...props }) {
+  return <BtnSubmit {...props}>{children}</BtnSubmit>;
+};
+
+Form.BtnCancel = function FormBtnCancel({ children, ...props }) {
+  return <BtnCancel {...props}>{children}</BtnCancel>;
+};
+
+Form.Input = forwardRef(Form.Input);
+Form.Select = forwardRef(Form.Select);
 export default Form;
 
 const Label = styled.label`
@@ -57,4 +64,19 @@ const Select = styled.select`
   font-size: 1.2rem;
   border-radius: 0.6rem;
   border: 1px solid #ccc;
+`;
+
+const BtnSubmit = styled.button`
+  background-color: #5932ea;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border: none;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  cursor: pointer;
+`;
+
+const BtnCancel = styled(BtnSubmit)`
+  background-color: #dee2e6;
+  color: black;
 `;
