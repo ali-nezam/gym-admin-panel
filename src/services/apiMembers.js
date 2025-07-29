@@ -22,6 +22,24 @@ export async function deleteMemberApi(id) {
   }
   return data;
 }
+
+export async function CreateNewMemberApi({ newMember }) {
+  console.log(newMember);
+  // console.log(...newMember);
+  const { data, error } = await supabase
+    .from("members")
+    .insert([{ ...newMember }])
+    .select("*")
+    .single();
+
+  if (error) {
+    console.error(error.message);
+    throw new Error("Failed to add member");
+  }
+
+  return { data };
+}
+
 export async function getMembersStatusApi() {
   const { count: total } = await supabase
     .from("members")
