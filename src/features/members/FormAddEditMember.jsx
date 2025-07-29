@@ -1,41 +1,84 @@
+import { useForm } from "react-hook-form";
 import styled from "styled-components";
-function FormAddEditMember({ onClose, coach = {} }) {
-  return <Form> </Form>;
+import Form from "../../Compound component/Form";
+import PersianDatePicker from "../../ui/PersianDatePicker";
+function FormAddEditMember({ onClose, member = {} }) {
+  const {
+    register,
+    handleSubmit,
+    //reset,
+    control,
+    formState: { errors },
+  } = useForm({ defaultValues: member });
+  function onSubmit(memberData) {
+    console.log(memberData);
+  }
+
+  return (
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form.Label htmlFor="full_name">نام و نام خانوادگی</Form.Label>
+      <Form.Input
+        id="full_name"
+        {...register("full_name", { required: "وارد کردن نام الزامی است" })}
+        error={errors?.full_name}
+      />
+      <Form.Label htmlFor="phone">تلفن</Form.Label>
+      <Form.Input
+        id="phone"
+        {...register("phone", { required: "وارد کردن نام الزامی است" })}
+        error={errors?.phone}
+      />
+      <Form.Label htmlFor="note">توضیحات</Form.Label>
+      <Form.Input
+        id="note"
+        {...register("note", { required: "وارد کردن نام الزامی است" })}
+        error={errors?.note}
+      />
+      <Form.Label htmlFor="gender">جنسیت</Form.Label>
+      <Form.Select
+        id="gender"
+        {...register("gender", { required: "جنسیت را مشخص کنید" })}
+        error={errors?.gender}
+      >
+        <option />
+        <option value="male">مرد</option>
+        <option value="women">زن</option>
+      </Form.Select>
+
+      <Form.Label htmlFor="membership_type"> تعداد ماه اشتراک</Form.Label>
+      <Form.Select
+        id="membership_type"
+        {...register("membership_type", { required: "تعداد ماه را مشخص کنید" })}
+        error={errors?.membership_type}
+      >
+        <option />
+        <option value="3-month">سه ماهه</option>
+        <option value="monthly">یک ماهه</option>
+      </Form.Select>
+
+      <Form.Label htmlFor="status"> نوع اشتراک</Form.Label>
+      <Form.Select
+        id="status"
+        {...register("status", { required: "جنسیت را مشخص کنید" })}
+        error={errors?.status}
+      >
+        <option />
+        <option value="unactive">فعال </option>
+        <option value="gold">طلایی</option>
+        <option value="experid">منقضی شده</option>
+      </Form.Select>
+
+      <Form.Label>تاریخ تولد:</Form.Label>
+      <PersianDatePicker name="Membership_date" control={control} />
+      <Button>ذخیره</Button>
+      {/* <CancelBtn disabled={isWorking} type="button" onClick={onClose}>
+        انصراف
+      </CancelBtn> */}
+    </Form>
+  );
 }
 
 export default FormAddEditMember;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-`;
-
-const Label = styled.label`
-  display: flex;
-  flex-direction: column;
-  font-size: 1.4rem;
-`;
-
-const Input = styled.input`
-  padding: 0.8rem;
-  font-size: 1.2rem;
-  border-radius: 0.6rem;
-  border: 1px solid #ccc;
-`;
-
-const Select = styled.select`
-  padding: 0.8rem;
-  font-size: 1.2rem;
-  border-radius: 0.6rem;
-  border: 1px solid #ccc;
-`;
-
-const Actions = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-`;
 
 const Button = styled.button`
   background-color: #5932ea;
@@ -45,13 +88,4 @@ const Button = styled.button`
   border-radius: 0.6rem;
   font-weight: 600;
   cursor: pointer;
-`;
-
-const CancelBtn = styled(Button)`
-  background-color: #dee2e6;
-  color: black;
-`;
-
-const ErrorMessage = styled.span`
-  color: red;
 `;
