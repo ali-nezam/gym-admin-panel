@@ -23,7 +23,7 @@ function App() {
               <Route index element={<Navigate replace to="dashboard" />} />
               <Route element={<Coaches />} path="coaches" />
               <Route element={<Dashboard />} path="dashboard" />
-              <Route element={<Classes />} path="classes" />
+              <Route element={<Classes />} path="Enrollments" />
               <Route element={<Members />} path="members" />
               <Route element={<Settings />} path="settings" />
               <Route element={<PageNotFound />} path="*" />
