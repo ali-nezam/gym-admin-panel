@@ -4,7 +4,7 @@ import Coaches from "./pages/Coaches";
 import Dashboard from "./pages/Dashboard";
 import Members from "./pages/Members";
 import Settings from "./pages/Settings";
-import Enrollments from "./pages/Enrollments ";
+import Classes from "./pages/classes";
 import GlobalStyles from "./styles/GlobalStyles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -23,7 +23,7 @@ function App() {
               <Route index element={<Navigate replace to="dashboard" />} />
               <Route element={<Coaches />} path="coaches" />
               <Route element={<Dashboard />} path="dashboard" />
-              <Route element={<Enrollments />} path="enrollments" />
+              <Route element={<Classes />} path="classes" />
               <Route element={<Members />} path="members" />
               <Route element={<Settings />} path="settings" />
               <Route element={<PageNotFound />} path="*" />
