@@ -40,6 +40,20 @@ export async function CreateNewMemberApi({ newMember }) {
   return { data };
 }
 
+export async function EditMemberApi(editedMember, id) {
+  const { data, error } = await supabase
+    .from("members")
+    .select()
+    .eq("id", id)
+    .single()
+    .update({ ...editedMember });
+  if (error) {
+    console.error(error.message);
+    throw new Error("Failed to edit member");
+  }
+  return { data };
+}
+
 export async function getMembersStatusApi() {
   const { count: total } = await supabase
     .from("members")

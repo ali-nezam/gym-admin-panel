@@ -4,31 +4,53 @@ import Form from "../../Compound component/Form";
 import PersianDatePicker from "../../ui/PersianDatePicker";
 import { toMiladiDate } from "../../utils/convertDate";
 import useCreateNewMember from "./useAddNewMember";
+import useEditMember from "./useEditMember";
 function FormAddEditMember({ onClose, member = {} }) {
+  // console.log(member);
+
+  const editSeason = member === Boolean(member.id);
+
+  // console.log(editSeason);
+
   const {
     register,
     handleSubmit,
     reset,
     control,
     formState: { errors },
-  } = useForm({ defaultValues: member });
+  } = useForm({ defaultValues: editSeason ? member : {} });
 
+  const { editmember, isEditing } = useEditMember();
   const { createNewMember, isCreating } = useCreateNewMember();
-  const isWorking = isCreating;
+  const isWorking = isCreating || isEditing;
+
   function onSubmit(memberData) {
     memberData.end_date = toMiladiDate(memberData.end_date);
-    console.log(memberData);
-
-    createNewMember(
-      { newMember: { ...memberData } },
-      {
-        onSuccess: () => {
-          onClose?.();
-          reset();
-          console.log("yeah boooy");
+    // console.log(memberData);
+    if (editSeason) {
+      editmember(
+        {
+          editedMember: { ...memberData },
         },
-      }
-    );
+        {
+          onSuccess: () => {
+            onClose?.();
+            reset();
+          },
+        }
+      );
+    } else {
+      createNewMember(
+        { newMember: { ...memberData } },
+        {
+          onSuccess: () => {
+            onClose?.();
+            reset();
+            console.log("yeah boooy");
+          },
+        }
+      );
+    }
   }
 
   return (

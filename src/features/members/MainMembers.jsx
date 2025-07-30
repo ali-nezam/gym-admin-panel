@@ -23,19 +23,14 @@ const TableContainer = styled.div`
 `;
 
 function MainMembers() {
-  //   console.log(formatPhoneNumber("09132106915"));
-
-  // const { coaches, isLoading /*error*/ } = useCoaches();
   const { members, isLoading, count /*error*/ } = useGetMembers();
-  //   console.log(members);
-  // const members = {};
   if (isLoading) return <Spinner />;
   if (!members) return <NotFound />;
   if (Object.keys(members).length < 1) return <EmptyState />;
+
   return (
     <>
       <DashboardMembers />
-      {/* <DashboardCoaches /> */}
       <TableContainer>
         {/* <TableHeader /> */}
         <TableColumnHeaders />
