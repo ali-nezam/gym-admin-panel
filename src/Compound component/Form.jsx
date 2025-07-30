@@ -26,7 +26,7 @@ Form.Select = function FormSelect(props, ref) {
       <Select ref={ref} {...rest}>
         {children}
       </Select>
-      ;{error?.message && <ErrorMessage>{error?.message}</ErrorMessage>}
+      {error?.message && <ErrorMessage>{error?.message}</ErrorMessage>}
     </>
   );
 };

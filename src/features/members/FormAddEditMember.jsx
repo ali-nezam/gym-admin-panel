@@ -33,75 +33,94 @@ function FormAddEditMember({ onClose, member = {} }) {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <Form.Label htmlFor="full_name">نام و نام خانوادگی</Form.Label>
-      <Form.Input
-        id="full_name"
-        disabled={isWorking}
-        {...register("full_name", { required: "وارد کردن نام الزامی است" })}
-        error={errors?.full_name}
-      />
-      <Form.Label htmlFor="phone">تلفن</Form.Label>
-      <Form.Input
-        id="phone"
-        disabled={isWorking}
-        {...register("phone", { required: "وارد کردن تلفن الزامی است" })}
-        error={errors?.phone}
-      />
+      <Form.Label htmlFor="full_name">
+        نام و نام خانوادگی
+        <Form.Input
+          id="full_name"
+          disabled={isWorking}
+          {...register("full_name", { required: "وارد کردن نام الزامی است" })}
+          error={errors?.full_name}
+        />
+      </Form.Label>
 
-      <Form.Label htmlFor="coach_id">ایدی مربی</Form.Label>
-      <Form.Input
-        id="coach_id"
-        disabled={isWorking}
-        {...register("coach_id", {
-          required: "وارد کردن ایدی مربی الزامی است",
-        })}
-        error={errors?.coach_id}
-      />
+      <Form.Label htmlFor="phone">
+        تلفن
+        <Form.Input
+          id="phone"
+          disabled={isWorking}
+          {...register("phone", { required: "وارد کردن تلفن الزامی است" })}
+          error={errors?.phone}
+        />
+      </Form.Label>
 
-      <Form.Label htmlFor="note">توضیحات</Form.Label>
-      <Form.Input
-        id="note"
-        disabled={isWorking}
-        {...register("note", { required: "وارد کردن نام الزامی است" })}
-        error={errors?.note}
-      />
-      <Form.Label htmlFor="gender">جنسیت</Form.Label>
-      <Form.Select
-        id="gender"
-        disabled={isWorking}
-        {...register("gender", { required: "جنسیت را مشخص کنید" })}
-        error={errors?.gender}
-      >
-        <option />
-        <option value="male">مرد</option>
-        <option value="women">زن</option>
-      </Form.Select>
+      <Form.Label htmlFor="coach_id">
+        ایدی مربی
+        <Form.Input
+          id="coach_id"
+          disabled={isWorking}
+          {...register("coach_id", {
+            required: "وارد کردن ایدی مربی الزامی است",
+          })}
+          error={errors?.coach_id}
+        />
+      </Form.Label>
 
-      <Form.Label htmlFor="membership_type"> تعداد ماه اشتراک</Form.Label>
-      <Form.Select
-        id="membership_type"
-        disabled={isWorking}
-        {...register("membership_type", { required: "تعداد ماه را مشخص کنید" })}
-        error={errors?.membership_type}
-      >
-        <option />
-        <option value="3-month">سه ماهه</option>
-        <option value="monthly">یک ماهه</option>
-      </Form.Select>
+      <Form.Label htmlFor="note">
+        توضیحات
+        <Form.Input
+          id="note"
+          disabled={isWorking}
+          {...register("note", { required: "وارد کردن نام الزامی است" })}
+          error={errors?.note}
+        />
+      </Form.Label>
 
-      <Form.Label htmlFor="status"> نوع اشتراک</Form.Label>
-      <Form.Select
-        id="status"
-        disabled={isWorking}
-        {...register("status", { required: "جنسیت را مشخص کنید" })}
-        error={errors?.status}
-      >
-        <option />
-        <option value="unactive">فعال </option>
-        <option value="gold">طلایی</option>
-        <option value="experid">منقضی شده</option>
-      </Form.Select>
+      <Form.Label htmlFor="gender">
+        جنسیت
+        <Form.Select
+          id="gender"
+          disabled={isWorking}
+          {...register("gender", { required: "جنسیت را مشخص کنید" })}
+          error={errors?.gender}
+        >
+          <option />
+          <option value="male">مرد</option>
+          <option value="women">زن</option>
+        </Form.Select>
+      </Form.Label>
 
+      <Form.Label htmlFor="membership_type">
+        {" "}
+        تعداد ماه اشتراک
+        <Form.Select
+          id="membership_type"
+          disabled={isWorking}
+          {...register("membership_type", {
+            required: "تعداد ماه را مشخص کنید",
+          })}
+          error={errors?.membership_type}
+        >
+          <option />
+          <option value="3-month">سه ماهه</option>
+          <option value="monthly">یک ماهه</option>
+        </Form.Select>
+      </Form.Label>
+
+      <Form.Label htmlFor="status">
+        {" "}
+        نوع اشتراک
+        <Form.Select
+          id="status"
+          disabled={isWorking}
+          {...register("status", { required: "جنسیت را مشخص کنید" })}
+          error={errors?.status}
+        >
+          <option />
+          <option value="unactive">فعال </option>
+          <option value="gold">طلایی</option>
+          <option value="experid">منقضی شده</option>
+        </Form.Select>
+      </Form.Label>
       <Form.Label>تاریخ تولد:</Form.Label>
       <PersianDatePicker name="end_date" control={control} />
 

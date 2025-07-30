@@ -53,45 +53,55 @@ function FormAddEditCoach({ onClose, coach = {} }) {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <Form.Label>نام:</Form.Label>
-      <Form.Input
-        id="full_name"
-        type="text"
-        error={errors?.full_name}
-        disabled={isWorking}
-        {...register("full_name", { required: "نام اجباری است" })}
-      />
+      <Form.Label>
+        نام:
+        <Form.Input
+          id="full_name"
+          type="text"
+          error={errors?.full_name}
+          disabled={isWorking}
+          {...register("full_name", { required: "نام اجباری است" })}
+        />
+      </Form.Label>
 
-      <Form.Label>تخصص:</Form.Label>
-      <Form.Input
-        disabled={isWorking}
-        id="expertise"
-        type="text"
-        error={errors?.expertise}
-        {...register("expertise", {
-          required: "تخصص مربی مورد نظر را با دفت وارد کنید",
-        })}
-      />
+      <Form.Label>
+        تخصص:
+        <Form.Input
+          disabled={isWorking}
+          id="expertise"
+          type="text"
+          error={errors?.expertise}
+          {...register("expertise", {
+            required: "تخصص مربی مورد نظر را با دفت وارد کنید",
+          })}
+        />
+      </Form.Label>
 
-      <Form.Label>شماره تماس:</Form.Label>
-      <Form.Input
-        disabled={isWorking}
-        type="text"
-        error={errors?.phone}
-        id="phone"
-        {...register("phone", {
-          required: "شماره را بدون صفر و +98 وارد کنید",
-        })}
-      />
+      <Form.Label>
+        شماره تماس:
+        <Form.Input
+          disabled={isWorking}
+          type="text"
+          error={errors?.phone}
+          id="phone"
+          {...register("phone", {
+            required: "شماره را بدون صفر و +98 وارد کنید",
+          })}
+        />
+      </Form.Label>
 
-      <Form.Label>وضعیت:</Form.Label>
-      <Form.Select
-        disabled={isWorking}
-        {...register("coach_status", { required: true })}
-      >
-        <option value="true">فعال</option>
-        <option value="false">غیرفعال</option>
-      </Form.Select>
+      <Form.Label>
+        وضعیت:
+        <Form.Select
+          error={errors?.coach_status}
+          disabled={isWorking}
+          {...register("coach_status", { required: "وضعیت مربی را مشخص کنید" })}
+        >
+          <option></option>
+          <option value="true">فعال</option>
+          <option value="false">غیرفعال</option>
+        </Form.Select>
+      </Form.Label>
 
       <Form.Label>تاریخ عضویت:</Form.Label>
       <PersianDatePicker
