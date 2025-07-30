@@ -68,6 +68,8 @@ const Select = styled.select`
   font-size: 1.2rem;
   border-radius: 0.6rem;
   border: 1px solid #ccc;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
 `;
 
 const BtnSubmit = styled.button`
