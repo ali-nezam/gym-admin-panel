@@ -1,8 +1,7 @@
-import EmptyState from "../ui/EmptyState";
+import MainSettings from "../features/settings/MainSettings";
 
 function Settings() {
-  // return <div>settings</div>;
-  return <EmptyState />;
+  return <MainSettings />;
 }
 
 export default Settings;
