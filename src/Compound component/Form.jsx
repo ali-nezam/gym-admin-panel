@@ -49,10 +49,14 @@ const Label = styled.label`
   font-size: 1.4rem;
 `;
 const Input = styled.input`
+  flex: 1; // اضافه شد
+
   padding: 0.8rem;
   font-size: 1.2rem;
   border-radius: 0.6rem;
   border: 1px solid #ccc;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
 `;
 
 const ErrorMessage = styled.span`
