@@ -19,7 +19,7 @@ function TabelColumnHeaderClasses() {
     <StyledTabelColumnHeaderClasses>
       <ColumnHeader>نام کلاس</ColumnHeader>
       <ColumnHeader>نام مربی</ColumnHeader>
-      <ColumnHeader>ظرفیت کل / باقی مانده</ColumnHeader>
+      <ColumnHeader>ظرفیت کل / تکمیل شده</ColumnHeader>
       <ColumnHeader>قیمت</ColumnHeader>
       <ColumnHeader>افزودن عضو</ColumnHeader>
       <ColumnHeader></ColumnHeader>
