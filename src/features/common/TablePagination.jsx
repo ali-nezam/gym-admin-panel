@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import Button from "../../ui/Button";
 import Modal from "../../Compound component/Modal";
+import { useSearchParams } from "react-router-dom";
 import { IoPersonAddOutline } from "react-icons/io5";
 import Icon from "../../ui/Icon";
-import FormAddEditCoach from "../coaches/FormAddEditCoach";
-import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../../utils/constants";
-import FormAddEditMember from "../members/FormAddEditMember";
 import { toPersianDigits } from "../../utils/convertNumberToPersianDigits";
+import FormAddEditCoach from "../coaches/FormAddEditCoach";
+import FormAddEditMember from "../members/FormAddEditMember";
+import FormAddEditClasses from "../classes/FormAddEditClasses";
 
 function TablePagination({ count, type }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -37,8 +38,21 @@ function TablePagination({ count, type }) {
   }
 
   const instructions = {
-    titleOpen: { coaches: "افزودن مربی جدید", members: "افزودن عضو جدید" },
-    titleModal: { coaches: "اضافه کردن مربی", members: "اضافه کردن عضو" },
+    titleOpen: {
+      coaches: "افزودن مربی جدید",
+      members: "افزودن عضو جدید",
+      classes: "افزودن کلاس جدید",
+    },
+    titleModal: {
+      coaches: "اضافه کردن مربی",
+      members: "اضافه کردن عضو",
+      classes: "اضافه کردن کلاس",
+    },
+    modalBody: {
+      coaches: <FormAddEditCoach />,
+      members: <FormAddEditMember />,
+      classes: <FormAddEditClasses />,
+    },
   };
   return (
     <StyledTablePagination>
@@ -57,7 +71,8 @@ function TablePagination({ count, type }) {
         </Modal.Open>
 
         <Modal.Body title={instructions.titleModal[type]}>
-          {type === "coaches" ? <FormAddEditCoach /> : <FormAddEditMember />}
+          {/* {type === "coaches" ? <FormAddEditCoach /> : <FormAddEditMember />} */}
+          {instructions.modalBody[type]}
         </Modal.Body>
       </Modal>
 

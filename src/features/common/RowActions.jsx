@@ -11,11 +11,13 @@ import Modal from "../../Compound component/Modal";
 
 import FormAddEditCoach from "../coaches/FormAddEditCoach";
 import FormAddEditMember from "../members/FormAddEditMember";
+import FormAddEditClasses from "../classes/FormAddEditClasses";
 const StyledRowActions = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1.2rem;
   justify-content: center;
+  flex-direction: ${({ display = "row" }) => display};
 `;
 
 const instructions = {
@@ -27,34 +29,49 @@ const instructions = {
     titleDelete: "حذف کردن مربی",
     titleEdit: "ویرایش مربی",
   },
+  classes: {
+    titleDelete: "حذف کردن کلاس",
+    titleEdit: "ویرایش کلاس",
+    textIconEdit: "ویرایش",
+    textIconDetail: "جزییات",
+    textIconDelete: "حدف",
+  },
 };
 
-function RowActions({ data: coachOrMember, type }) {
-  const { titleDelete, titleEdit } = instructions[type];
+function getForm(type, coachOrMember) {
+  if (type === "coaches") return <FormAddEditCoach coach={coachOrMember} />;
+  if (type === "members") return <FormAddEditMember member={coachOrMember} />;
+  if (type === "classes") return <FormAddEditClasses cls={coachOrMember} />;
+  return null;
+}
+function RowActions({ data: coachOrMember, type, display }) {
+  const {
+    titleDelete,
+    titleEdit,
+    textIconEdit,
+    textIconDetail,
+    textIconDelete,
+  } = instructions[type];
 
   return (
-    <StyledRowActions>
+    <StyledRowActions display={display}>
       <Modal>
         <Modal.Open>
-          <Icon type="delete" icon={<MdDelete />} />
+          <Icon type="delete" icon={<MdDelete />} text={textIconDelete} />
         </Modal.Open>
         <Modal.Body title={titleDelete}>
           <ConfirmDelete id={coachOrMember.id} type={type} />
         </Modal.Body>
       </Modal>
 
-      <Icon type="details" icon={<HiEye />} />
+      <Icon type="details" icon={<HiEye />} text={textIconDetail} />
 
       <Modal>
         <Modal.Open>
-          <Icon type="edit" icon={<GrEdit />} />
+          <Icon type="edit" icon={<GrEdit />} text={textIconEdit} />
         </Modal.Open>
         <Modal.Body title={titleEdit}>
-          {type === "coaches" ? (
-            <FormAddEditCoach coach={coachOrMember} />
-          ) : (
-            <FormAddEditMember member={coachOrMember} />
-          )}
+          {getForm(type, coachOrMember)}
         </Modal.Body>
       </Modal>
     </StyledRowActions>
