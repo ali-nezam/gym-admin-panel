@@ -1,9 +1,9 @@
-import { QueryClient, useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { EditMemberApi } from "../../services/apiMembers";
 import toast from "react-hot-toast";
 
 export default function useEditMember() {
-  const queryClient = QueryClient();
+  const queryClient = useQueryClient();
 
   const { mutate: editmember, isPending: isEditing } = useMutation({
     mutationFn: ({ editedMembers, id }) => EditMemberApi(editedMembers, id),
