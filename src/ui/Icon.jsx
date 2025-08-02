@@ -26,12 +26,14 @@ const StyleIcon = styled.div`
   & :hover {
     color: ${({ type }) => hoverColors[type] || "#6e6b7b"};
   }
+  display: flex;
+  gap: 1rem;
 `;
-function Icon({ type, icon, onClick }) {
+function Icon({ type, icon, onClick, text }) {
   return (
     <StyleIcon onClick={onClick} type={type}>
-      {" "}
-      {icon}
+      <>{icon}</>
+      <>{text}</>
     </StyleIcon>
   );
 }
