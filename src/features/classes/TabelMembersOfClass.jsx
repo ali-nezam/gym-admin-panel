@@ -51,6 +51,7 @@ const Table = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+  align-items: center;
 `;
 const Table2 = styled.div`
   padding: 1rem;

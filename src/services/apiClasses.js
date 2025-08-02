@@ -14,15 +14,22 @@ export async function getClasses() {
   return { data };
 }
 
-export async function getMemberOfClasses() {
-  const { data, error } = await supabase.from("classes_members").select("*");
+export async function addclass({ newClass }) {
+  const { data, error } = await supabase
+    .from("classes")
+    .insert({ ...newClass })
+    .select("*")
+    .single();
   if (error) {
-    console.error(error.message);
-    throw new Error("faild get classes");
+    console.error(error);
+    throw new Error("Faild to add member to class");
   }
-  // console.log(data);
   return { data };
 }
+
+//////////////////////////////////////////////////////
+/////////////// member of class///////////////////////
+//////////////////////////////////////////////////////
 
 export async function addMemberToClassApi({ newMemberToClass }) {
   const { data, error } = await supabase
@@ -31,7 +38,20 @@ export async function addMemberToClassApi({ newMemberToClass }) {
     .select("*")
     .single();
   if (error) {
-    console.Error(error.message);
+    console.error(error.message);
+    throw new Error("Faild to add member to class");
+  }
+  return { data };
+}
+
+export async function deleteMemberOfClassWithId({ memberId }) {
+  const { data, error } = await supabase
+    .from("classes_members")
+    .delete()
+    .eq("id", memberId);
+
+  if (error) {
+    console.error(error);
     throw new Error("Faild to add member to class");
   }
   return { data };
@@ -44,21 +64,18 @@ export async function getMembersOfClassWithId({ classId }) {
     .eq("class_id", classId);
 
   if (error) {
-    console.Error(error.message);
+    console.error(error.message);
     throw new Error("Faild to add member to class");
   }
   return { data, count };
 }
 
-export async function deleteMemberOfClassWithId({ memberId }) {
-  const { data, error } = await supabase
-    .from("classes_members")
-    .delete()
-    .eq("id", memberId);
-
-  if (error) {
-    console.Error(error);
-    throw new Error("Faild to add member to class");
-  }
-  return { data };
-}
+// export async function getMemberOfClasses() {
+//   const { data, error } = await supabase.from("classes_members").select("*");
+//   if (error) {
+//     console.error(error.message);
+//     throw new Error("faild get classes");
+//   }
+//   // console.log(data);
+//   return { data };
+// }

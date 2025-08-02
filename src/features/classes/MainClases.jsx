@@ -4,11 +4,11 @@ import TabelColumnHeaderClasses from "./TabelColumnHeaderClasses";
 import RowClasses from "./RowClasses";
 import useGetClasses from "./useGetClasses";
 import FullScreenSpinner from "../../ui/Spinner";
-
+import TablePagination from "../common/TablePagination";
 function MainClases() {
   const { classes, /*erro,*/ isLoading } = useGetClasses();
-  // console.log(classes);
-  // console.log(isLoading);
+
+  const count = 100;
   if (isLoading) return <FullScreenSpinner />;
   return (
     <>
@@ -18,6 +18,7 @@ function MainClases() {
         {classes.map((cls, index) => (
           <RowClasses cls={cls} key={cls.id} index={index} />
         ))}
+        <TablePagination count={count} type="classes" />
       </StyledClass>
     </>
   );

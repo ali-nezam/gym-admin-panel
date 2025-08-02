@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledTabelColumnHeaderClasses = styled.header`
   display: grid;
-  grid-template-columns: 1.2fr 1.5fr 1.5fr 1.3fr 2.2fr 0.7fr;
+  grid-template-columns: 1.2fr 1.5fr 1.5fr 1.3fr 2.2fr 0.2fr;
   padding: 1.3rem 1rem;
   gap: 2rem;
   border-bottom: 0.2rem solid #dddddd;
