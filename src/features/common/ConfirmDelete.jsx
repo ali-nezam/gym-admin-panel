@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import useDeleteCoach from "../coaches/useDeleteCoach";
 import useDeleteMember from "../members/useDeleteMember";
-const warningsMessage = { coaches: "مربی", members: "عضو" };
+import useDeleteClass from "../classes/useDeleteClass";
+const warningsMessage = { coaches: "مربی", members: "عضو", classes: "کلاس" };
 function ConfirmDelete({ onClose, id, type }) {
   const { deleteCoach, isDeleting } = useDeleteCoach();
   const { deleteMember, isDeletingMember } = useDeleteMember();
-  const disabled = isDeleting || isDeletingMember;
+  const { deleteClass, isDeletingClass } = useDeleteClass();
+
+  const disabled = isDeleting || isDeletingMember || isDeletingClass;
 
   function handleSubmit() {
     if (type === "coaches")
@@ -16,6 +19,13 @@ function ConfirmDelete({ onClose, id, type }) {
       deleteMember(id, {
         onSuccess: () => onClose(),
       });
+    } else if (type === "classes") {
+      deleteClass(
+        { classId: id },
+        {
+          onSuccess: () => onClose(),
+        }
+      );
     } else {
       onClose();
     }
