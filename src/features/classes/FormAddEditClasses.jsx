@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import Form from "../../Compound component/Form";
 import { toEditedPrice } from "../../utils/convertToEditedPirce";
 import useCreateNewClass from "./useCreateNewClass";
+import useEditClass from "./useEditclass";
 
 function FormAddEditClasses({ onClose, cls = {} }) {
+  // console.log(cls);
   const editedSeasion = Boolean(cls.id);
   const {
     register,
@@ -12,20 +14,36 @@ function FormAddEditClasses({ onClose, cls = {} }) {
     watch,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({ defaultValues: editedSeasion ? cls : {} });
 
   const { createClass, isCreating } = useCreateNewClass();
+  const { editClass, isEditing } = useEditClass();
+  const isWorking = isCreating || isEditing;
 
   const onSubmit = (formData) => {
-    createClass(
-      { newClass: { ...formData } },
-      {
-        onSuccess: () => {
-          onClose?.();
-          reset();
-        },
-      }
-    );
+    console.log(formData);
+
+    if (editedSeasion) {
+      editClass(
+        { editedClass: { ...formData }, id: formData.id },
+        {
+          onSuccess: () => {
+            onClose?.();
+            reset();
+          },
+        }
+      );
+    } else {
+      createClass(
+        { newClass: { ...formData } },
+        {
+          onSuccess: () => {
+            onClose?.();
+            reset();
+          },
+        }
+      );
+    }
   };
 
   return (
@@ -34,6 +52,7 @@ function FormAddEditClasses({ onClose, cls = {} }) {
         نام کلاس :
         <Form.Input
           id="class_name"
+          disabled={isWorking}
           type="text"
           error={errors?.class_name}
           {...register("class_name", { required: "نام کلاس اجباری است" })}
@@ -42,6 +61,7 @@ function FormAddEditClasses({ onClose, cls = {} }) {
       <Form.Label>
         نام مربی:
         <Form.Input
+          disabled={isWorking}
           type="text"
           error={errors?.coach_name}
           id="coach_name"
@@ -56,6 +76,7 @@ function FormAddEditClasses({ onClose, cls = {} }) {
         <InputWithPreview>
           <Form.Input
             id="price"
+            disabled={isWorking}
             type="number"
             error={errors?.price}
             {...register("price", {
@@ -70,6 +91,7 @@ function FormAddEditClasses({ onClose, cls = {} }) {
         ظرفیت:
         <Form.Input
           type="number"
+          disabled={isWorking}
           error={errors?.capacity}
           id="capacity"
           {...register("capacity", {
@@ -79,11 +101,11 @@ function FormAddEditClasses({ onClose, cls = {} }) {
       </Form.Label>
 
       <Actions>
-        <Form.BtnSubmit type="submit">
+        <Form.BtnSubmit disabled={isWorking} type="submit">
           {editedSeasion ? "ویرایش" : "افزودن"}
         </Form.BtnSubmit>
 
-        <Form.BtnCancel onClick={onClose} type="button">
+        <Form.BtnCancel disabled={isWorking} onClick={onClose} type="button">
           انصراف
         </Form.BtnCancel>
       </Actions>

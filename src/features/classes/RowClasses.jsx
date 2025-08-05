@@ -11,6 +11,7 @@ import TabelMembersOfClass from "./TabelMembersOfClass";
 import useGetMemberOfClass from "./useGetMemberOfClass";
 import DropdownMenu from "../../ui/DropdownMenu";
 import Spinner from "../..//ui/Spinner";
+import { useState } from "react";
 const StyledRowClasses = styled.div`
   display: grid;
   grid-template-columns: 1.2fr 1.5fr 1.5fr 1.3fr 2.2fr 0.2fr;
@@ -23,6 +24,7 @@ const StyledRowClasses = styled.div`
 
 const titleBody = " اضافه کردن مربی";
 function RowClasses({ cls, index }) {
+  const [showTableMemberOfClass, setShowTableMemberOfClass] = useState(false);
   const { capacity, class_name, price, coach_name } = cls;
   const { data, isLoading } = useGetMemberOfClass(cls.id);
   // console.log(data);
@@ -57,11 +59,14 @@ function RowClasses({ cls, index }) {
           </Modal.Body>
         </Modal>
         <Modal>
-          <Modal.Open>
+          <Modal.Open onClick={() => setShowTableMemberOfClass(true)}>
             <RowButton>مشاهده شاگردان</RowButton>
           </Modal.Open>
           <Modal.Body title={titleBody}>
-            <TabelMembersOfClass classId={cls.id} />
+            <TabelMembersOfClass
+              classId={cls.id}
+              enabled={showTableMemberOfClass}
+            />
           </Modal.Body>
         </Modal>
       </Buttons>

@@ -9,6 +9,7 @@ export function useDleteMemberOfClass() {
     mutationFn: deleteMemberOfClassWithId,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["classes_members"] });
+      queryClient.invalidateQueries({ queryKey: ["classes_stats"] });
       toast.success("َشاگرد با موفقیت حذف شد");
     },
     onError: (error) => {

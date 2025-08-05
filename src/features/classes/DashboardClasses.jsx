@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import Card from "../../ui/Card";
-import { RiUserFollowLine } from "react-icons/ri";
-import { HiOutlineUserGroup } from "react-icons/hi2";
-// import { PiDesktop } from "react-icons/pi";
+import { HiOutlineUsers } from "react-icons/hi2";
+import { MdAttachMoney, MdOutlineClass } from "react-icons/md";
+import useGetClassesStats from "./useGetDashboard";
+import { toEditedPrice } from "../../utils/convertToEditedPirce";
 const StyledDashboardClasses = styled.div`
   display: flex;
   gap: 5rem;
@@ -20,29 +21,36 @@ const StyledDashboardClasses = styled.div`
 `;
 
 export default function DashboardClasses() {
+  const { stats, isLoading } = useGetClassesStats();
   return (
     <StyledDashboardClasses>
       <Card
-        icon={<HiOutlineUserGroup />}
-        title="تعداد کل مربی ها"
-        value={85}
+        type="gold"
+        icon={<MdAttachMoney />}
+        title="هزینه دریافتی"
+        value={stats ? toEditedPrice(stats?.totalRevenue) : ""}
         percent={"14%"}
         percentText="رشد در این ماه"
+        isLoading={isLoading}
+        textType="price"
+      />
+
+      <Card
+        icon={<HiOutlineUsers />}
+        title="ظرفیت کل / تکمیل‌شده"
+        value={`${stats?.totalCapacity}  / ${"    "} ${stats?.totalRegistered}`}
+        percent={"14%"}
+        percentText="رشد در این ماه"
+        isLoading={isLoading}
       />
       <Card
-        icon={<RiUserFollowLine />}
-        title="مربیان فعال"
-        value={11}
+        icon={<MdOutlineClass />}
+        title="تعداد کل کلاس ها"
+        value={stats?.totalClasses}
         percent={"14%"}
         percentText="رشد در این ماه"
-      />
-      <Card
-        type="red"
-        icon={<RiUserFollowLine />}
-        title="مربیان غیر فعال"
-        value={35}
-        percent={"14%"}
-        percentText="رشد در این ماه"
+        type="blue"
+        isLoading={isLoading}
       />
     </StyledDashboardClasses>
   );

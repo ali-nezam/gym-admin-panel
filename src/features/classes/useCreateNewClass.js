@@ -10,6 +10,7 @@ export default function useCreateNewClass() {
     onSuccess: () => {
       toast.success("کلاس با موفقیت اضافه شد");
       queryClient.invalidateQueries({ queryKey: ["classes"] });
+      queryClient.invalidateQueries({ queryKey: ["classes_stats"] });
     },
     onError: (error) => {
       toast.error("خطا در افزودن کلاس" + error.message);

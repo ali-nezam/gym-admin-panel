@@ -6,8 +6,8 @@ import RowPhoneNumber from "../../ui/RowPhoneNumber";
 import { useDleteMemberOfClass } from "./useDleteMemberOfClass";
 import SpinnerMini from "../../ui/SpinnerMini";
 
-function TabelMembersOfClass({ classId }) {
-  const { data: response, isLoading } = useGetMemberOfClass(classId);
+function TabelMembersOfClass({ classId, enabled }) {
+  const { data: response, isLoading } = useGetMemberOfClass(classId, enabled);
   const members = response?.data;
   const { deleteMemberOfClass, isDeleting } = useDleteMemberOfClass();
   function handleDelete(id) {
