@@ -33,8 +33,8 @@ const StyledCard = styled.div`
   }
   h2 {
     color: #333333;
-    font-size: ${({ textType }) =>
-      textType === "price" ? "2.8rem" : "3.2rem"};
+    font-size: ${({ texttype }) =>
+      texttype === "price" ? "2.8rem" : "3.2rem"};
   }
   h3 {
     font-size: 1.4rem;
@@ -70,7 +70,7 @@ function Card({
   };
   if (isLoading) return <SpinnerMini />;
   return (
-    <StyledCard $color={color} $background={background} textType={textType}>
+    <StyledCard $color={color} $background={background} texttype={textType}>
       {icon}
       <div>
         <h3>{title}</h3>
