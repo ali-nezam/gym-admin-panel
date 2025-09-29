@@ -1,14 +1,13 @@
 import styled from "styled-components";
 import Card from "../../ui/Card";
-import { RiPassExpiredLine, RiUserFollowLine } from "react-icons/ri";
 import { HiOutlineUserGroup } from "react-icons/hi2";
-import { PiMedalMilitaryDuotone } from "react-icons/pi";
+import { MdAttachMoney, MdOutlineClass } from "react-icons/md";
+import useDashboardCard from "./useDashboardCard";
+import { toEditedPrice } from "../../utils/convertToEditedPirce";
+
 const StyledDashboardCard = styled.div`
-  display: flex;
-  gap: 5rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
@@ -18,39 +17,52 @@ const StyledDashboardCard = styled.div`
   div:not(:last-child) {
     border-left: 0.3rem solid #f0f0f0;
   }
+  div:not(:first-child) {
+    padding-right: 2.5rem;
+  }
+  grid-column: 1/-1;
 `;
 export default function DashboardCard() {
+  const { cards, isLoading } = useDashboardCard();
+
   return (
     <StyledDashboardCard>
       <Card
-        icon={<HiOutlineUserGroup />}
-        title="تعداد کل اعضا"
-        value={50}
+        type="blue"
+        icon={<MdOutlineClass />}
+        title="تعداد کل کلاس ها"
+        value={cards?.classesCount || 0}
         percent={"14%"}
         percentText="رشد در این ماه"
+        isLoading={isLoading}
       />
       <Card
-        icon={<RiUserFollowLine />}
-        title="اعضای فعال"
-        value={50}
+        icon={<HiOutlineUserGroup />}
+        title="تعداد کل مربیان"
+        value={cards?.coachesCount || 0}
         percent={"24%"}
         percentText="رشد در این ماه"
+        isLoading={isLoading}
       />
       <Card
-        icon={<RiPassExpiredLine />}
+        icon={<HiOutlineUserGroup />}
         type="gray"
-        title="اعضای منقضی‌شده"
-        value={50}
+        title="تعداد کل اعضا"
+        value={cards?.membersCount || 0}
         percent={"4%"}
         percentText="رشد در این ماه"
+        isLoading={isLoading}
       />
       <Card
-        icon={<PiMedalMilitaryDuotone />}
+        icon={<MdAttachMoney />}
         type="gold"
-        title="اعضای با اشتراک طلایی"
-        value={50}
+        title="مجموع درآمد"
+        value={cards ? toEditedPrice(cards?.totalRevenue) : ""}
         percent={"4%"}
         percentText="رشد در این ماه"
+        fontsmall={true}
+        texttype="price"
+        isLoading={isLoading}
       />
     </StyledDashboardCard>
   );

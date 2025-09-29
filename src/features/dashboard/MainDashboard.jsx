@@ -1,23 +1,26 @@
 import styled from "styled-components";
-import DashboardHeader from "./DashboardHeader";
+// import DashboardHeader from "./DashboardHeader";
 import DashboardCard from "./DashboardCard";
 import Chart from "./Chart";
-
-const StyledAppLayout = styled.div`
-  /* flex-grow: 1; */
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-`;
+import RecentMembers from "./RecentMembers";
+import SalesChart from "./SalesChart";
 
 function MainDashboard() {
   return (
     <StyledAppLayout>
-      <DashboardHeader />
       <DashboardCard />
+      <RecentMembers />
       <Chart />
+      <SalesChart />
     </StyledAppLayout>
   );
 }
 
 export default MainDashboard;
+
+const StyledAppLayout = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 35rem auto;
+  gap: 3.2rem;
+`;

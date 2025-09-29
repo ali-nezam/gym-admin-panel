@@ -1,4 +1,4 @@
-import MainDashboard from "../features/dashboard/mainDashboard";
+import MainDashboard from "../features/dashboard/MainDashboard";
 
 function Dashboard() {
   return <MainDashboard />;
