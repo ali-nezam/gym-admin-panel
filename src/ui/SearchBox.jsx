@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { HiOutlineSearch } from "react-icons/hi";
+import { useState } from "react";
 
 const SearchWrapper = styled.div`
   display: flex;
@@ -30,11 +31,26 @@ const SearchInput = styled.input`
   }
 `;
 
-function SearchBox({ placeholder = "جستجو...", type }) {
+function SearchBox({ placeholder = "جستجو...", type, setSearchTerm }) {
+  const [localValue, setLocalValue] = useState("");
+
+  function handleChange(e) {
+    const value = e.target.value;
+    setLocalValue(value);
+    if (value.length > 3 || value.length === 0) {
+      setSearchTerm(value);
+    }
+  }
+
   return (
     <SearchWrapper type={type}>
       <SearchIcon />
-      <SearchInput type="text" placeholder={placeholder} />
+      <SearchInput
+        value={localValue}
+        onChange={handleChange}
+        type="text"
+        placeholder={placeholder}
+      />
     </SearchWrapper>
   );
 }

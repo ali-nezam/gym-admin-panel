@@ -2,13 +2,41 @@
 // const { first, end } = useContext(StyledTablePagination);
 import supabase from "./supabase";
 
-export async function getCoaches(from, to) {
-  const { data, error, count } = await supabase
+export async function getCoaches(
+  from,
+  to,
+  statusFilter = "all",
+  statusSort = "created_at-asc",
+  searchTerm = ""
+) {
+  // const { data, error, count } = await supabase
+  let query = supabase
     .from("coaches")
     .select("*", { count: "exact" })
-    .order("id", { ascending: true })
+    // .order("id", { ascending: true })
     .range(from, to);
 
+  if (statusFilter !== "all") {
+    query = query.eq("coach_status", statusFilter);
+  }
+
+  if (statusSort === "created_at-asc") {
+    query = query.order("id", { ascending: true });
+  } else if (statusSort === "created_at-desc") {
+    query = query.order("id", { ascending: false });
+  } else if (statusSort === "name-asc") {
+    query = query.order("full_name", { ascending: true });
+  } else if (statusSort === "name-desc") {
+    query = query.order("full_name", { ascending: false });
+  } else {
+    query = query.order("id", { ascending: true });
+  }
+
+  if (searchTerm) {
+    query = query.ilike("full_name", `%${searchTerm}%`);
+  }
+
+  const { data, error, count } = await query;
   if (error) {
     throw error;
   }

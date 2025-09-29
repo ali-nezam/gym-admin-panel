@@ -4,7 +4,7 @@ import { getCoaches } from "../../services/apiCoaches";
 import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../../utils/constants";
 
-function useCoaches() {
+function useCoaches(statusFilter, statusSort, searchTerm) {
   const [searchParams] = useSearchParams();
   const currentPage = !searchParams.get("page")
     ? 1
@@ -17,12 +17,12 @@ function useCoaches() {
     error,
     data: response,
   } = useQuery({
-    queryKey: ["coaches", currentPage],
-    queryFn: () => getCoaches(from, to),
+    queryKey: ["coaches", currentPage, statusFilter, statusSort, searchTerm],
+    queryFn: () => getCoaches(from, to, statusFilter, statusSort, searchTerm),
   });
   const count = response?.count;
   const coaches = response?.data;
-  // console.log(coaches.count);
+
   return { isLoading, error, coaches, count };
 }
 export default useCoaches;

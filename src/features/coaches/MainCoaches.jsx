@@ -1,14 +1,19 @@
+import { useState } from "react";
 import styled from "styled-components";
-import useCoaches from "./useCoaches";
-import Spinner from "../../ui/Spinner";
+
 import DashboardCoaches from "./DashboardCoaches";
 import TableHeader from "./TableHeader";
-import TablePagination from "../common/TablePagination";
 import TableColumnHeaders from "./TableColumnHeaders";
 import RowCoaches from "./RowCoaches";
-// import NoContent from "../../ui/NoContent";
+
+import TablePagination from "../common/TablePagination";
+
+import useCoaches from "./useCoaches";
+
 import EmptyState from "../../ui/EmptyState";
+import Spinner from "../../ui/Spinner";
 import NotFound from "../../ui/NotFound";
+
 const TableContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,7 +25,24 @@ const TableContainer = styled.div`
 `;
 
 function MainCoaches() {
-  const { coaches, isLoading, count /*error*/ } = useCoaches();
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [statusSort, setStatusSort] = useState("created_at-asc");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const tableHeaderProps = {
+    statusFilter,
+    setStatusFilter,
+    statusSort,
+    setStatusSort,
+    setSearchTerm,
+  };
+
+  const { coaches, isLoading, count /*error*/ } = useCoaches(
+    statusFilter,
+    statusSort,
+    searchTerm
+  );
+
   // const coaches = {};
   if (isLoading) return <Spinner />;
   if (!coaches) return <NotFound />;
@@ -29,7 +51,7 @@ function MainCoaches() {
     <>
       <DashboardCoaches />
       <TableContainer>
-        <TableHeader />
+        <TableHeader {...tableHeaderProps} />
         <TableColumnHeaders />
         {coaches.map((coach, index) => (
           <RowCoaches coach={coach} key={coach.id} index={index} />
