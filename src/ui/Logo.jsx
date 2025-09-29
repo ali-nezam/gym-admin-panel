@@ -9,11 +9,11 @@ const StyledLogo = styled.div`
   gap: 1.7rem;
   display: flex;
   color: #000;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
-  background-color: #f8f9fa;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.01);
+  background-color: #fff;
   border-radius: 1.2rem;
 
-  */ h1 {
+  h1 {
     font-size: 2.6rem;
     font-weight: 800;
   }
@@ -40,7 +40,7 @@ function Logo() {
     <StyledLogo>
       <Dumbbell />
       <h1>GYM ADMIN</h1>
-      <p>v.01</p>
+      <p>v 0.6.0</p>
     </StyledLogo>
   );
 }
