@@ -1,17 +1,19 @@
+import { useState } from "react";
 import styled from "styled-components";
-// import DashboardCoaches from "./DashboardCoaches";
-// import TableHeader from "./TableHeader";
-// import TablePagination from "./TablePagination";
-import Spinner from "../../ui/Spinner";
+
+import DashboardMembers from "./DashboardMembers";
+import TableColumnHeaders from "./TableColumnHeaders";
+import TableHeader from "./TableHeader";
+import RowMembers from "./RowMembers";
+
+import TablePagination from "../common/TablePagination";
+
+import useGetMembers from "./useGetMembers";
+
 import EmptyState from "../../ui/EmptyState";
 import NotFound from "../../ui/NotFound";
-import useGetMembers from "./useGetMembers";
-import TableColumnHeaders from "./TableColumnHeaders";
-import RowMembers from "./RowMembers";
-import TablePagination from "../common/TablePagination";
-import DashboardMembers from "./DashboardMembers";
+import Spinner from "../../ui/Spinner";
 
-// import formatPhoneNumber from "../../utils/formatPhoneNumber";
 const TableContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,22 +25,47 @@ const TableContainer = styled.div`
 `;
 
 function MainMembers() {
-  const { members, isLoading, count /*error*/ } = useGetMembers();
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [statusSort, setStatusSort] = useState("created_at-asc");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const tableHeaderProps = {
+    statusFilter,
+    setStatusFilter,
+    statusSort,
+    setStatusSort,
+    setSearchTerm,
+    searchTerm,
+  };
+
+  const { members, isLoading, count /*error*/ } = useGetMembers(
+    statusFilter,
+    statusSort,
+    searchTerm
+  );
+  // const members = {};
   if (isLoading) return <Spinner />;
   if (!members) return <NotFound />;
-  if (Object.keys(members).length < 1) return <EmptyState />;
 
   return (
     <>
       <DashboardMembers />
       <TableContainer>
-        {/* <TableHeader /> */}
+        <TableHeader {...tableHeaderProps} />
         <TableColumnHeaders />
 
-        {members.map((member, index) => (
-          <RowMembers member={member} key={member.id} index={index} />
-        ))}
-        <TablePagination count={count} type="members" />
+        {isLoading ? (
+          <Spinner />
+        ) : Object.keys(members).length < 1 ? (
+          <EmptyState text="برای جستجو مورد نظر اطلاعاتی ثبت نشده" />
+        ) : (
+          <>
+            {members.map((member, index) => (
+              <RowMembers member={member} key={member.id} index={index} />
+            ))}
+            <TablePagination count={count} type="members" />
+          </>
+        )}
       </TableContainer>
     </>
   );

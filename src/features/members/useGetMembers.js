@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getMembers } from "../../services/apiMembers";
 import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../../utils/constants";
-function useGetMembers() {
+function useGetMembers(statusFilter, statusSort, searchTerm) {
   const [searchParams] = useSearchParams();
   const currentPage = !searchParams.get("page")
     ? 1
@@ -16,8 +16,8 @@ function useGetMembers() {
     error,
     data: response,
   } = useQuery({
-    queryKey: ["members", currentPage],
-    queryFn: () => getMembers(from, to),
+    queryKey: ["members", currentPage, statusFilter, statusSort, searchTerm],
+    queryFn: () => getMembers(from, to, statusFilter, statusSort, searchTerm),
   });
 
   const count = response?.count;

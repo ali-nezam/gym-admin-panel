@@ -1,6 +1,61 @@
 import styled from "styled-components";
-import { HiOutlineSearch } from "react-icons/hi";
-import { useState } from "react";
+import { HiOutlineSearch, HiX } from "react-icons/hi";
+import { useEffect, useState } from "react";
+
+function SearchBox({
+  placeholder = "جستجو...",
+  type,
+  setSearchTerm,
+  searchTerm,
+}) {
+  const [localValue, setLocalValue] = useState("");
+
+  useEffect(() => {
+    setLocalValue(searchTerm || "");
+  }, [searchTerm]);
+
+  function handleSearch() {
+    if (localValue.length > 2 || localValue.length === 0) {
+      setSearchTerm(localValue);
+    }
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  }
+  function handleClear() {
+    setLocalValue("");
+    setSearchTerm("");
+  }
+
+  return (
+    <>
+      <SearchWrapper type={type}>
+        {localValue.length > 0 && (
+          <ClearIcon onClick={handleClear}>
+            <HiX />
+          </ClearIcon>
+        )}
+
+        <SearchInput
+          value={localValue}
+          onChange={(e) => setLocalValue(e.target.value)}
+          onKeyDown={handleKeyDown}
+          type="text"
+          placeholder={placeholder}
+        />
+
+        <SearchIcon onClick={handleSearch}>
+          <HiOutlineSearch />
+        </SearchIcon>
+      </SearchWrapper>
+    </>
+  );
+}
+
+export default SearchBox;
 
 const SearchWrapper = styled.div`
   display: flex;
@@ -8,51 +63,54 @@ const SearchWrapper = styled.div`
   background-color: #fafbff;
   border-radius: 8px;
   padding: 0.8rem 1.2rem;
-  width: 21rem;
+  width: 23rem;
   background-color: ${(props) => props.type};
-`;
-
-const SearchIcon = styled(HiOutlineSearch)`
-  font-size: 1.8rem;
-  color: #b5b7c0;
-  margin-left: 0.8rem;
 `;
 
 const SearchInput = styled.input`
   border: none;
-  outline: none;
   background: transparent;
   font-size: 1.4rem;
   flex: 1;
   direction: rtl;
 
+  &:focus {
+    outline: none;
+  }
   &::placeholder {
     color: #b5b7c0;
   }
 `;
 
-function SearchBox({ placeholder = "جستجو...", type, setSearchTerm }) {
-  const [localValue, setLocalValue] = useState("");
+const SearchIcon = styled.button`
+  transition: background 0.2s, color 0.2s, padding 0.2s;
 
-  function handleChange(e) {
-    const value = e.target.value;
-    setLocalValue(value);
-    if (value.length > 3 || value.length === 0) {
-      setSearchTerm(value);
-    }
+  background-color: #fafbff;
+  padding: 0.5rem;
+  border-radius: 50%;
+  border: none;
+  color: #5932ea;
+  cursor: pointer;
+  font-size: 1.8rem;
+
+  &:hover {
+    background-color: #5932ea;
+    color: #fff;
   }
+`;
+const ClearIcon = styled.button`
+  transition: background 0.2s, color 0.2s, padding 0.2s;
 
-  return (
-    <SearchWrapper type={type}>
-      <SearchIcon />
-      <SearchInput
-        value={localValue}
-        onChange={handleChange}
-        type="text"
-        placeholder={placeholder}
-      />
-    </SearchWrapper>
-  );
-}
+  background-color: #fafbff;
+  padding: 0.5rem;
+  border-radius: 50%;
+  border: none;
+  color: #b5b7c0;
+  cursor: pointer;
+  font-size: 1.8rem;
 
-export default SearchBox;
+  &:hover {
+    background-color: #ffc9c9;
+    color: #f03e3e;
+  }
+`;
