@@ -46,17 +46,26 @@ function MainCoaches() {
   // const coaches = {};
   if (isLoading) return <Spinner />;
   if (!coaches) return <NotFound />;
-  if (Object.keys(coaches).length < 1) return <EmptyState />;
+
   return (
     <>
       <DashboardCoaches />
       <TableContainer>
         <TableHeader {...tableHeaderProps} />
         <TableColumnHeaders />
-        {coaches.map((coach, index) => (
-          <RowCoaches coach={coach} key={coach.id} index={index} />
-        ))}
-        <TablePagination count={count} type="coaches" />
+
+        {isLoading ? (
+          <Spinner />
+        ) : Object.keys(coaches).length < 1 ? (
+          <EmptyState text="برای جستجو مورد نظر اطلاعاتی ثبت نشده" />
+        ) : (
+          <>
+            {coaches.map((coach, index) => (
+              <RowCoaches coach={coach} key={coach.id} index={index} />
+            ))}
+            <TablePagination count={count} type="coaches" />
+          </>
+        )}
       </TableContainer>
     </>
   );
