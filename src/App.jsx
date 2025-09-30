@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import PageNotFound from "./pages/PageNotFound";
 import { Toaster } from "react-hot-toast";
+import Login from "./pages/Login";
 
 function App() {
   const queryClient = new QueryClient();
@@ -19,6 +20,7 @@ function App() {
         <GlobalStyles />
         <BrowserRouter>
           <Routes>
+            <Route element={<Login />} path="login" />
             <Route element={<AppLayout />}>
               <Route index element={<Navigate replace to="dashboard" />} />
               <Route element={<Coaches />} path="coaches" />
