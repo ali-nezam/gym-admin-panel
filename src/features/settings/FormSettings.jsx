@@ -150,6 +150,9 @@ const StyledForm = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 30rem 3rem 30rem;
+  @media (max-width: 768px) {
+    padding: 0 5rem 3rem 5rem;
+  }
 `;
 const Actions = styled.div`
   display: flex;

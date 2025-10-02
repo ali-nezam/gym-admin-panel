@@ -5,6 +5,9 @@ const SettingsHeaderTitle = styled.div`
   color: #000;
   font-size: 2.2rem;
   font-weight: 800;
+  @media (max-width: 768px) {
+    padding: 3rem 5rem 3rem 0;
+  }
 `;
 
 function SettingsHeader() {
