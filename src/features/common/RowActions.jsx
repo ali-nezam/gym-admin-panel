@@ -18,6 +18,12 @@ const StyledRowActions = styled.div`
   gap: 1.2rem;
   justify-content: center;
   flex-direction: ${({ display = "row" }) => display};
+
+  @media (max-width: 768px) {
+    grid-column: 3 / 5;
+    grid-row: 3 / 4;
+    padding: 1rem 0;
+  }
 `;
 
 const instructions = {

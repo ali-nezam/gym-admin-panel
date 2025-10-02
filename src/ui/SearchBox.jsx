@@ -7,6 +7,7 @@ function SearchBox({
   type,
   setSearchTerm,
   searchTerm,
+  mobiletype = "flex",
 }) {
   const [localValue, setLocalValue] = useState("");
 
@@ -32,7 +33,7 @@ function SearchBox({
 
   return (
     <>
-      <SearchWrapper type={type}>
+      <SearchWrapper type={type} $mobiletype={mobiletype}>
         {localValue.length > 0 && (
           <ClearIcon onClick={handleClear}>
             <HiX />
@@ -65,6 +66,7 @@ const SearchWrapper = styled.div`
   padding: 0.8rem 1.2rem;
   width: 23rem;
   background-color: ${(props) => props.type};
+  display: ${(props) => props.$mobiletype};
 `;
 
 const SearchInput = styled.input`

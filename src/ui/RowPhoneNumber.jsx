@@ -12,6 +12,11 @@ const StyledRowPhoneNumber = styled.div`
   align-items: center;
   justify-content: center;
   direction: ltr;
+
+  @media (max-width: 768px) {
+    grid-column: 3 / 5;
+    grid-row: 1 / 2;
+  }
 `;
 
 function RowPhoneNumber({ children }) {

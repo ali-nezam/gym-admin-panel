@@ -14,6 +14,7 @@ const StyledCard = styled.div`
   display: grid;
   grid-template-columns: 1fr 2.5fr;
   gap: 2rem;
+  align-items: center;
   svg {
     width: 8.9rem;
     height: 8.4rem;
@@ -50,6 +51,25 @@ const StyledCard = styled.div`
     color: #00ac4f;
     font-size: 1.4rem;
     font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+
+    div {
+      gap: 0;
+    }
+    h2 {
+      margin: 2.1rem 0 1.1rem 0;
+    }
+    h4,
+    h2 {
+      line-height: 1;
+    }
   }
 `;
 

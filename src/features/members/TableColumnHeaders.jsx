@@ -7,6 +7,9 @@ const StyledTableColumnHeaders = styled.header`
   gap: 2.4rem;
   border-bottom: 0.2rem solid #dddddd;
   justify-items: center;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const ColumnHeader = styled.div`

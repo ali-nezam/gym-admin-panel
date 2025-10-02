@@ -18,9 +18,7 @@ const statusStyles = {
   },
   gold: {
     color: "#f59f00",
-    // color: "#a17900", // طلایی تیره (متالیک‌تر)
     background: "#fff3bf",
-    // background: "#fff8e1", // زمینه روشن و گرم‌تر
     label: "طلایی",
   },
   expired: {
@@ -33,6 +31,15 @@ const statusStyles = {
 const StyledStatusWarper = styled.div`
   display: flex;
   justify-content: center;
+  @media (max-width: 768px) {
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
+    justify-content: space-around;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
 `;
 
 const StyledStatusBadge = styled.div`
@@ -42,7 +49,6 @@ const StyledStatusBadge = styled.div`
   align-items: center;
   justify-content: center;
 
-  width: 5.6rem;
   width: 7.4rem;
   height: 2.8rem;
   border-radius: 6px;
@@ -50,6 +56,17 @@ const StyledStatusBadge = styled.div`
   color: ${({ $color }) => $color};
   background-color: ${({ $background }) => $background};
 `;
+
+const TitleStatus = styled.div`
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-right: 0.8rem;
+  }
+`;
+
 function StatusBadge({ type }) {
   const { color, background, label } = statusStyles[type] || {
     color: "#adb5bd",
@@ -59,6 +76,7 @@ function StatusBadge({ type }) {
 
   return (
     <StyledStatusWarper>
+      <TitleStatus>اشتراک :</TitleStatus>
       <StyledStatusBadge $color={color} $background={background}>
         {label}
       </StyledStatusBadge>
