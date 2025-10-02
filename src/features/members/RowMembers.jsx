@@ -39,13 +39,13 @@ function RowMembers({ member, index }) {
     <StyledRowMembers $isEven={index % 2 === 0}>
       <AvatarPhoto src={profile_image_url} alt="profile-img" />
 
-      <RowCellText $isFullName={true}>{full_name}</RowCellText>
+      <RowCellText $type="full_name">{full_name}</RowCellText>
 
-      <RowCellText $iscoach={true}>
+      <RowCellText $type="coach_name">
         {coachData.full_name} <p>({coachData.expertise})</p>
       </RowCellText>
 
-      <RowCellText $isEndDate={true}>{toPersianDate(end_date)}</RowCellText>
+      <RowCellText $type="end_date">{toPersianDate(end_date)}</RowCellText>
 
       <StatusBadge type={status} />
 

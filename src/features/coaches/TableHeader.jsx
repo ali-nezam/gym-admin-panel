@@ -5,6 +5,12 @@ const StyledTableHeader = styled.div`
   display: grid;
   grid-template-columns: 1fr auto auto auto;
   gap: 4.6rem;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr 3fr;
+    gap: 1.6rem;
+    padding-bottom: 1.6rem;
+    align-items: center;
+  }
 `;
 const TableHeaderTitle = styled.div`
   display: flex;
@@ -23,6 +29,13 @@ const TableHeaderTitle = styled.div`
     color: ${({ statusfilter }) =>
       statusfilter === "true" ? "#16c098" : "#f03e3e"};
   }
+
+  @media (max-width: 768px) {
+    margin-bottom: 0.8rem;
+    h3 {
+      font-size: 1.8rem;
+    }
+  }
 `;
 
 const Sort = styled.select`
@@ -32,6 +45,11 @@ const Sort = styled.select`
   border: none;
   color: #b5b7c0;
   background-color: #fafbff;
+
+  @media (max-width: 768px) {
+    width: 100%; /* اشغال کل عرض در موبایل */
+    grid-column: 1/-1;
+  }
 `;
 
 const Filter = styled.div`
@@ -42,6 +60,21 @@ const Filter = styled.div`
   width: fit-content;
   background-color: #fafbff;
   border-radius: 8px;
+
+  @media (max-width: 768px) {
+    /* اطمینان از اسکرول افقی اگر دکمه‌ها زیاد بودند */
+    display: flex;
+    /* width: 70%; */
+    align-items: center;
+    overflow-x: auto;
+    /* gap: 0; */
+    justify-content: space-evenly;
+    margin: 0 auto;
+
+    &::-webkit-scrollbar {
+      display: none; /* مخفی کردن Scrollbar افقی */
+    }
+  }
 `;
 
 const FilterButton = styled.button`
@@ -64,6 +97,7 @@ function TableHeader({
   statusSort,
   setStatusSort,
   setSearchTerm,
+  searchTerm,
 }) {
   return (
     <StyledTableHeader>
@@ -101,7 +135,11 @@ function TableHeader({
         <option value="name-desc">نام ( ی - الف)</option>
       </Sort>
 
-      <SearchBox setSearchTerm={setSearchTerm} />
+      <SearchBox
+        setSearchTerm={setSearchTerm}
+        searchTerm={searchTerm}
+        mobiletype="none"
+      />
     </StyledTableHeader>
   );
 }

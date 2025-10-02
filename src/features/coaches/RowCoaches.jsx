@@ -14,6 +14,20 @@ const StyledRowCoaches = styled.div`
   gap: 2.4rem;
   font-size: 1.6rem;
   padding: 0 1rem;
+
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: 1.5fr 3.5fr 2.5fr 2.5fr;
+    grid-template-rows: auto auto;
+    gap: 0.8rem 1.6rem;
+    padding: 1.2rem;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+    align-items: center;
+    background-color: #fff;
+    margin-bottom: 0.8rem;
+  }
 `;
 
 function RowCoaches({ coach, index }) {
@@ -29,11 +43,13 @@ function RowCoaches({ coach, index }) {
     <StyledRowCoaches $isEven={index % 2 === 0}>
       <AvatarPhoto src={profile_img} alt="profile-img" />
 
-      <RowCellText>{full_name}</RowCellText>
+      <RowCellText $type="full_name">{full_name}</RowCellText>
 
-      <RowCellText>{expertise}</RowCellText>
+      <RowCellText $type="expertise">{expertise} </RowCellText>
 
-      <RowCellText>{toPersianDate(Membership_date)}</RowCellText>
+      <RowCellText $type="Membership_date">
+        {toPersianDate(Membership_date)}
+      </RowCellText>
 
       <StatusBadge type={coach_status} />
 

@@ -1,14 +1,9 @@
 import styled from "styled-components";
 import Card from "../../ui/Card";
-import { RiUserFollowLine, RiUserForbidLine } from "react-icons/ri";
-import { toPersianDigits } from "../../utils/convertNumberToPersianDigits";
-import { HiOutlineUserGroup } from "react-icons/hi2";
-// import { PiDesktop } from "react-icons/pi";
+import { RiUserFollowLine } from "react-icons/ri";
+import { HiOutlineUserGroup } from "react-icons/hi2"; // import { PiDesktop } from "react-icons/pi";
 import useGetcoachesStatus from "./useGetcoachesStatus";
-import Spinner from "../../ui/Spinner";
 const StyledDashboardCoaches = styled.div`
-  display: flex;
-  gap: 5rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: center;
@@ -17,8 +12,22 @@ const StyledDashboardCoaches = styled.div`
   border-radius: 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   padding: 2.4rem;
-  div:not(:last-child) {
-    border-left: 0.3rem solid #f0f0f0;
+
+  @media (min-width: 770px) {
+    div:not(:last-child) {
+      border-left: 0.3rem solid #f0f0f0;
+    }
+    div:not(:first-child) {
+      padding-right: 5.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2.9rem;
+    background-color: #f8f9fc;
+    box-shadow: none;
+    /* padding-top: 0; */
   }
 `;
 

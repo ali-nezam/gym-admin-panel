@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+const instructions = {
+  end_date: "پایان اشتراک :",
+  coach_name: "نام مربی :",
+  expertise: "رشته :",
+  Membership_date: "تاریخ عضویت :",
+};
+
 const StyledRowCellText = styled.div`
   font-size: 1.4rem;
   font-weight: 400;
@@ -15,16 +22,17 @@ const StyledRowCellText = styled.div`
   }
 
   ${(props) =>
-    props.$isFullName &&
+    props.$type === "full_name" &&
     `
     @media (max-width: 768px) {
       grid-column: 2 / 3;
       grid-row: 1 / 2;
       justify-content: flex-start
-    }
-    `}
+      }
+      `}
+
   ${(props) =>
-    props.$isEndDate &&
+    (props.$type === "Membership_date" || props.$type === "end_date") &&
     `
     @media (max-width: 768px) {
       grid-column: 3 / 5;
@@ -32,12 +40,14 @@ const StyledRowCellText = styled.div`
       font-size: 1.2rem;
       color: #777;
       padding: 0 ;
-      justify-content: space-evenly;
-      }
-      `};
+      span {
+        font-size: 1rem;
+        padding-left: 1rem;
+        }
+        `};
 
   ${(props) =>
-    props.$iscoach &&
+    (props.$type === "expertise" || props.$type === "coach_name") &&
     `
     @media (max-width: 768px) {
       grid-column: 1 / 3;
@@ -45,28 +55,22 @@ const StyledRowCellText = styled.div`
       font-size: 1.2rem;
       color: #777;
       padding: 0 ;
-      padding-right: 0.5rem ;
-      justify-content: start;
-       sapn {
-         font-size: 1rem;
-        padding-left: 1rem;
-         }
-
-  `};
+      justify-content: flex-start;
+      span {
+        font-size: 1rem;
+        margin-right: 1.5rem ;
+        margin-left: 1rem;
+            }
+      `};
 `;
 
-function RowCellText({ children, $isFullName, $isEndDate, $iscoach }) {
-  let text;
-  if ($iscoach) text = "نام مربی :";
-  else if ($isEndDate) text = "تاریخ عضویت :";
-  else text = "";
+function RowCellText({ children, $type }) {
+  console.log($type);
+  const text = instructions[$type] || "";
+
   return (
-    <StyledRowCellText
-      $isEndDate={$isEndDate}
-      $isFullName={$isFullName}
-      $iscoach={$iscoach}
-    >
-      <sapn>{text}</sapn>
+    <StyledRowCellText $type={$type}>
+      <span>{text}</span>
       {children}
     </StyledRowCellText>
   );
