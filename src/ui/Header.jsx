@@ -1,32 +1,10 @@
-// import styled from "styled-components";
-// import SearchBox from "./SearchBox";
-
-// const StyledHeader = styled.header`
-//   padding: 2.4rem 2.4rem;
-//   padding-bottom: 0;
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   justify-content: space-between;
-//   align-self: start;
-// `;
-
-// function Header() {
-//   return (
-//     <StyledHeader>
-//       <h1>سلام علی 👋</h1>
-//       <SearchBox type="#fff" />
-//     </StyledHeader>
-//   );
-// }
-
-// export default Header;
 import styled from "styled-components";
 import AvatarImg from "../assets/AvatarImg.png"; // عکس پروفایل نمونه
 import SearchBox from "./SearchBox";
-function Header() {
+function Header({ onToggleSidebar }) {
   return (
     <StyledHeader>
+      <BurgerButton onClick={onToggleSidebar}>☰</BurgerButton>
       <SearchBox />
 
       <UserInfo>
@@ -47,7 +25,8 @@ const StyledHeader = styled.header`
   background: #fff;
   border-bottom: 1px solid #eee;
   @media (max-width: 768px) {
-    padding: 1.2rem 2rem; /* کاهش padding افقی در موبایل */
+    padding: 1.2rem 2rem;
+    grid-column: 1/-1;
   }
 `;
 
@@ -76,5 +55,18 @@ const UserInfo = styled.div`
     strong {
       font-size: 1.2rem; /* کاهش اندازه فونت */
     }
+  }
+`;
+
+const BurgerButton = styled.button`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block; /* در حالت موبایل نمایش داده شود */
+    background: none;
+    border: none;
+    font-size: 2.4rem;
+    cursor: pointer;
+    order: -1; /* قرار دادن دکمه در ابتدای هدر در موبایل */
   }
 `;

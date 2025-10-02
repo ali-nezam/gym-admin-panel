@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import Header from "./Header";
 import SideBar from "./SideBar";
+import { useState } from "react";
 
 const StyledAppLayout = styled.div`
   height: 100vh;
@@ -12,6 +13,9 @@ const StyledAppLayout = styled.div`
   grid-template-rows: auto 1fr;
 
   background-color: #f8f9fc;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const MainContent = styled.main`
@@ -22,13 +26,40 @@ const MainContent = styled.main`
   will-change: scroll-position;
   -webkit-overflow-scrolling: touch;
   padding: 2.4rem;
+
+  @media (max-width: 768px) {
+    padding: 1.2rem;
+  }
+`;
+
+const ModalOverlay = styled.div`
+  display: none; /* در دسکتاپ مخفی */
+
+  @media (max-width: 768px) {
+    /* نمایش فقط در موبایل */
+    display: ${(props) => (props.isOpen ? "block" : "none")};
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* رنگ تیره و شفاف */
+    z-index: 999; /* زیر سایدبار (1000) */
+    cursor: pointer;
+  }
 `;
 
 function AppLayout() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => setIsSidebarOpen((open) => !open);
   return (
     <StyledAppLayout>
-      <Header />
-      <SideBar />
+      <Header onToggleSidebar={toggleSidebar} />
+
+      <ModalOverlay isOpen={isSidebarOpen} onClick={toggleSidebar} />
+
+      <SideBar isOpen={isSidebarOpen} />
       <MainContent>
         <Outlet />
       </MainContent>
