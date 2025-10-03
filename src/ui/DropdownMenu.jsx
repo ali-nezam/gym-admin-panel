@@ -5,14 +5,14 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 const DropdownWrapper = styled.div`
   position: relative;
   display: inline-block;
+
   ${(props) =>
-    props.$type === "class_price" &&
+    props.$type === "menu_btn" &&
     `
     ////class_DropdownWrapper
     @media (max-width: 768px) {
-      justify-content: flex-end;
-      grid-column: 4 / 5;
-      grid-row: 1 / 2 ;
+     grid-area: classes_menu;
+      // justify-content: flex-end;
         `};
 `;
 
