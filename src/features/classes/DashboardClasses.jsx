@@ -5,8 +5,6 @@ import { MdAttachMoney, MdOutlineClass } from "react-icons/md";
 import useGetClassesStats from "./useGetDashboard";
 import { toEditedPrice } from "../../utils/convertToEditedPirce";
 const StyledDashboardClasses = styled.div`
-  display: flex;
-  gap: 5rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: center;
@@ -15,8 +13,21 @@ const StyledDashboardClasses = styled.div`
   border-radius: 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   padding: 2.4rem;
-  div:not(:last-child) {
-    border-left: 0.3rem solid #f0f0f0;
+  @media (min-width: 770px) {
+    div:not(:last-child) {
+      border-left: 0.3rem solid #f0f0f0;
+    }
+    div:not(:first-child) {
+      padding-right: 5.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2.9rem;
+    background-color: #f8f9fc;
+    box-shadow: none;
+    /* padding-top: 0; */
   }
 `;
 

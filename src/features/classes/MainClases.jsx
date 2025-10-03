@@ -33,4 +33,9 @@ const StyledClass = styled.div`
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   margin-top: 2.4rem;
   padding: 2rem 3.2rem 2rem 3.2rem;
+  @media (max-width: 768px) {
+    border-radius: 15px;
+    padding: 1.2rem;
+    margin-top: 0;
+  }
 `;

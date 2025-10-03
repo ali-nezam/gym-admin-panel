@@ -5,6 +5,15 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 const DropdownWrapper = styled.div`
   position: relative;
   display: inline-block;
+  ${(props) =>
+    props.$type === "class_price" &&
+    `
+    ////class_DropdownWrapper
+    @media (max-width: 768px) {
+      justify-content: flex-end;
+      grid-column: 4 / 5;
+      grid-row: 1 / 2 ;
+        `};
 `;
 
 const MenuButton = styled.button`
@@ -31,7 +40,7 @@ const MenuContent = styled.div`
   z-index: 10;
 `;
 
-function DropdownMenu({ children }) {
+function DropdownMenu({ children, $type }) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef();
 
@@ -47,7 +56,7 @@ function DropdownMenu({ children }) {
   }, []);
 
   return (
-    <DropdownWrapper ref={ref}>
+    <DropdownWrapper ref={ref} type={$type}>
       <MenuButton onClick={() => setIsOpen((prev) => !prev)}>
         <BsThreeDotsVertical />
       </MenuButton>

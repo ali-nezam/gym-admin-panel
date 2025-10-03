@@ -1,7 +1,6 @@
 import styled from "styled-components";
-// import { toPersianDate } from "../../utils/convertDate";
+import { toPersianDigits } from "../../utils/convertNumberToPersianDigits";
 import RowActions from "../common/RowActions";
-// import StatusBadge from "../../ui/StatusBadge";
 import RowCellText from "../../ui/RowCellText";
 import RowButton from "../../ui/RowButton";
 import { toEditedPrice } from "../../utils/convertToEditedPirce";
@@ -20,6 +19,19 @@ const StyledRowClasses = styled.div`
   gap: 2rem;
   font-size: 1.6rem;
   padding: 0 1rem;
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2.5fr 0.5fr;
+    /* grid-template-rows: auto auto; */
+    gap: 1.4rem 1rem;
+    padding: 1.2rem 2.2rem 1.2rem 1.2rem;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+    align-items: center;
+    background-color: #fff;
+    margin-bottom: 0.8rem;
+  }
 `;
 
 const titleBody = " اضافه کردن مربی";
@@ -34,20 +46,21 @@ function RowClasses({ cls, index }) {
   const percent = Math.floor((currentCapacity / capacity) * 100);
   return (
     <StyledRowClasses $isEven={index % 2 === 0}>
-      <RowCellText>{class_name}</RowCellText>
+      <RowCellText $type="class_name">{class_name}</RowCellText>
 
-      <RowCellText>{coach_name}</RowCellText>
+      <RowCellText $type="class_coach_name">{coach_name}</RowCellText>
 
       <CapacityWrapper>
-        <>
-          {capacity} / {currentCapacity}
-        </>
+        <p>ظرفیت :</p>
+        <span>
+          {toPersianDigits(capacity)} / {toPersianDigits(currentCapacity)}
+        </span>
         <BarContainer>
           <BarFiller $percent={percent} />
         </BarContainer>
       </CapacityWrapper>
 
-      <RowCellText>{toEditedPrice(price)}</RowCellText>
+      <RowCellText $type="price">{toEditedPrice(price)}</RowCellText>
 
       <Buttons>
         <Modal>
@@ -70,7 +83,7 @@ function RowClasses({ cls, index }) {
           </Modal.Body>
         </Modal>
       </Buttons>
-      <DropdownMenu>
+      <DropdownMenu $type="classes_menu">
         <RowActions data={cls} type="classes" display="column" />
       </DropdownMenu>
     </StyledRowClasses>
@@ -83,6 +96,10 @@ const Buttons = styled.div`
   display: flex;
   gap: 1rem;
   justify-content: center;
+  @media (max-width: 768px) {
+    grid-column: 3 / 5;
+    grid-row: 4 / 5;
+  }
 `;
 
 const CapacityWrapper = styled.div`
@@ -93,6 +110,31 @@ const CapacityWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+
+  @media (min-width: 768px) {
+    p {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    grid-column: 1 / 5;
+    grid-row: 3 / 4;
+    align-items: center;
+    height: 1.8rem;
+    p,
+    span {
+      width: 5rem;
+      font-size: 1.2rem;
+      color: #777;
+      line-height: 1;
+      font-weight: 400;
+    }
+    span {
+      font-size: 1rem;
+    }
+  }
 `;
 
 const BarContainer = styled.div`
@@ -101,6 +143,12 @@ const BarContainer = styled.div`
   background-color: #e5e7eb;
   border-radius: 999px;
   overflow: hidden;
+  @media (max-width: 768px) {
+    height: 1.2rem;
+    width: 60%;
+    margin-right: 3.5rem;
+    grid-column: 3 / 5;
+  }
 `;
 
 const BarFiller = styled.div`

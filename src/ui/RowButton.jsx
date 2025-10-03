@@ -10,6 +10,9 @@ const StyledButton = styled.button`
   gap: 0.5rem;
   width: fit-content;
   font-size: 1.2rem;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 
   border: 1px solid ${({ disabled }) => (disabled ? "#ced4da" : "none")};
   background-color: ${({ disabled }) => (disabled ? "#f1f3f5" : "#5932ea")};
