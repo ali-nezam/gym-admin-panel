@@ -14,13 +14,24 @@ const StyledDashboardCard = styled.div`
   border-radius: 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   padding: 2.4rem;
-  div:not(:last-child) {
-    border-left: 0.3rem solid #f0f0f0;
-  }
-  div:not(:first-child) {
-    padding-right: 2.5rem;
-  }
   grid-column: 1/-1;
+
+  @media (min-width: 770px) {
+    div:not(:last-child) {
+      border-left: 0.3rem solid #f0f0f0;
+    }
+    div:not(:first-child) {
+      padding-right: 2.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2.9rem;
+    background-color: #f8f9fc;
+    box-shadow: none;
+    /* padding-top: 0; */
+  }
 `;
 export default function DashboardCard() {
   const { cards, isLoading } = useDashboardCard();

@@ -40,6 +40,19 @@ const StyledStatusWarper = styled.div`
     align-items: center;
     justify-content: space-evenly;
   }
+
+  ${(props) =>
+    props.$type === "statusdashboard" &&
+    `
+    @media (max-width: 768px) {
+      grid-column: 3 / 5;
+      grid-row: 2 / 3;
+      font-size: 1.2rem;
+      color: #777;
+      padding: 0 ;
+      justify-content: space-evenly;
+      align-items: center;
+      `};
 `;
 
 const StyledStatusBadge = styled.div`
@@ -67,7 +80,7 @@ const TitleStatus = styled.div`
   }
 `;
 
-function StatusBadge({ type }) {
+function StatusBadge({ type, $type }) {
   const { color, background, label } = statusStyles[type] || {
     color: "#adb5bd",
     background: "#f1f3f5",
@@ -75,7 +88,7 @@ function StatusBadge({ type }) {
   };
 
   return (
-    <StyledStatusWarper>
+    <StyledStatusWarper $type={$type}>
       <TitleStatus>اشتراک :</TitleStatus>
       <StyledStatusBadge $color={color} $background={background}>
         {label}

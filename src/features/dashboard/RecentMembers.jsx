@@ -28,7 +28,11 @@ const StyledRecentMembers = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  grid-column: 1;
+  grid-column: 1/2;
+
+  @media (max-width: 768px) {
+    grid-column: 1/-1;
+  }
 `;
 const StyledTitle = styled.h2`
   font-size: 2.2rem;

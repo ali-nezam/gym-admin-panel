@@ -18,6 +18,19 @@ const StyledRowMembers = styled.div`
   border-bottom: 0.1rem solid #dddddd;
 
   border-top: ${({ index }) => (index === 0 ? "0.1rem solid #dddddd" : "none")};
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: 1.5fr 3.5fr 2.5fr 2.5fr;
+    grid-template-rows: auto auto;
+    gap: 0.8rem 1.6rem;
+    padding: 1.2rem;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+    align-items: center;
+    background-color: #fff;
+    margin-bottom: 0.8rem;
+  }
 `;
 function RowMembers({ member, index }) {
   const { full_name, phone, status, profile_image_url, coachData } = member;
@@ -25,11 +38,11 @@ function RowMembers({ member, index }) {
     <StyledRowMembers index={index}>
       <AvatarPhoto src={profile_image_url} alt="profile-img" />
 
-      <RowCellText>{full_name}</RowCellText>
+      <RowCellText $type="full_name">{full_name}</RowCellText>
 
-      <RowCellText>{coachData.expertise}</RowCellText>
+      <RowCellText $type="expertise">{coachData.expertise}</RowCellText>
 
-      <StatusBadge type={status} />
+      <StatusBadge type={status} $type="statusdashboard" />
 
       <RowPhoneNumber>{phone}</RowPhoneNumber>
     </StyledRowMembers>
