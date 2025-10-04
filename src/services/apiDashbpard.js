@@ -99,9 +99,8 @@ export async function getRecentMember() {
   const { data, error } = await supabase
     .from("members")
     .select(
-      "full_name,status,phone,profile_image_url,coachData:coach_id (expertise)"
+      "full_name,id,status,phone,profile_image_url,coachData:coach_id (expertise)"
     )
-    // .select(`*,coachData:coach_id ( full_name ,expertise)`, { count: "exact" })
     .order("id", { ascending: true })
     .range(0, 4);
 

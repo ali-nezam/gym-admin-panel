@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import RowMembers from "./RowMembers";
+import RowRecentMembersDashboard from "./RowRecentMembersDashboard";
 import { useGetRecentMember } from "./useGetRecentMember";
 import Spinner from "../../ui/Spinner";
 
@@ -11,7 +11,11 @@ function RecentMembers() {
     <StyledRecentMembers>
       <StyledTitle>اخرین اعضای ثبت نام شده</StyledTitle>
       {recentMembers2.map((member, index) => (
-        <RowMembers member={member} key={member.id} index={index} />
+        <RowRecentMembersDashboard
+          member={member}
+          index={index}
+          key={member.id}
+        />
       ))}
     </StyledRecentMembers>
   );

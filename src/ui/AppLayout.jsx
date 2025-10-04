@@ -37,7 +37,7 @@ const ModalOverlay = styled.div`
 
   @media (max-width: 768px) {
     /* نمایش فقط در موبایل */
-    display: ${(props) => (props.isOpen ? "block" : "none")};
+    display: ${(props) => (props.$isOpen ? "block" : "none")};
     position: fixed;
     top: 0;
     left: 0;
@@ -57,9 +57,9 @@ function AppLayout() {
     <StyledAppLayout>
       <Header onToggleSidebar={toggleSidebar} />
 
-      <ModalOverlay isOpen={isSidebarOpen} onClick={toggleSidebar} />
+      <ModalOverlay $isOpen={isSidebarOpen} onClick={toggleSidebar} />
 
-      <SideBar isOpen={isSidebarOpen} />
+      <SideBar $isOpen={isSidebarOpen} />
       <MainContent>
         <Outlet />
       </MainContent>

@@ -95,7 +95,6 @@ const StyledRowCellText = styled.div`
 `;
 
 function RowCellText({ children, $type }) {
-  console.log($type);
   const text = instructions[$type] || "";
 
   return (
