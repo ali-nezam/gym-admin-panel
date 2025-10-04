@@ -4,7 +4,7 @@ import Coaches from "./pages/Coaches";
 import Dashboard from "./pages/Dashboard";
 import Members from "./pages/Members";
 import Settings from "./pages/Settings";
-import Classes from "./pages/classes";
+import Classes from "./pages/Classes";
 import GlobalStyles from "./styles/GlobalStyles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
