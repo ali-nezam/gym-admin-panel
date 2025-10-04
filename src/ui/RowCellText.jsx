@@ -42,7 +42,10 @@ const StyledRowCellText = styled.div`
     @media (max-width: 768px) {
       grid-column: 2 / 3;
       grid-row: 1 / 2;
-      justify-content: flex-start
+      color: #292d32;
+      font-size: 1.6rem;  
+      align-items: center;
+      margin-right: -2rem;
       }
       `}
 
@@ -52,14 +55,9 @@ const StyledRowCellText = styled.div`
     @media (max-width: 768px) {
       grid-column: 3 / 5;
       grid-row: 2 / 3;
-      font-size: 1.2rem;
-      color: #777;
-      padding: 0 ;
-      span {
-        font-size: 1rem;
-        padding-left: 1rem;
-        }
-        `};
+      justify-content: center;
+      }
+      `};
 
   ${(props) =>
     (props.$type === "expertise" || props.$type === "coach_name") &&
@@ -67,16 +65,9 @@ const StyledRowCellText = styled.div`
     @media (max-width: 768px) {
       grid-column: 1 / 3;
       grid-row: 2 / 3;
-      font-size: 1.2rem;
-      color: #777;
-      padding: 0 ;
-      justify-content: flex-start;
-      span {
-        font-size: 1rem;
-        margin-right: 1.5rem ;
-        margin-left: 1rem;
-            }
-            `};
+      }
+      `};
+
   ${(props) =>
     props.$type === "class_name" &&
     `

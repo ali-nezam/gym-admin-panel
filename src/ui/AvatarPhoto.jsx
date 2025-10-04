@@ -10,7 +10,6 @@ const StyledAvatarPhoto = styled.img`
   @media (max-width: 768px) {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
-    margin: 0 0.5rem;
   }
 `;
 function AvatarPhoto({ src, alt }) {
