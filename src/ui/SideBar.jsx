@@ -33,9 +33,9 @@ const StyledSideBar = styled.aside`
   }
 `;
 
-function SideBar({ isOpen }) {
+function SideBar({ $isOpen, onToggleSidebar }) {
   return (
-    <StyledSideBar $isOpen={isOpen}>
+    <StyledSideBar $isOpen={$isOpen} onClick={onToggleSidebar}>
       <Logo />
       <MainNavbar />
     </StyledSideBar>

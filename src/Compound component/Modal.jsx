@@ -62,6 +62,11 @@ const ModalContent = styled.div`
   width: 500px;
   max-width: 90%; //
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+
+  @media (max-width: 768px) {
+    padding: 1.4rem;
+    width: 80%;
+  }
 `;
 const HeaderWrapper = styled.div`
   display: flex;

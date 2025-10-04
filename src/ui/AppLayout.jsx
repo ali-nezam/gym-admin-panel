@@ -51,7 +51,6 @@ const ModalOverlay = styled.div`
 
 function AppLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   const toggleSidebar = () => setIsSidebarOpen((open) => !open);
   return (
     <StyledAppLayout>
@@ -59,7 +58,7 @@ function AppLayout() {
 
       <ModalOverlay $isOpen={isSidebarOpen} onClick={toggleSidebar} />
 
-      <SideBar $isOpen={isSidebarOpen} />
+      <SideBar $isOpen={isSidebarOpen} onToggleSidebar={toggleSidebar} />
       <MainContent>
         <Outlet />
       </MainContent>
