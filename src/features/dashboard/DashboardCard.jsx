@@ -44,7 +44,7 @@ export default function DashboardCard() {
         percent={"4%"}
         percentText="رشد در این ماه"
         fontsmall={true}
-        texttype="price"
+        texttype="price-small"
         isLoading={isLoading}
       />
     </StyledDashboardCard>

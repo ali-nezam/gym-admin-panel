@@ -17,7 +17,7 @@ export default function DashboardClasses() {
         percent={"14%"}
         percentText="رشد در این ماه"
         isLoading={isLoading}
-        textType="price"
+        texttype="price"
       />
 
       <Card

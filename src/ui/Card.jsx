@@ -16,9 +16,15 @@ function Card({
     color: "#37b24d",
     background: "#d3f9d8",
   };
+  const sizeprice =
+    texttype === "price"
+      ? "2rem"
+      : texttype === "price-small"
+      ? "1.5rem"
+      : "3.2rem";
   if (isLoading) return <SpinnerMini />;
   return (
-    <StyledCard $color={color} $background={background} texttype={texttype}>
+    <StyledCard $color={color} $background={background} $sizeprice={sizeprice}>
       {icon}
       <div>
         <h3>{title}</h3>
@@ -65,7 +71,7 @@ const StyledCard = styled.div`
   }
   h2 {
     color: #333333;
-    font-size: ${({ texttype }) => (texttype === "price" ? "2rem" : "3.2rem")};
+    font-size: ${({ $sizeprice }) => $sizeprice};
   }
   h3 {
     font-size: 1.4rem;

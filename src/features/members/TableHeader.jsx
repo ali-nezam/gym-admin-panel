@@ -17,7 +17,7 @@ function TableHeader({
   return (
     <StyledTableHeader>
       <TableHeaderTitle $color={filtertextcolor}>
-        <h3>مربیان</h3>
+        <h3>اعضا</h3>
         {filterText && <p>{filterText}</p>}
       </TableHeaderTitle>
 

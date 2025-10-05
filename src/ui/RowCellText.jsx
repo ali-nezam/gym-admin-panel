@@ -23,7 +23,9 @@ const StyledRowCellText = styled.div`
     font-size: 1rem;
     padding-right: 0.5rem;
   }
-
+  span {
+    display: none;
+  }
   @media (max-width: 768px) {
     padding: 0;
     justify-content: flex-start;
@@ -31,6 +33,7 @@ const StyledRowCellText = styled.div`
     color: #777;
 
     span {
+      display: block;
       font-size: 1rem;
       margin-left: 1rem;
     }

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import AvatarImg from "../assets/AvatarImg.png"; // عکس پروفایل نمونه
 import SearchBox from "./SearchBox";
 function Header({ onToggleSidebar }) {
   return (
@@ -8,7 +7,10 @@ function Header({ onToggleSidebar }) {
       <SearchBox />
 
       <UserInfo>
-        <img src={AvatarImg} alt="profile" />
+        <img
+          src="https://igihwiyeototrroxsaxg.supabase.co/storage/v1/object/public/admin%20profile/AvatarImg.png"
+          alt="profile"
+        />
         <strong>علی نظام</strong>
       </UserInfo>
     </StyledHeader>
