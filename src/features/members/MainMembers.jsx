@@ -14,22 +14,6 @@ import EmptyState from "../../ui/EmptyState";
 import NotFound from "../../ui/NotFound";
 import Spinner from "../../ui/Spinner";
 
-const TableContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  border-radius: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  margin-top: 2.4rem;
-  padding: 2rem 3.2rem 2rem 3.2rem;
-
-  @media (max-width: 768px) {
-    border-radius: 15px;
-    padding: 1.2rem;
-    margin-top: 0;
-  }
-`;
-
 function MainMembers() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [statusSort, setStatusSort] = useState("created_at-asc");
@@ -78,3 +62,19 @@ function MainMembers() {
 }
 
 export default MainMembers;
+
+const TableContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  margin-top: 2.4rem;
+  padding: 2rem 3.2rem 2rem 3.2rem;
+
+  @media (max-width: 768px) {
+    border-radius: 15px;
+    padding: 1.2rem;
+    margin-top: 0;
+  }
+`;

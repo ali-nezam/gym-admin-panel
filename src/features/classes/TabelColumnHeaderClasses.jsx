@@ -1,5 +1,20 @@
 import styled from "styled-components";
 
+function TabelColumnHeaderClasses() {
+  return (
+    <StyledTabelColumnHeaderClasses>
+      <ColumnHeader>نام کلاس</ColumnHeader>
+      <ColumnHeader>نام مربی</ColumnHeader>
+      <ColumnHeader>ظرفیت کل / تکمیل شده</ColumnHeader>
+      <ColumnHeader>قیمت</ColumnHeader>
+      <ColumnHeader>افزودن عضو</ColumnHeader>
+      <ColumnHeader></ColumnHeader>
+    </StyledTabelColumnHeaderClasses>
+  );
+}
+
+export default TabelColumnHeaderClasses;
+
 const StyledTabelColumnHeaderClasses = styled.header`
   display: grid;
   grid-template-columns: 1.2fr 1.5fr 1.5fr 1.3fr 2.2fr 0.2fr;
@@ -17,17 +32,3 @@ const ColumnHeader = styled.div`
   font-weight: 500;
   color: #b5b7c0;
 `;
-function TabelColumnHeaderClasses() {
-  return (
-    <StyledTabelColumnHeaderClasses>
-      <ColumnHeader>نام کلاس</ColumnHeader>
-      <ColumnHeader>نام مربی</ColumnHeader>
-      <ColumnHeader>ظرفیت کل / تکمیل شده</ColumnHeader>
-      <ColumnHeader>قیمت</ColumnHeader>
-      <ColumnHeader>افزودن عضو</ColumnHeader>
-      <ColumnHeader></ColumnHeader>
-    </StyledTabelColumnHeaderClasses>
-  );
-}
-
-export default TabelColumnHeaderClasses;

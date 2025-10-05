@@ -27,7 +27,7 @@ const StyledRecentMembers = styled.div`
   background-color: #ffffff;
   border-radius: 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  min-height: 350px; // همان مقدار Chart
+  min-height: 350px;
   width: 100%;
   display: flex;
   flex-direction: column;

@@ -2,6 +2,33 @@ import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
+function DropdownMenu({ children, $type }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef();
+
+  const handleClickOutside = (e) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <DropdownWrapper ref={ref} type={$type}>
+      <MenuButton onClick={() => setIsOpen((prev) => !prev)}>
+        <BsThreeDotsVertical />
+      </MenuButton>
+      {isOpen && <MenuContent>{children}</MenuContent>}
+    </DropdownWrapper>
+  );
+}
+
+export default DropdownMenu;
+
 const DropdownWrapper = styled.div`
   position: relative;
   display: inline-block;
@@ -39,30 +66,3 @@ const MenuContent = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 10;
 `;
-
-function DropdownMenu({ children, $type }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const ref = useRef();
-
-  const handleClickOutside = (e) => {
-    if (ref.current && !ref.current.contains(e.target)) {
-      setIsOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  return (
-    <DropdownWrapper ref={ref} type={$type}>
-      <MenuButton onClick={() => setIsOpen((prev) => !prev)}>
-        <BsThreeDotsVertical />
-      </MenuButton>
-      {isOpen && <MenuContent>{children}</MenuContent>}
-    </DropdownWrapper>
-  );
-}
-
-export default DropdownMenu;

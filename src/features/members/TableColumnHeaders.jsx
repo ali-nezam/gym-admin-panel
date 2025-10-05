@@ -1,17 +1,5 @@
 import styled from "styled-components";
 
-const StyledTableColumnHeaders = styled.header`
-  display: grid;
-  grid-template-columns: 0.5fr 1.6fr 1.5fr 1.5fr 1.3fr 1.2fr 0.7fr;
-  padding: 1.3rem 1rem;
-  gap: 2.4rem;
-  border-bottom: 0.2rem solid #dddddd;
-  justify-items: center;
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
 const ColumnHeader = styled.div`
   font-size: 1.6rem;
   font-weight: 500;
@@ -32,3 +20,15 @@ function TableColumnHeaders() {
 }
 
 export default TableColumnHeaders;
+
+const StyledTableColumnHeaders = styled.header`
+  display: grid;
+  grid-template-columns: 0.5fr 1.6fr 1.5fr 1.5fr 1.3fr 1.2fr 0.7fr;
+  padding: 1.3rem 1rem;
+  gap: 2.4rem;
+  border-bottom: 0.2rem solid #dddddd;
+  justify-items: center;
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;

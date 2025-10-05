@@ -1,6 +1,17 @@
 import styled, { keyframes } from "styled-components";
 import { Dumbbell } from "lucide-react";
 
+function SpinnerMini({ text = "در حال بارگذاری..." }) {
+  return (
+    <Overlay>
+      <SpinnerIcon />
+      <LoadingText>{text}</LoadingText>
+    </Overlay>
+  );
+}
+
+export default SpinnerMini;
+
 const bounce = keyframes`
   0%, 100% {
     transform: translateY(0);
@@ -36,14 +47,3 @@ const LoadingText = styled.p`
   font-size: 1.4rem;
   color: #555;
 `;
-
-function SpinnerMini({ text = "در حال بارگذاری..." }) {
-  return (
-    <Overlay>
-      <SpinnerIcon />
-      <LoadingText>{text}</LoadingText>
-    </Overlay>
-  );
-}
-
-export default SpinnerMini;

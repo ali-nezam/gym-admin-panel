@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+function AvatarPhoto({ src, alt }) {
+  return <StyledAvatarPhoto src={src} alt={alt} />;
+}
+
+export default AvatarPhoto;
+
 const StyledAvatarPhoto = styled.img`
   width: 4rem;
   height: 4rem;
@@ -12,8 +18,3 @@ const StyledAvatarPhoto = styled.img`
     grid-row: 1 / 2;
   }
 `;
-function AvatarPhoto({ src, alt }) {
-  return <StyledAvatarPhoto src={src} alt={alt} />;
-}
-
-export default AvatarPhoto;

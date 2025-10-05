@@ -1,5 +1,61 @@
 import styled from "styled-components";
 import SearchBox from "../../ui/SearchBox";
+
+function TableHeader({
+  statusFilter,
+  setStatusFilter,
+  statusSort,
+  setStatusSort,
+  setSearchTerm,
+  searchTerm,
+}) {
+  return (
+    <StyledTableHeader>
+      <TableHeaderTitle statusfilter={statusFilter ? "true" : "false"}>
+        <h3>مربیان</h3>
+        {statusFilter === true && <p>مربیان فعال</p>}
+        {statusFilter === false && <p>مربیان غیرفعال</p>}
+      </TableHeaderTitle>
+
+      <Filter>
+        <FilterButton
+          onClick={() => setStatusFilter("all")}
+          selected={statusFilter === "all"}
+        >
+          همه
+        </FilterButton>
+        <FilterButton
+          onClick={() => setStatusFilter(true)}
+          selected={statusFilter === true}
+        >
+          فعال
+        </FilterButton>
+        <FilterButton
+          onClick={() => setStatusFilter(false)}
+          selected={statusFilter === false}
+        >
+          غیرفعال
+        </FilterButton>
+      </Filter>
+
+      <Sort value={statusSort} onChange={(e) => setStatusSort(e.target.value)}>
+        <option value="expertise">جدیدترین</option>
+        <option value="created_at-desc">قدیمی ترین</option>
+        <option value="name-asc">نام ( الف - ی)</option>
+        <option value="name-desc">نام ( ی - الف)</option>
+      </Sort>
+
+      <SearchBox
+        setSearchTerm={setSearchTerm}
+        searchTerm={searchTerm}
+        mobiletype="none"
+      />
+    </StyledTableHeader>
+  );
+}
+
+export default TableHeader;
+
 const StyledTableHeader = styled.div`
   align-items: center;
   display: grid;
@@ -90,58 +146,3 @@ const FilterButton = styled.button`
   background-color: ${({ selected }) => (selected ? "#5932ea" : "#fafbff")};
   color: ${({ selected }) => (selected ? "#fff" : "#b5b7c0")};
 `;
-
-function TableHeader({
-  statusFilter,
-  setStatusFilter,
-  statusSort,
-  setStatusSort,
-  setSearchTerm,
-  searchTerm,
-}) {
-  return (
-    <StyledTableHeader>
-      <TableHeaderTitle statusfilter={statusFilter ? "true" : "false"}>
-        <h3>مربیان</h3>
-        {statusFilter === true && <p>مربیان فعال</p>}
-        {statusFilter === false && <p>مربیان غیرفعال</p>}
-      </TableHeaderTitle>
-
-      <Filter>
-        <FilterButton
-          onClick={() => setStatusFilter("all")}
-          selected={statusFilter === "all"}
-        >
-          همه
-        </FilterButton>
-        <FilterButton
-          onClick={() => setStatusFilter(true)}
-          selected={statusFilter === true}
-        >
-          فعال
-        </FilterButton>
-        <FilterButton
-          onClick={() => setStatusFilter(false)}
-          selected={statusFilter === false}
-        >
-          غیرفعال
-        </FilterButton>
-      </Filter>
-
-      <Sort value={statusSort} onChange={(e) => setStatusSort(e.target.value)}>
-        <option value="expertise">جدیدترین</option>
-        <option value="created_at-desc">قدیمی ترین</option>
-        <option value="name-asc">نام ( الف - ی)</option>
-        <option value="name-desc">نام ( ی - الف)</option>
-      </Sort>
-
-      <SearchBox
-        setSearchTerm={setSearchTerm}
-        searchTerm={searchTerm}
-        mobiletype="none"
-      />
-    </StyledTableHeader>
-  );
-}
-
-export default TableHeader;

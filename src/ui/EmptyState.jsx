@@ -2,6 +2,18 @@ import styled from "styled-components";
 import Lottie from "lottie-react";
 import emptyAnimation from "../assets/empty.json";
 
+export default function EmptyState({ text = "هنوز هیچ داده‌ای ثبت نشده." }) {
+  return (
+    <Wrapper>
+      <AnimationBox>
+        <Lottie animationData={emptyAnimation} loop={true} />
+      </AnimationBox>
+      <h2>چیزی برای نمایش نیست!</h2>
+      <p>{text}</p>
+    </Wrapper>
+  );
+}
+
 const Wrapper = styled.div`
   display: grid;
   place-items: center;
@@ -15,15 +27,3 @@ const AnimationBox = styled.div`
   max-width: 100%;
   margin-bottom: 2rem;
 `;
-
-export default function EmptyState({ text = "هنوز هیچ داده‌ای ثبت نشده." }) {
-  return (
-    <Wrapper>
-      <AnimationBox>
-        <Lottie animationData={emptyAnimation} loop={true} />
-      </AnimationBox>
-      <h2>چیزی برای نمایش نیست!</h2>
-      <p>{text}</p>
-    </Wrapper>
-  );
-}

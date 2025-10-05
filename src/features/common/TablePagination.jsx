@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Button from "../../ui/Button";
 import Modal from "../../Compound component/Modal";
 import { useSearchParams } from "react-router-dom";
 import { IoPersonAddOutline } from "react-icons/io5";

@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+function Filter({ options }) {
+  return (
+    <StyledFilter>
+      {options.map((option) => (
+        <FilterButton key={option}>{option}</FilterButton>
+      ))}
+    </StyledFilter>
+  );
+}
+export default Filter;
+
 const StyledFilter = styled.div`
   display: flex;
   flex-direction: row;
@@ -27,14 +38,3 @@ const FilterButton = styled.button`
     background-color: #5932ea;
   }
 `;
-
-function Filter({ options }) {
-  return (
-    <StyledFilter>
-      {options.map((option) => (
-        <FilterButton key={option}>{option}</FilterButton>
-      ))}
-    </StyledFilter>
-  );
-}
-export default Filter;

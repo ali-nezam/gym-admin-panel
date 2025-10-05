@@ -49,7 +49,6 @@ function MainLogin() {
           <input
             {...register("password", { required: "رمز عبور اجباری است" })}
             type="password"
-            // placeholder="رمز "
           />
           {errors.password && <Error>{errors.password.message}</Error>}
 
@@ -87,7 +86,6 @@ const Left = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
   background-color: #ffff;
   @media (max-width: 768px) {
     width: 100%;
@@ -157,26 +155,23 @@ const Logo = styled.div`
   font-size: 2.8rem;
   font-weight: 700;
   margin-bottom: 10rem;
-  /* display: flex; */
   display: flex;
   justify-content: flex-end;
   @media (max-width: 768px) {
     margin-bottom: 0rem;
     justify-content: center;
-    /* display: none; */
   }
 `;
 const Title = styled.div`
   color: #5932ea;
   font-size: 3.6rem;
   @media (max-width: 768px) {
-    font-size: 2.5rem; /* Reduced font size for mobile */
+    font-size: 2.5rem; /
   }
 `;
 const Detail = styled.div`
   margin-bottom: 2rem;
   @media (max-width: 768px) {
-    /* margin-bottom: 1rem; */
   }
 `;
 const Buttons = styled.div`
@@ -186,14 +181,14 @@ const Buttons = styled.div`
   margin-top: 2rem;
   margin-bottom: 8.5rem;
   @media (max-width: 768px) {
-    justify-content: center; /* Center buttons for mobile */
-    margin-bottom: 2rem; /* Reduced margin for mobile */
+    justify-content: center;
+    margin-bottom: 2rem;
   }
 `;
 
 const FooterLinks = styled.div`
   position: absolute;
-  bottom: 20px; /* فاصله از پایین */
+  bottom: 20px;
   left: 25%;
   transform: translateX(-50%);
   display: flex;
@@ -206,17 +201,12 @@ const FooterLinks = styled.div`
     }
   }
   @media (max-width: 768px) {
-    position: static; /* Remove absolute positioning on mobile */
-    transform: none; /* Remove transform */
-    /* left: auto; Remove fixed left position */
-    /* bottom: auto; Remove fixed bottom position */
+    position: static;
+    transform: none;
     margin-top: 4rem;
     gap: 0.5rem;
-    /* align-items: center; */
-    /* text-align: center; */
     flex-direction: row;
     margin-top: 1rem;
-    /* gap: 1rem; */
   }
 `;
 

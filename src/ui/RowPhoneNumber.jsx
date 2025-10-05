@@ -2,6 +2,14 @@ import styled from "styled-components";
 import formatPhoneNumber from "../utils/formatPhoneNumber";
 import { toPersianDigits } from "../utils/convertNumberToPersianDigits";
 
+function RowPhoneNumber({ children }) {
+  const editedNumber = formatPhoneNumber(children);
+  const editedPersinNumber = toPersianDigits(editedNumber);
+  return <StyledRowPhoneNumber>{editedPersinNumber}</StyledRowPhoneNumber>;
+}
+
+export default RowPhoneNumber;
+
 const StyledRowPhoneNumber = styled.div`
   font-size: 1.4rem;
   font-weight: 400;
@@ -18,11 +26,3 @@ const StyledRowPhoneNumber = styled.div`
     grid-row: 1 / 2;
   }
 `;
-
-function RowPhoneNumber({ children }) {
-  const editedNumber = formatPhoneNumber(children);
-  const editedPersinNumber = toPersianDigits(editedNumber);
-  return <StyledRowPhoneNumber>{editedPersinNumber}</StyledRowPhoneNumber>;
-}
-
-export default RowPhoneNumber;

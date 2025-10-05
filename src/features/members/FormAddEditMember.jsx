@@ -5,6 +5,7 @@ import PersianDatePicker from "../../ui/PersianDatePicker";
 import { toMiladiDate } from "../../utils/convertDate";
 import useCreateNewMember from "./useAddNewMember";
 import useEditMember from "./useEditMember";
+
 function FormAddEditMember({ onClose, member = {} }) {
   // console.log(member);
 
@@ -112,7 +113,6 @@ function FormAddEditMember({ onClose, member = {} }) {
       </Form.Label>
 
       <Form.Label htmlFor="membership_type">
-        {" "}
         تعداد ماه اشتراک
         <Form.Select
           id="membership_type"
@@ -129,7 +129,6 @@ function FormAddEditMember({ onClose, member = {} }) {
       </Form.Label>
 
       <Form.Label htmlFor="status">
-        {" "}
         نوع اشتراک
         <Form.Select
           id="status"

@@ -2,6 +2,18 @@ import styled from "styled-components";
 import Lottie from "lottie-react";
 import pagenotFound from "../assets/pageNotFound.json";
 
+export default function NotFound() {
+  return (
+    <Wrapper>
+      <AnimationBox>
+        <Lottie animationData={pagenotFound} loop={true} />
+      </AnimationBox>
+      <h2> ERROR 404 </h2>
+      <p>صفحه مورد نظر یافت نشد.</p>
+    </Wrapper>
+  );
+}
+
 const Wrapper = styled.div`
   display: grid;
   place-items: center;
@@ -16,15 +28,3 @@ const AnimationBox = styled.div`
   max-width: 100%;
   height: auto;
 `;
-
-export default function NotFound() {
-  return (
-    <Wrapper>
-      <AnimationBox>
-        <Lottie animationData={pagenotFound} loop={true} />
-      </AnimationBox>
-      <h2> ERROR 404 </h2>
-      <p>صفحه مورد نظر یافت نشد.</p>
-    </Wrapper>
-  );
-}

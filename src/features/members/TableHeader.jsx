@@ -1,12 +1,6 @@
 import styled from "styled-components";
 import SearchBox from "../../ui/SearchBox";
 
-const instructions = {
-  active: { filtertextcolor: "#37b24d", filterText: "اشتراک های فعال" },
-  expired: { filtertextcolor: "#868e96", filterText: "اشتراک های منقضی شده" },
-  gold: { filtertextcolor: "#FFD700", filterText: "اشتراک های طلایی " },
-};
-
 function TableHeader({
   statusFilter,
   setStatusFilter,
@@ -75,6 +69,12 @@ function TableHeader({
 
 export default TableHeader;
 
+const instructions = {
+  active: { filtertextcolor: "#37b24d", filterText: "اشتراک های فعال" },
+  expired: { filtertextcolor: "#868e96", filterText: "اشتراک های منقضی شده" },
+  gold: { filtertextcolor: "#FFD700", filterText: "اشتراک های طلایی " },
+};
+
 const StyledTableHeader = styled.div`
   align-items: center;
   display: grid;
@@ -119,7 +119,7 @@ const Sort = styled.select`
   color: #b5b7c0;
   background-color: #fafbff;
   @media (max-width: 768px) {
-    width: 100%; /* اشغال کل عرض در موبایل */
+    width: 100%;
   }
 `;
 
@@ -132,14 +132,13 @@ const Filter = styled.div`
   background-color: #fafbff;
   border-radius: 8px;
   @media (max-width: 768px) {
-    /* اطمینان از اسکرول افقی اگر دکمه‌ها زیاد بودند */
     width: 100%;
     overflow-x: auto;
     gap: 0;
     justify-content: space-around;
 
     &::-webkit-scrollbar {
-      display: none; /* مخفی کردن Scrollbar افقی */
+      display: none;
     }
   }
 `;

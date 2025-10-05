@@ -4,6 +4,25 @@ import Header from "./Header";
 import SideBar from "./SideBar";
 import { useState } from "react";
 
+function AppLayout() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const toggleSidebar = () => setIsSidebarOpen((open) => !open);
+  return (
+    <StyledAppLayout>
+      <Header onToggleSidebar={toggleSidebar} />
+
+      <ModalOverlay $isOpen={isSidebarOpen} onClick={toggleSidebar} />
+
+      <SideBar $isOpen={isSidebarOpen} onToggleSidebar={toggleSidebar} />
+      <MainContent>
+        <Outlet />
+      </MainContent>
+    </StyledAppLayout>
+  );
+}
+
+export default AppLayout;
+
 const StyledAppLayout = styled.div`
   height: 100vh;
   display: grid;
@@ -48,22 +67,3 @@ const ModalOverlay = styled.div`
     cursor: pointer;
   }
 `;
-
-function AppLayout() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const toggleSidebar = () => setIsSidebarOpen((open) => !open);
-  return (
-    <StyledAppLayout>
-      <Header onToggleSidebar={toggleSidebar} />
-
-      <ModalOverlay $isOpen={isSidebarOpen} onClick={toggleSidebar} />
-
-      <SideBar $isOpen={isSidebarOpen} onToggleSidebar={toggleSidebar} />
-      <MainContent>
-        <Outlet />
-      </MainContent>
-    </StyledAppLayout>
-  );
-}
-
-export default AppLayout;

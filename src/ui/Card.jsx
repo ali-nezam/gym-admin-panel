@@ -2,6 +2,37 @@ import styled from "styled-components";
 import SpinnerMini from "./SpinnerMini";
 import { toPersianDigits } from "../utils/convertNumberToPersianDigits";
 
+function Card({
+  type,
+  title,
+  value,
+  percent,
+  percentText,
+  icon,
+  isLoading,
+  texttype,
+}) {
+  const { color, background } = instructions[type] || {
+    color: "#37b24d",
+    background: "#d3f9d8",
+  };
+  if (isLoading) return <SpinnerMini />;
+  return (
+    <StyledCard $color={color} $background={background} texttype={texttype}>
+      {icon}
+      <div>
+        <h3>{title}</h3>
+        <h2>{toPersianDigits(value)}</h2>
+        <h4>
+          <span>{toPersianDigits(percent)}</span> <p>{percentText}</p>
+        </h4>
+      </div>
+    </StyledCard>
+  );
+}
+
+export default Card;
+
 const instructions = {
   green: { background: "#d3f9d8", color: "#37b24d" },
   gray: { color: "#868e96", background: "#e9ecef" },
@@ -72,34 +103,3 @@ const StyledCard = styled.div`
     }
   }
 `;
-
-function Card({
-  type,
-  title,
-  value,
-  percent,
-  percentText,
-  icon,
-  isLoading,
-  texttype,
-}) {
-  const { color, background } = instructions[type] || {
-    color: "#37b24d",
-    background: "#d3f9d8",
-  };
-  if (isLoading) return <SpinnerMini />;
-  return (
-    <StyledCard $color={color} $background={background} texttype={texttype}>
-      {icon}
-      <div>
-        <h3>{title}</h3>
-        <h2>{toPersianDigits(value)}</h2>
-        <h4>
-          <span>{toPersianDigits(percent)}</span> <p>{percentText}</p>
-        </h4>
-      </div>
-    </StyledCard>
-  );
-}
-
-export default Card;

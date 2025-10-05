@@ -1,6 +1,17 @@
 import styled, { keyframes } from "styled-components";
 import { Dumbbell } from "lucide-react";
 
+function FullScreenSpinner({ text = "در حال بارگذاری..." }) {
+  return (
+    <Overlay>
+      <SpinnerIcon />
+      <LoadingText>{text}</LoadingText>
+    </Overlay>
+  );
+}
+
+export default FullScreenSpinner;
+
 const bounce = keyframes`
   0%, 100% {
     transform: translateY(0);
@@ -35,14 +46,3 @@ const LoadingText = styled.p`
   font-size: 1.4rem;
   color: #555;
 `;
-
-function FullScreenSpinner({ text = "در حال بارگذاری..." }) {
-  return (
-    <Overlay>
-      <SpinnerIcon />
-      <LoadingText>{text}</LoadingText>
-    </Overlay>
-  );
-}
-
-export default FullScreenSpinner;

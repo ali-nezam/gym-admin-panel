@@ -5,6 +5,24 @@ import StatusBadge from "../../ui/StatusBadge";
 import AvatarPhoto from "../../ui/AvatarPhoto";
 import RowPhoneNumber from "../../ui/RowPhoneNumber";
 
+function RowRecentMembersDashboard({ member, index }) {
+  const { full_name, phone, status, profile_image_url, coachData } = member;
+  return (
+    <StyledRowRecentMembersDashboard index={index}>
+      <AvatarPhoto src={profile_image_url} alt="profile-img" />
+
+      <RowCellText $type="full_name">{full_name}</RowCellText>
+
+      <RowCellText $type="expertise">{coachData.expertise}</RowCellText>
+
+      <StatusBadge type={status} $type="statusdashboard" />
+
+      <RowPhoneNumber>{phone}</RowPhoneNumber>
+    </StyledRowRecentMembersDashboard>
+  );
+}
+
+export default RowRecentMembersDashboard;
 const StyledRowRecentMembersDashboard = styled.div`
   display: grid;
   grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr;
@@ -31,21 +49,3 @@ const StyledRowRecentMembersDashboard = styled.div`
     margin-bottom: 0.8rem;
   }
 `;
-function RowRecentMembersDashboard({ member, index }) {
-  const { full_name, phone, status, profile_image_url, coachData } = member;
-  return (
-    <StyledRowRecentMembersDashboard index={index}>
-      <AvatarPhoto src={profile_image_url} alt="profile-img" />
-
-      <RowCellText $type="full_name">{full_name}</RowCellText>
-
-      <RowCellText $type="expertise">{coachData.expertise}</RowCellText>
-
-      <StatusBadge type={status} $type="statusdashboard" />
-
-      <RowPhoneNumber>{phone}</RowPhoneNumber>
-    </StyledRowRecentMembersDashboard>
-  );
-}
-
-export default RowRecentMembersDashboard;

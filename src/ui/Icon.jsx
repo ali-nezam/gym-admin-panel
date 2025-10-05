@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+function Icon({ type, icon, onClick, text }) {
+  return (
+    <StyleIcon onClick={onClick} type={type}>
+      <>{icon}</>
+      <>{text}</>
+    </StyleIcon>
+  );
+}
+
+export default Icon;
+
 const hoverColors = {
   delete: "#cc1f3d",
   edit: "#0c8599",
@@ -29,13 +40,3 @@ const StyleIcon = styled.div`
   display: flex;
   gap: 1rem;
 `;
-function Icon({ type, icon, onClick, text }) {
-  return (
-    <StyleIcon onClick={onClick} type={type}>
-      <>{icon}</>
-      <>{text}</>
-    </StyleIcon>
-  );
-}
-
-export default Icon;

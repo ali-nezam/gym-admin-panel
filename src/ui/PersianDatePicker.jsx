@@ -29,7 +29,6 @@ export default function PersianDatePicker({ name, control, disabled }) {
         locale={persian_fa}
         value={field.value}
         onChange={field.onChange}
-        // calendarPosition="left"
         calendarPosition={isMobile ? "top" : "left"}
       />
     </StyledDatepicker>

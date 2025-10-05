@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+function RowButton({ children, disabled }) {
+  return <StyledButton disabled={disabled}>{children}</StyledButton>;
+}
+
+export default RowButton;
+
 const StyledButton = styled.button`
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
@@ -24,9 +30,3 @@ const StyledButton = styled.button`
     background-color: ${({ disabled }) => (disabled ? "#f1f3f5" : "#4721b8")};
   }
 `;
-
-function RowButton({ children, disabled }) {
-  return <StyledButton disabled={disabled}>{children}</StyledButton>;
-}
-
-export default RowButton;

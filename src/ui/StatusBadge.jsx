@@ -1,5 +1,23 @@
 import styled from "styled-components";
 
+function StatusBadge({ type, $type }) {
+  const { color, background, label } = statusStyles[type] || {
+    color: "#adb5bd",
+    background: "#f1f3f5",
+    label: "نامشخص",
+  };
+
+  return (
+    <StyledStatusWarper $type={$type}>
+      <TitleStatus>اشتراک :</TitleStatus>
+      <StyledStatusBadge $color={color} $background={background}>
+        {label}
+      </StyledStatusBadge>
+    </StyledStatusWarper>
+  );
+}
+export default StatusBadge;
+
 const statusStyles = {
   true: {
     color: "#37b24d",
@@ -79,21 +97,3 @@ const TitleStatus = styled.div`
     margin-right: 0.8rem;
   }
 `;
-
-function StatusBadge({ type, $type }) {
-  const { color, background, label } = statusStyles[type] || {
-    color: "#adb5bd",
-    background: "#f1f3f5",
-    label: "نامشخص",
-  };
-
-  return (
-    <StyledStatusWarper $type={$type}>
-      <TitleStatus>اشتراک :</TitleStatus>
-      <StyledStatusBadge $color={color} $background={background}>
-        {label}
-      </StyledStatusBadge>
-    </StyledStatusWarper>
-  );
-}
-export default StatusBadge;

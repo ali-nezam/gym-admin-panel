@@ -25,9 +25,9 @@ const StyledAppLayout = styled.div`
   grid-column: 1/-1;
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr; /* موبایل: تک ستونه */
-    grid-template-rows: auto; /* حذف تعریف ردیف‌های ثابت */
-    gap: 1.6rem; /* کاهش فاصله بین المان‌ها در موبایل */
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 1.6rem;
     padding-bottom: 4rem;
   }
 `;

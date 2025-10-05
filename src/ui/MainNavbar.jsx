@@ -9,6 +9,42 @@ import {
 import { MdOutlineSports } from "react-icons/md";
 import { CgGym } from "react-icons/cg";
 
+function MainNavbar() {
+  return (
+    <StyledNavList>
+      <StyledNavLink to="/dashboard">
+        <HiHome />
+        <span>داشبورد</span>
+        <HiChevronLeft />
+      </StyledNavLink>
+      <StyledNavLink to="/members">
+        <HiMiniUser />
+        <span>اعضا</span>
+        <HiChevronLeft />
+      </StyledNavLink>
+
+      <StyledNavLink to="/coaches">
+        <MdOutlineSports />
+        <span>مربی ها</span>
+        <HiChevronLeft />
+      </StyledNavLink>
+
+      <StyledNavLink to="/Enrollments">
+        <CgGym />
+        <span>کلاس ها</span>
+        <HiChevronLeft />
+      </StyledNavLink>
+      <StyledNavLink to="/settings">
+        <HiOutlineAdjustmentsHorizontal />
+        <span>تنظیمات</span>
+        <HiChevronLeft />
+      </StyledNavLink>
+    </StyledNavList>
+  );
+}
+
+export default MainNavbar;
+
 const StyledNavList = styled.ul`
   display: flex;
   flex-direction: column;
@@ -63,39 +99,3 @@ const StyledNavLink = styled(NavLink)`
     height: 1.6rem;
   }
 `;
-
-function MainNavbar() {
-  return (
-    <StyledNavList>
-      <StyledNavLink to="/dashboard">
-        <HiHome />
-        <span>داشبورد</span>
-        <HiChevronLeft />
-      </StyledNavLink>
-      <StyledNavLink to="/members">
-        <HiMiniUser />
-        <span>اعضا</span>
-        <HiChevronLeft />
-      </StyledNavLink>
-
-      <StyledNavLink to="/coaches">
-        <MdOutlineSports />
-        <span>مربی ها</span>
-        <HiChevronLeft />
-      </StyledNavLink>
-
-      <StyledNavLink to="/Enrollments">
-        <CgGym />
-        <span>کلاس ها</span>
-        <HiChevronLeft />
-      </StyledNavLink>
-      <StyledNavLink to="/settings">
-        <HiOutlineAdjustmentsHorizontal />
-        <span>تنظیمات</span>
-        <HiChevronLeft />
-      </StyledNavLink>
-    </StyledNavList>
-  );
-}
-
-export default MainNavbar;

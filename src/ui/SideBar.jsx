@@ -2,6 +2,17 @@ import styled, { css } from "styled-components";
 import MainNavbar from "./MainNavbar";
 import Logo from "./Logo";
 
+function SideBar({ $isOpen, onToggleSidebar }) {
+  return (
+    <StyledSideBar $isOpen={$isOpen} onClick={onToggleSidebar}>
+      <Logo />
+      <MainNavbar />
+    </StyledSideBar>
+  );
+}
+
+export default SideBar;
+
 const StyledSideBar = styled.aside`
   display: flex;
   flex-direction: column;
@@ -32,14 +43,3 @@ const StyledSideBar = styled.aside`
       `}
   }
 `;
-
-function SideBar({ $isOpen, onToggleSidebar }) {
-  return (
-    <StyledSideBar $isOpen={$isOpen} onClick={onToggleSidebar}>
-      <Logo />
-      <MainNavbar />
-    </StyledSideBar>
-  );
-}
-
-export default SideBar;

@@ -1,5 +1,23 @@
 import styled from "styled-components";
 
+function Button({ children, onClick, disabled, type }) {
+  const { color, background, hover } =
+    instructions[type] || instructions.Primary;
+  return (
+    <StyledButton
+      disabled={disabled}
+      onClick={onClick}
+      $color={color}
+      $background={background}
+      $hover={hover}
+    >
+      {children}
+    </StyledButton>
+  );
+}
+
+export default Button;
+
 const instructions = {
   Primary: { background: "#5932ea", color: "#fff", hover: "#4721b8" },
   Secondary: { background: "#fff", color: "#5932ea", hover: "#f3f0ff" },
@@ -22,21 +40,3 @@ const StyledButton = styled.button`
   align-items: center;
   gap: 0.5rem;
 `;
-
-function Button({ children, onClick, disabled, type }) {
-  const { color, background, hover } =
-    instructions[type] || instructions.Primary;
-  return (
-    <StyledButton
-      disabled={disabled}
-      onClick={onClick}
-      $color={color}
-      $background={background}
-      $hover={hover}
-    >
-      {children}
-    </StyledButton>
-  );
-}
-
-export default Button;
