@@ -20,6 +20,7 @@ function App() {
         <GlobalStyles />
         <BrowserRouter>
           <Routes>
+            <Route index element={<Navigate replace to="login" />} />
             <Route element={<Login />} path="login" />
             <Route element={<AppLayout />}>
               <Route index element={<Navigate replace to="dashboard" />} />
