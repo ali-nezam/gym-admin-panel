@@ -1,16 +1,19 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import AppLayout from "./ui/AppLayout";
-import Coaches from "./pages/Coaches";
-import Dashboard from "./pages/Dashboard";
-import Members from "./pages/Members";
-import Settings from "./pages/Settings";
-import Classes from "./pages/Classes";
-import GlobalStyles from "./styles/GlobalStyles";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import PageNotFound from "./pages/PageNotFound";
 import { Toaster } from "react-hot-toast";
-import Login from "./pages/Login";
+import { lazy } from "react";
+
+const AppLayout = lazy(() => import("./ui/AppLayout"));
+const Coaches = lazy(() => import("./pages/Coaches"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Members = lazy(() => import("./pages/Members"));
+const Settings = lazy(() => import("./pages/Settings"));
+const Classes = lazy(() => import("./pages/Classes"));
+const GlobalStyles = lazy(() => import("./styles/GlobalStyles"));
+const PageNotFound = lazy(() => import("./pages/PageNotFound"));
+const Login = lazy(() => import("./pages/Login"));
+// import Login from "./pages/Login";
 
 function App() {
   const queryClient = new QueryClient();
