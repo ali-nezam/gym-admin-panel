@@ -3,7 +3,7 @@
 A modern and responsive **Admin Dashboard** for gym management — built with **React, Vite, Styled-Components, React Query, and Supabase**.  
 The panel allows gym owners to manage **coaches, members, and classes**, track overall stats, and visualize revenue trends.
 
-🌐 **Live Demo:** [gym-admin-panel-gold.vercel.app](https://gym-admin-panel-gold.vercel.app/)
+🌐 **Live Demo:** [gym-admin-panel-gold.vercel.app](https://gym-admin-panel-gold.vercel.app/) (open with vpn)
 
 ---
 
