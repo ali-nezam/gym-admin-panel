@@ -1,0 +1,78 @@
+// {
+//   // Visit https://aka.ms/tsconfig to read more about this file
+//   "compilerOptions": {
+//     // "types": ["styled-components"],
+//     "moduleResolution": "node",
+//     "types": [],
+//     // "module": "nodenext",
+
+//     "allowJs": true,
+//     "checkJs": false,
+//     "noImplicitAny": false,
+
+//     // File Layout
+//     "rootDir": "./src",
+//     "outDir": "./dist",
+
+//     // Environment Settings
+//     // See also https://aka.ms/tsconfig/module
+//     "target": "es6",
+//     // For nodejs:
+//     // "lib": ["esnext"],
+//     // "types": ["node"],
+//     // and npm install -D @types/node
+
+//     // Other Outputs
+//     "sourceMap": true,
+//     "declaration": true,
+//     "declarationMap": true,
+//     // "allowJs": true,
+
+//     // Stricter Typechecking Options
+//     "noUncheckedIndexedAccess": true,
+//     "exactOptionalPropertyTypes": true,
+
+//     // Style Options
+//     // "noImplicitReturns": true,
+//     // "noImplicitOverride": true,
+//     // "noUnusedLocals": true,
+//     // "noUnusedParameters": true,
+//     // "noFallthroughCasesInSwitch": true,
+//     // "noPropertyAccessFromIndexSignature": true,
+
+//     // Recommended Options
+//     "strict": true,
+//     "jsx": "react-jsx",
+//     "verbatimModuleSyntax": true,
+//     "isolatedModules": true,
+//     "noUncheckedSideEffectImports": true,
+//     "moduleDetection": "force",
+//     "skipLibCheck": true
+//   }
+// }
+
+{
+  "compilerOptions": {
+    "target": "ES6", // نسخه‌ی خروجی جاوااسکریپت
+    "module": "ESNext", // ماژول‌ها به صورت ES Modules
+    "jsx": "react-jsx", // JSX برای React 18
+    "allowJs": true, // اجازه استفاده از فایل‌های JS در پروژه
+    "checkJs": false, // بررسی نوع‌ها در JS را غیرفعال می‌کند
+    // "noImplicitAny": false, // اجازه می‌دهد هر چیزی که نوعش مشخص نیست، any باشد
+    "esModuleInterop": true, // برای import ماژول‌های CommonJS راحت‌تر
+    "forceConsistentCasingInFileNames": true, // جلوگیری از اشتباهات بزرگ و کوچک بودن حروف فایل‌ها
+    "strict": true, // فعال کردن بررسی‌های سخت‌گیرانه (اختیاری، بعداً می‌توان فعال کرد)
+    "skipLibCheck": true, // از بررسی type definition های node_modules صرف‌نظر می‌کند
+    "outDir": "./dist", // مسیر خروجی کامپایل TS/JS
+    "rootDir": "./src", // مسیر سورس‌های اصلی
+    "moduleResolution": "node", // روش شناسایی ماژول‌ها شبیه Node.js
+    "resolveJsonModule": true, // اجازه ایمپورت فایل JSON
+    "isolatedModules": true // برای استفاده با Vite و React
+  },
+  "include": ["src"], // فقط پوشه src را شامل می‌کنیم
+  "exclude": [
+    "node_modules",
+    "dist",
+    "vite.config.js" // از فایل‌های config خارج می‌کنیم
+  ]
+}
