@@ -6,26 +6,38 @@ import useGetSettings from "./useGetSettings";
 import { useEffect } from "react";
 import FullScreenSpinner from "../../ui/Spinner";
 import { toEditedPrice } from "../../utils/convertToEditedPirce";
+import settings from "../../types/settings";
 
 function FormSettings() {
   const { settingsData, isLoading } = useGetSettings();
+  const { editsettings, isEditing } = useEditsettings();
+
   const {
     register,
     handleSubmit,
     reset,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm<settings>({
+    defaultValues: {
+      gym_name: "",
+      Address: "",
+      working_hours: "",
+      Meal_plan_tuition: 0,
+      simple_subscription_tuition: 0,
+      gold_subscription_tuition: 0,
+    },
+  });
 
   useEffect(() => {
-    if (settingsData && settingsData[0]) {
-      reset(settingsData[0]);
-    }
+    const setting = settingsData?.[0];
+    if (!setting) return;
+
+    reset(settingsData[0]);
   }, [settingsData, reset]);
 
-  const { editsettings, isEditing } = useEditsettings();
-
-  const onSubmit = (newSettings) => {
+  const onSubmit = (newSettings: settings) => {
+    console.log(newSettings);
     editsettings(
       {
         settingsEdited: { ...newSettings },
@@ -44,7 +56,7 @@ function FormSettings() {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <StyledForm>
-        <Form.Label>
+        <Form.Label htmlFor="gym_name">
           نام باشگاه
           <Form.Input
             id="gym_name"
@@ -54,7 +66,7 @@ function FormSettings() {
             {...register("gym_name", { required: "نام باشگاه را وارد کنید" })}
           />
         </Form.Label>
-        <Form.Label>
+        <Form.Label htmlFor="Address">
           آدرس باشگاه
           <Form.Input
             id="Address"
@@ -64,7 +76,7 @@ function FormSettings() {
             {...register("Address", { required: "آدرس باشگاه را وارد کنید" })}
           />
         </Form.Label>
-        <Form.Label>
+        <Form.Label htmlFor="working_hours">
           ساعات کاری
           <Form.Input
             id="working_hours"
@@ -76,7 +88,7 @@ function FormSettings() {
             })}
           />
         </Form.Label>
-        <Form.Label>
+        <Form.Label htmlFor="Meal_plan_tuition">
           هزیینه برنامه غذایی
           <InputWithPreview>
             <Form.Input
@@ -86,6 +98,7 @@ function FormSettings() {
               error={errors?.Meal_plan_tuition}
               {...register("Meal_plan_tuition", {
                 required: "هزیینه برنامه غذایی را وارد کنید",
+                valueAsNumber: true,
               })}
             />
             <PerviewPrive>
@@ -94,7 +107,7 @@ function FormSettings() {
           </InputWithPreview>
         </Form.Label>
 
-        <Form.Label>
+        <Form.Label htmlFor="personal_training_tuition">
           هزیینه اشتراک ساده
           <InputWithPreview>
             <Form.Input
@@ -104,6 +117,7 @@ function FormSettings() {
               error={errors?.simple_subscription_tuition}
               {...register("simple_subscription_tuition", {
                 required: "هزیینه اشتراک معمولی را وارد کنید",
+                valueAsNumber: true,
               })}
             />
             <PerviewPrive>
@@ -111,7 +125,7 @@ function FormSettings() {
             </PerviewPrive>
           </InputWithPreview>
         </Form.Label>
-        <Form.Label>
+        <Form.Label htmlFor="gold_subscription_tuition">
           هزیینه اشتراک طلایی
           <InputWithPreview>
             <Form.Input
@@ -121,6 +135,7 @@ function FormSettings() {
               error={errors?.gold_subscription_tuition}
               {...register("gold_subscription_tuition", {
                 required: "هزیینه اشتراک طلایی را وارد کنید",
+                valueAsNumber: true,
               })}
             />
             <PerviewPrive>

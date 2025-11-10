@@ -1,4 +1,5 @@
 import supabase from "./supabase";
+import settings from "../types/settings";
 
 export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*");
@@ -9,7 +10,10 @@ export async function getSettings() {
   return { data };
 }
 
-export async function editSettingsApi(settingsEdited, id) {
+export async function editSettingsApi(
+  settingsEdited: Partial<settings>,
+  id: number
+) {
   const { data, error } = await supabase
     .from("settings")
     .update({ ...settingsEdited })

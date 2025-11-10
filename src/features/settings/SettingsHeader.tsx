@@ -10,7 +10,7 @@ function SettingsHeader() {
 
 export default SettingsHeader;
 
-const SettingsHeaderTitle = styled.div`
+const SettingsHeaderTitle = styled.div<{ theme?: any }>`
   padding: 5rem 20rem 3rem 0;
   color: #000;
   font-size: 2.2rem;
