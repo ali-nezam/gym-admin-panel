@@ -1,5 +1,16 @@
 import styled from "styled-components";
 import SearchBox from "../../ui/SearchBox";
+import { StatusFilterType, StatusSortType } from "../../types/coaches";
+
+interface Props {
+  // statusFilter: "all" | boolean;
+  statusFilter: StatusFilterType;
+  setStatusFilter: (value: StatusFilterType) => void;
+  statusSort: StatusSortType;
+  setStatusSort: (value: StatusSortType) => void;
+  searchTerm: string;
+  setSearchTerm: (value: string) => void;
+}
 
 function TableHeader({
   statusFilter,
@@ -8,10 +19,10 @@ function TableHeader({
   setStatusSort,
   setSearchTerm,
   searchTerm,
-}) {
+}: Props) {
   return (
     <StyledTableHeader>
-      <TableHeaderTitle statusfilter={statusFilter ? "true" : "false"}>
+      <TableHeaderTitle statustitle={statusFilter ? "true" : "false"}>
         <h3>مربیان</h3>
         {statusFilter === true && <p>مربیان فعال</p>}
         {statusFilter === false && <p>مربیان غیرفعال</p>}
@@ -38,8 +49,11 @@ function TableHeader({
         </FilterButton>
       </Filter>
 
-      <Sort value={statusSort} onChange={(e) => setStatusSort(e.target.value)}>
-        <option value="expertise">جدیدترین</option>
+      <Sort
+        value={statusSort}
+        onChange={(e) => setStatusSort(e.target.value as StatusSortType)}
+      >
+        <option value="created_at-asc">جدیدترین</option>
         <option value="created_at-desc">قدیمی ترین</option>
         <option value="name-asc">نام ( الف - ی)</option>
         <option value="name-desc">نام ( ی - الف)</option>
@@ -68,7 +82,7 @@ const StyledTableHeader = styled.div`
     align-items: center;
   }
 `;
-const TableHeaderTitle = styled.div`
+const TableHeaderTitle = styled.div<{ statustitle: string }>`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -82,8 +96,8 @@ const TableHeaderTitle = styled.div`
   p {
     font-size: 1.4rem;
     font-weight: 500;
-    color: ${({ statusfilter }) =>
-      statusfilter === "true" ? "#16c098" : "#f03e3e"};
+    color: ${({ statustitle }) =>
+      statustitle === "true" ? "#16c098" : "#f03e3e"};
   }
 
   @media (max-width: 768px) {
@@ -133,7 +147,7 @@ const Filter = styled.div`
   }
 `;
 
-const FilterButton = styled.button`
+const FilterButton = styled.button<{ selected: boolean }>`
   border: none;
   cursor: pointer;
   padding: 0.4rem 0.9rem;

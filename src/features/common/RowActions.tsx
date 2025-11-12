@@ -13,20 +13,33 @@ import FormAddEditCoach from "../coaches/FormAddEditCoach";
 import FormAddEditMember from "../members/FormAddEditMember";
 import FormAddEditClasses from "../classes/FormAddEditClasses";
 
-function getForm(type, coachOrMember) {
+function getForm(type: string, coachOrMember: any) {
   if (type === "coaches") return <FormAddEditCoach coach={coachOrMember} />;
   if (type === "members") return <FormAddEditMember member={coachOrMember} />;
   if (type === "classes") return <FormAddEditClasses cls={coachOrMember} />;
   return null;
 }
-function RowActions({ data: coachOrMember, type, display }) {
+interface RowActionsProps {
+  data: any;
+  type: "coaches" | "members" | "classes";
+  display?: "row" | null;
+}
+
+interface InstructionsType {
+  titleDelete: string;
+  titleEdit: string;
+  textIconEdit?: string;
+  textIconDetail?: string;
+  textIconDelete?: string;
+}
+function RowActions({ data: coachOrMember, type, display }: RowActionsProps) {
   const {
     titleDelete,
     titleEdit,
     textIconEdit,
     textIconDetail,
     textIconDelete,
-  } = instructions[type];
+  }: InstructionsType = instructions[type];
 
   return (
     <StyledRowActions display={display}>
@@ -55,7 +68,7 @@ function RowActions({ data: coachOrMember, type, display }) {
 
 export default RowActions;
 
-const StyledRowActions = styled.div`
+const StyledRowActions = styled.div<{ display?: "row" | null }>`
   display: flex;
   flex-direction: row;
   gap: 1.2rem;

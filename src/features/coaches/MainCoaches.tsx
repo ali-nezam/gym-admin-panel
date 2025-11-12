@@ -13,11 +13,13 @@ import useCoaches from "./useCoaches";
 import EmptyState from "../../ui/EmptyState";
 import Spinner from "../../ui/Spinner";
 import NotFound from "../../ui/NotFound";
+import { StatusFilterType, StatusSortType } from "../../types/coaches";
 
 function MainCoaches() {
-  const [statusFilter, setStatusFilter] = useState("all");
-  const [statusSort, setStatusSort] = useState("created_at-asc");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState<StatusFilterType>("all");
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [statusSort, setStatusSort] =
+    useState<StatusSortType>("created_at-asc");
 
   const tableHeaderProps = {
     statusFilter,
@@ -25,6 +27,7 @@ function MainCoaches() {
     statusSort,
     setStatusSort,
     setSearchTerm,
+    searchTerm,
   };
 
   const { coaches, isLoading, count /*error*/ } = useCoaches(
@@ -53,6 +56,7 @@ function MainCoaches() {
             {coaches.map((coach, index) => (
               <RowCoaches coach={coach} key={coach.id} index={index} />
             ))}
+
             <TablePagination count={count} type="coaches" />
           </>
         )}

@@ -5,7 +5,7 @@ import { toEditedPrice } from "../../utils/convertToEditedPirce";
 import useCreateNewClass from "./useCreateNewClass";
 import useEditClass from "./useEditclass";
 
-function FormAddEditClasses({ onClose, cls = {} }) {
+function FormAddEditClasses({ onClose = "", cls = {} }) {
   // console.log(cls);
   const editedSeasion = Boolean(cls.id);
   const {

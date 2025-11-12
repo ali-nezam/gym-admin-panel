@@ -8,35 +8,52 @@ import { toPersianDigits } from "../../utils/convertNumberToPersianDigits";
 import FormAddEditCoach from "../coaches/FormAddEditCoach";
 import FormAddEditMember from "../members/FormAddEditMember";
 import FormAddEditClasses from "../classes/FormAddEditClasses";
+import { ReactNode } from "react";
 
-function TablePagination({ count, type }) {
+type TableType = "coaches" | "members" | "classes";
+
+interface TablePaginationProps {
+  count: number | null | undefined;
+  type: TableType;
+}
+
+interface InstructionsType {
+  titleOpen: Record<TableType, string>;
+  titleModal: Record<TableType, string>;
+  modalBody: Record<TableType, ReactNode>;
+}
+
+function TablePagination({ count, type }: TablePaginationProps) {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const validCount = count && count > 0 ? count : 0;
 
   const currentPage = !searchParams.get("page")
     ? 1
     : Number(searchParams.get("page"));
-  searchParams.set("page", currentPage);
 
-  const pageCount = Math.ceil(count / PAGE_SIZE);
+  searchParams.set("page", currentPage.toString());
+
+  const pageCount = Math.ceil(validCount / PAGE_SIZE);
 
   const from = currentPage === 1 ? 1 : (currentPage - 1) * PAGE_SIZE + 1;
   const to = currentPage === pageCount ? count : from + PAGE_SIZE - 1;
 
   function handleNext() {
     if (currentPage < pageCount) {
-      searchParams.set("page", currentPage + 1);
+      searchParams.set("page", (currentPage + 1).toString());
       setSearchParams(searchParams);
     }
   }
 
   function handlePrev() {
     if (currentPage > 1) {
-      searchParams.set("page", currentPage - 1);
+      searchParams.set("page", (currentPage - 1).toString());
       setSearchParams(searchParams);
     }
   }
 
-  const instructions = {
+  const instructions: InstructionsType = {
     titleOpen: {
       coaches: "افزودن مربی جدید",
       members: "افزودن عضو جدید",
@@ -61,7 +78,6 @@ function TablePagination({ count, type }) {
         <span> {toPersianDigits(to)}</span> از
         <span> {toPersianDigits(count)}</span> نتیجه
       </Result>
-
       <Modal>
         <Modal.Open>
           <ModalButton>
@@ -74,18 +90,19 @@ function TablePagination({ count, type }) {
           {instructions.modalBody[type]}
         </Modal.Body>
       </Modal>
-
-      <ButtonsPagination>
-        <BtnPagination disabled={currentPage === 1} onClick={handlePrev}>
-          قبلی
-        </BtnPagination>
-        <BtnPagination
-          disabled={currentPage === pageCount}
-          onClick={handleNext}
-        >
-          بعدی
-        </BtnPagination>
-      </ButtonsPagination>
+      {validCount > PAGE_SIZE && (
+        <ButtonsPagination>
+          <BtnPagination disabled={currentPage === 1} onClick={handlePrev}>
+            قبلی
+          </BtnPagination>
+          <BtnPagination
+            disabled={currentPage === pageCount}
+            onClick={handleNext}
+          >
+            بعدی
+          </BtnPagination>
+        </ButtonsPagination>
+      )}
     </StyledTablePagination>
   );
 }

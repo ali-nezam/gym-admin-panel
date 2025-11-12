@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 function SearchBox({
   placeholder = "جستجو...",
-  type,
+  type = "",
   setSearchTerm,
   searchTerm,
   mobiletype = "flex",

@@ -1,19 +1,16 @@
-// import { useContext } from "react";
-// const { first, end } = useContext(StyledTablePagination);
+import { CoachType, StatusFilterType, StatusSortType } from "../types/coaches";
 import supabase from "./supabase";
 
 export async function getCoaches(
-  from,
-  to,
-  statusFilter = "all",
-  statusSort = "created_at-asc",
-  searchTerm = ""
-) {
-  // const { data, error, count } = await supabase
+  from: number,
+  to: number,
+  statusFilter: StatusFilterType = "all",
+  statusSort: StatusSortType = "created_at-asc",
+  searchTerm: string = ""
+): Promise<{ data: CoachType[] | null; count: number | null }> {
   let query = supabase
     .from("coaches")
     .select("*", { count: "exact" })
-    // .order("id", { ascending: true })
     .range(from, to);
 
   if (statusFilter !== "all") {
@@ -40,11 +37,13 @@ export async function getCoaches(
   if (error) {
     throw error;
   }
-  console.log();
+  // console.log(data);
   return { data, count };
 }
 
-export async function createNewCoach(newCoach) {
+export async function createNewCoach(
+  newCoach: Partial<CoachType>
+): Promise<CoachType> {
   const { data, error } = await supabase
     .from("coaches")
     .insert([{ ...newCoach }])
@@ -56,7 +55,10 @@ export async function createNewCoach(newCoach) {
   }
   return data;
 }
-export async function editCoachApi(coachEdited, id) {
+export async function editCoachApi(
+  coachEdited: CoachType,
+  id: number
+): Promise<CoachType> {
   const { data, error } = await supabase
     .from("coaches")
     .update({ ...coachEdited })
@@ -71,7 +73,7 @@ export async function editCoachApi(coachEdited, id) {
   return data;
 }
 
-export async function deleteCoachApi(id) {
+export async function deleteCoachApi(id: number) {
   const { data, error } = await supabase.from("coaches").delete().eq("id", id);
   if (error) {
     console.error(error);
@@ -80,16 +82,20 @@ export async function deleteCoachApi(id) {
   return data;
 }
 
-export async function getRowCoach(id) {
-  const { data: coach, error } = await supabase
+export async function getcoachesStatus() {
+  const { count: total } = await supabase
     .from("coaches")
-    .select("*")
-    .eq("id", id)
-    .single();
-  if (error) {
-    console.error(error);
-    throw new Error("Failed to add coach");
-  }
-  console.log(coach);
-  return coach;
+    .select("*", { count: "exact", head: true });
+
+  const { count: active } = await supabase
+    .from("coaches")
+    .select("*", { count: "exact", head: true })
+    .eq("coach_status", true);
+
+  const { count: unactive } = await supabase
+    .from("coaches")
+    .select("*", { count: "exact", head: true })
+    .eq("coach_status", false);
+
+  return { total, active, unactive };
 }

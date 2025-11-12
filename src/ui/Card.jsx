@@ -3,19 +3,16 @@ import SpinnerMini from "./SpinnerMini";
 import { toPersianDigits } from "../utils/convertNumberToPersianDigits";
 
 function Card({
-  type,
+  type = "green",
   title,
   value,
   percent,
   percentText,
   icon,
   isLoading,
-  texttype,
+  texttype = "",
 }) {
-  const { color, background } = instructions[type] || {
-    color: "#37b24d",
-    background: "#d3f9d8",
-  };
+  const { color, background } = instructions[type];
   const sizeprice =
     texttype === "price"
       ? "2rem"

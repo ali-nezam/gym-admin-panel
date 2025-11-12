@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-function StatusBadge({ type, $type }) {
+function StatusBadge({ type, $type = "" }) {
   const { color, background, label } = statusStyles[type] || {
     color: "#adb5bd",
     background: "#f1f3f5",

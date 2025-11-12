@@ -6,7 +6,7 @@ import { toMiladiDate } from "../../utils/convertDate";
 import useCreateNewMember from "./useAddNewMember";
 import useEditMember from "./useEditMember";
 
-function FormAddEditMember({ onClose, member = {} }) {
+function FormAddEditMember({ onClose = "", member = {} }) {
   // console.log(member);
 
   const editSeason = member === Boolean(member.id);

@@ -5,8 +5,14 @@ import AvatarPhoto from "../../ui/AvatarPhoto";
 import StatusBadge from "../../ui/StatusBadge";
 import RowCellText from "../../ui/RowCellText";
 import RowPhoneNumber from "../../ui/RowPhoneNumber";
+import { CoachType } from "../../types/coaches";
 
-function RowCoaches({ coach, index }) {
+interface RowCoachesProps {
+  coach: CoachType;
+  index: number;
+}
+
+function RowCoaches({ coach, index }: RowCoachesProps) {
   const {
     coach_status,
     expertise,
@@ -15,21 +21,27 @@ function RowCoaches({ coach, index }) {
     phone,
     profile_img,
   } = coach;
+
+  const displayName = full_name || "نام نامشخص";
+  const displayExpertise = expertise || "-";
+  const displayPhone = phone || "-";
+  const displayDate = Membership_date
+    ? toPersianDate(Membership_date)
+    : "تاریخ نامشخص";
+
   return (
     <StyledRowCoaches $isEven={index % 2 === 0}>
-      <AvatarPhoto src={profile_img} alt="profile-img" />
+      <AvatarPhoto src={profile_img} alt={displayName} />
 
-      <RowCellText $type="full_name">{full_name}</RowCellText>
+      <RowCellText $type="full_name">{displayName}</RowCellText>
 
-      <RowCellText $type="expertise">{expertise} </RowCellText>
+      <RowCellText $type="expertise">{displayExpertise} </RowCellText>
 
-      <RowCellText $type="Membership_date">
-        {toPersianDate(Membership_date)}
-      </RowCellText>
+      <RowCellText $type="Membership_date">{displayDate}</RowCellText>
 
       <StatusBadge type={coach_status} />
 
-      <RowPhoneNumber>{phone}</RowPhoneNumber>
+      <RowPhoneNumber>{displayPhone}</RowPhoneNumber>
 
       <RowActions data={coach} type="coaches" />
     </StyledRowCoaches>
@@ -38,7 +50,7 @@ function RowCoaches({ coach, index }) {
 
 export default RowCoaches;
 
-const StyledRowCoaches = styled.div`
+const StyledRowCoaches = styled.div<{ $isEven: boolean }>`
   display: grid;
   grid-template-columns: 0.5fr 1.6fr 1.5fr 1.5fr 1.3fr 1.2fr 0.7fr;
   align-items: center;

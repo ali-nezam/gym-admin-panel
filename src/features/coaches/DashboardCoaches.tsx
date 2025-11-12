@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Card from "../../ui/Card";
 import { RiUserFollowLine } from "react-icons/ri";
-import { HiOutlineUserGroup } from "react-icons/hi2"; // import { PiDesktop } from "react-icons/pi";
+// import { HiOutlineUserGroup } from "react-icons/hi2";
+import { PiDesktop } from "react-icons/pi";
 import useGetcoachesStatus from "./useGetcoachesStatus";
 
 export default function DashboardCoaches() {
@@ -10,7 +11,8 @@ export default function DashboardCoaches() {
   return (
     <StyledDashboardCoaches>
       <Card
-        icon={<HiOutlineUserGroup />}
+        // icon={<HiOutlineUserGroup />}
+        icon={<PiDesktop />}
         title="تعداد کل مربی ها"
         value={status?.total}
         percent={"14%"}

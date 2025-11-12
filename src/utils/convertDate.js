@@ -18,3 +18,11 @@ export function toMiladiDate(date) {
   // console.log(miladi);
   return miladi;
 }
+
+export function toPersianDateEn(dateString) {
+  const jalaliDate = dayjs(dateString)
+    .calendar("jalali")
+    .locale("en")
+    .format("YYYY/MM/DD");
+  return toPersianDigits(jalaliDate);
+}
