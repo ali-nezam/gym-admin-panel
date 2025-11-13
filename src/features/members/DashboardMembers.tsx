@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import Card from "../../ui/Card";
-import { RiPassExpiredLine, RiUserFollowLine } from "react-icons/ri";
-import { HiOutlineUserGroup } from "react-icons/hi2";
+import {
+  RiGroupLine,
+  RiPassExpiredLine,
+  RiUserFollowLine,
+} from "react-icons/ri";
 import { PiMedalMilitaryDuotone } from "react-icons/pi";
 import useGetMembersStatus from "./useGetMembersStatus";
 
@@ -11,7 +14,8 @@ export default function DashboardMembers() {
   return (
     <StyledDashboardMembers>
       <Card
-        icon={<HiOutlineUserGroup />}
+        icon={<RiGroupLine />}
+        // icon={<HiOutlineUserGroup />}
         title="تعداد کل اعضا"
         value={status?.total}
         percent={"14%"}

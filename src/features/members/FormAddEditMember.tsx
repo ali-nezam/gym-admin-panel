@@ -2,16 +2,27 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import Form from "../../Compound component/Form";
 import PersianDatePicker from "../../ui/PersianDatePicker";
-import { toMiladiDate } from "../../utils/convertDate";
+import {
+  convertToMiladiFromObject,
+  toDatepersianFromMiladi,
+} from "../../utils/convertDate";
 import useCreateNewMember from "./useAddNewMember";
 import useEditMember from "./useEditMember";
+import MemberType, { AddMemberApiData } from "../../types/member";
 
-function FormAddEditMember({ onClose = "", member = {} }) {
-  // console.log(member);
+interface FormAddEditMemberProps {
+  onClose?: () => void;
+  member: MemberType;
+}
 
-  const editSeason = member === Boolean(member.id);
-
-  // console.log(editSeason);
+function FormAddEditMember({ onClose, member }: FormAddEditMemberProps) {
+  const editSeason = Boolean(member?.id);
+  const initialDefaultValues = editSeason
+    ? {
+        ...member,
+        end_date: toDatepersianFromMiladi(member?.end_date ?? null),
+      }
+    : {};
 
   const {
     register,
@@ -19,35 +30,38 @@ function FormAddEditMember({ onClose = "", member = {} }) {
     reset,
     control,
     formState: { errors },
-  } = useForm({ defaultValues: editSeason ? member : {} });
+  } = useForm<MemberType>({ defaultValues: initialDefaultValues });
 
   const { editmember, isEditing } = useEditMember();
   const { createNewMember, isCreating } = useCreateNewMember();
   const isWorking = isCreating || isEditing;
 
-  function onSubmit(memberData) {
-    memberData.end_date = toMiladiDate(memberData.end_date);
-    // console.log(memberData);
+  function onSubmit(newMember: MemberType) {
+    newMember.end_date = convertToMiladiFromObject(newMember.end_date);
+    const { coachData, ...memberDataToSend } = newMember;
     if (editSeason) {
       editmember(
         {
-          editedMember: { ...memberData },
+          editedMembers: { ...memberDataToSend },
+          id: newMember.id,
         },
         {
           onSuccess: () => {
             onClose?.();
             reset();
           },
+          onError: (error) => {
+            console.log("error edit member message:", error.message);
+          },
         }
       );
     } else {
       createNewMember(
-        { newMember: { ...memberData } },
+        { memberCreated: newMember as AddMemberApiData },
         {
           onSuccess: () => {
             onClose?.();
             reset();
-            console.log("yeah boooy");
           },
         }
       );
@@ -90,12 +104,7 @@ function FormAddEditMember({ onClose = "", member = {} }) {
 
       <Form.Label htmlFor="note">
         توضیحات
-        <Form.Input
-          id="note"
-          disabled={isWorking}
-          {...register("note", { required: "وارد کردن نام الزامی است" })}
-          error={errors?.note}
-        />
+        <Form.Input id="note" disabled={isWorking} {...register("note")} />
       </Form.Label>
 
       <Form.Label htmlFor="gender">
@@ -137,13 +146,17 @@ function FormAddEditMember({ onClose = "", member = {} }) {
           error={errors?.status}
         >
           <option />
-          <option value="unactive">فعال </option>
+          <option value="active">فعال </option>
           <option value="gold">طلایی</option>
-          <option value="experid">منقضی شده</option>
+          <option value="expired">منقضی شده</option>
         </Form.Select>
       </Form.Label>
-      <Form.Label>تاریخ تولد:</Form.Label>
-      <PersianDatePicker name="end_date" control={control} />
+      <Form.Label htmlFor="end_date">پایان عضویت :</Form.Label>
+      <PersianDatePicker
+        name="end_date"
+        control={control}
+        disabled={isWorking}
+      />
 
       <Actions>
         <Form.BtnSubmit disabled={isWorking} type="submit">

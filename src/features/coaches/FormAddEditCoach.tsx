@@ -5,7 +5,10 @@ import useCreateNewCoach from "./useCreateNewCoach";
 import useEditCoach from "./useEditCoach";
 import Form from "../../Compound component/Form";
 import { CoachType } from "../../types/coaches";
-import { toPersianDateEn } from "../../utils/convertDate";
+import {
+  convertToMiladiFromObject,
+  toDatepersianFromMiladi,
+} from "../../utils/convertDate";
 import { DateObject } from "react-multi-date-picker";
 
 interface FormAddEditCoachProps {
@@ -17,18 +20,6 @@ type FormCoachType = Omit<CoachType, "Membership_date" | "id"> & {
   Membership_date: DateObject | string | null | undefined;
   id?: number | undefined;
 };
-
-function toDatepersianFromMiladi(miladi?: string | null): string | null {
-  if (!miladi) return null;
-  return toPersianDateEn(miladi) ?? null;
-}
-function convertToMiladi(
-  persianDate?: DateObject | null | string
-): string | null {
-  if (!persianDate) return null;
-  if (typeof persianDate === "string") return persianDate;
-  return persianDate.toDate()?.toISOString()?.split("T")[0] ?? null;
-}
 
 function FormAddEditCoach({ onClose, coach }: FormAddEditCoachProps) {
   const editedSession = Boolean(coach?.id);
@@ -55,7 +46,9 @@ function FormAddEditCoach({ onClose, coach }: FormAddEditCoachProps) {
   const isWorking = isCreating || isEditing;
 
   const onSubmit = (newCoach: FormCoachType) => {
-    newCoach.Membership_date = convertToMiladi(newCoach.Membership_date);
+    newCoach.Membership_date = convertToMiladiFromObject(
+      newCoach.Membership_date
+    );
 
     if (editedSession) {
       if (!newCoach?.id) return;

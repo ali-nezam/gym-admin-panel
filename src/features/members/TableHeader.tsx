@@ -1,5 +1,20 @@
 import styled from "styled-components";
 import SearchBox from "../../ui/SearchBox";
+import { StatusFilterType, StatusSortType } from "../../types/member";
+
+interface TableHeaderProps {
+  statusFilter: StatusFilterType;
+  setStatusFilter: (value: StatusFilterType) => void;
+  statusSort: StatusSortType;
+  setStatusSort: (value: StatusSortType) => void;
+  searchTerm: string;
+  setSearchTerm: (value: string) => void;
+}
+
+// interface InstructionType {
+//   filtertextcolor: string;
+//   filterText: string;
+// }
 
 function TableHeader({
   statusFilter,
@@ -8,11 +23,8 @@ function TableHeader({
   setStatusSort,
   setSearchTerm,
   searchTerm,
-}) {
-  const { filtertextcolor, filterText } = instructions[statusFilter] || {
-    filtertextcolor: "#37b24d",
-    filterText: "",
-  };
+}: TableHeaderProps) {
+  const { filtertextcolor, filterText } = instructions[statusFilter];
 
   return (
     <StyledTableHeader>
@@ -51,11 +63,14 @@ function TableHeader({
         </FilterButton>
       </Filter>
 
-      <Sort value={statusSort} onChange={(e) => setStatusSort(e.target.value)}>
-        <option value="expertise">جدیدترین</option>
-        <option value="end_date-asc">پایان عضویت</option>
-        <option value="name-asc">نام ( الف - ی)</option>
-        <option value="name-desc">نام ( ی - الف)</option>
+      <Sort
+        value={statusSort}
+        onChange={(e) => setStatusSort(e.target.value as StatusSortType)}
+      >
+        <option value="created_at_asc">جدیدترین</option>
+        <option value="end_date_asc">پایان عضویت</option>
+        <option value="name_asc">نام ( الف - ی)</option>
+        <option value="name_desc">نام ( ی - الف)</option>
       </Sort>
 
       <SearchBox
@@ -73,6 +88,7 @@ const instructions = {
   active: { filtertextcolor: "#37b24d", filterText: "اشتراک های فعال" },
   expired: { filtertextcolor: "#868e96", filterText: "اشتراک های منقضی شده" },
   gold: { filtertextcolor: "#FFD700", filterText: "اشتراک های طلایی " },
+  all: { filtertextcolor: "#b5b7c0", filterText: "" },
 };
 
 const StyledTableHeader = styled.div`
@@ -87,7 +103,7 @@ const StyledTableHeader = styled.div`
     padding-bottom: 1.6rem;
   }
 `;
-const TableHeaderTitle = styled.div`
+const TableHeaderTitle = styled.div<{ $color: string }>`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -143,7 +159,7 @@ const Filter = styled.div`
   }
 `;
 
-const FilterButton = styled.button`
+const FilterButton = styled.button<{ selected: boolean }>`
   border: none;
   cursor: pointer;
   padding: 0.4rem 0.9rem;

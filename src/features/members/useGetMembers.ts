@@ -2,7 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import { getMembers } from "../../services/apiMembers";
 import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../../utils/constants";
-function useGetMembers(statusFilter, statusSort, searchTerm) {
+import { StatusFilterType, StatusSortType } from "../../types/member";
+
+function useGetMembers(
+  statusFilter: StatusFilterType,
+  statusSort: StatusSortType,
+  searchTerm: string
+) {
   const [searchParams] = useSearchParams();
   const currentPage = !searchParams.get("page")
     ? 1

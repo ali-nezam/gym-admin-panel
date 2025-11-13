@@ -6,13 +6,18 @@ import RowActions from "../common/RowActions";
 import StatusBadge from "../../ui/StatusBadge";
 import AvatarPhoto from "../../ui/AvatarPhoto";
 import RowPhoneNumber from "../../ui/RowPhoneNumber";
+import MemberType from "../../types/member";
 
-function RowMembers({ member, index }) {
+interface RowMembersProps {
+  member: MemberType;
+  index: number;
+}
+function RowMembers({ member, index }: RowMembersProps) {
   const { full_name, phone, end_date, status, profile_image_url, coachData } =
     member;
 
   return (
-    <StyledRowMembers $isEven={index % 2 === 0}>
+    <StyledRowMembers $iseven={index % 2 === 0}>
       <AvatarPhoto src={profile_image_url} alt="profile-img" />
 
       <RowCellText $type="full_name">{full_name}</RowCellText>
@@ -33,11 +38,11 @@ function RowMembers({ member, index }) {
 }
 
 export default RowMembers;
-const StyledRowMembers = styled.div`
+const StyledRowMembers = styled.div<{ $iseven: boolean }>`
   display: grid;
   grid-template-columns: 0.5fr 1.6fr 1.5fr 1.5fr 1.3fr 1.2fr 0.7fr;
   align-items: center;
-  background-color: ${({ $isEven }) => ($isEven ? "#fff" : "#f9f9f9")};
+  background-color: ${({ $iseven }) => ($iseven ? "#fff" : "#f9f9f9")};
   gap: 2.4rem;
   font-size: 1.6rem;
   padding: 0 1rem;

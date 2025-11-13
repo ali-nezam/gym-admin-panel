@@ -1,12 +1,18 @@
+import MemberType, {
+  AddMemberApiData,
+  EditMemberApiData,
+  StatusFilterType,
+  StatusSortType,
+} from "../types/member";
 import supabase from "./supabase";
 
 export async function getMembers(
-  from,
-  to,
-  statusFilter,
-  statusSort,
-  searchTerm
-) {
+  from: number,
+  to: number,
+  statusFilter: StatusFilterType = "all",
+  statusSort: StatusSortType = "created_at_asc",
+  searchTerm: string = ""
+): Promise<{ data: MemberType[] | null; count: number | null }> {
   // const { data, error, count } = await supabase
   let query = supabase
     .from("members")
@@ -18,13 +24,13 @@ export async function getMembers(
     query = query.eq("status", statusFilter);
   }
 
-  if (statusSort === "created_at-asc") {
+  if (statusSort === "created_at_asc") {
     query = query.order("id", { ascending: true });
-  } else if (statusSort === "end_date-asc") {
+  } else if (statusSort === "end_date_asc") {
     query = query.order("end_date", { ascending: false });
-  } else if (statusSort === "name-asc") {
+  } else if (statusSort === "name_asc") {
     query = query.order("full_name", { ascending: true });
-  } else if (statusSort === "name-desc") {
+  } else if (statusSort === "name_desc") {
     query = query.order("full_name", { ascending: false });
   } else {
     query = query.order("id", { ascending: true });
@@ -42,7 +48,7 @@ export async function getMembers(
   return { data, count };
 }
 
-export async function deleteMemberApi(id) {
+export async function deleteMemberApi(id: number) {
   const { data, error } = await supabase.from("members").delete().eq("id", id);
   if (error) {
     console.error(error);
@@ -51,12 +57,10 @@ export async function deleteMemberApi(id) {
   return data;
 }
 
-export async function CreateNewMemberApi({ newMember }) {
-  console.log(newMember);
-  // console.log(...newMember);
+export async function CreateNewMemberApi(memberCreated: AddMemberApiData) {
   const { data, error } = await supabase
     .from("members")
-    .insert([{ ...newMember }])
+    .insert(memberCreated)
     .select("*")
     .single();
 
@@ -68,13 +72,16 @@ export async function CreateNewMemberApi({ newMember }) {
   return { data };
 }
 
-export async function EditMemberApi(editedMember, id) {
+export async function EditMemberApi(
+  editedMembers: EditMemberApiData,
+  id: number
+) {
   const { data, error } = await supabase
     .from("members")
-    .select()
+    .update(editedMembers)
     .eq("id", id)
-    .single()
-    .update({ ...editedMember });
+    .select()
+    .single();
   if (error) {
     console.error(error.message);
     throw new Error("Failed to edit member");

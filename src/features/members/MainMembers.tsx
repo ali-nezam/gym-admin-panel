@@ -9,14 +9,16 @@ import RowMembers from "./RowMembers";
 import TablePagination from "../common/TablePagination";
 
 import useGetMembers from "./useGetMembers";
+import { StatusFilterType, StatusSortType } from "../../types/member";
 
 import EmptyState from "../../ui/EmptyState";
 import NotFound from "../../ui/NotFound";
 import Spinner from "../../ui/Spinner";
 
 function MainMembers() {
-  const [statusFilter, setStatusFilter] = useState("all");
-  const [statusSort, setStatusSort] = useState("created_at-asc");
+  const [statusFilter, setStatusFilter] = useState<StatusFilterType>("all");
+  const [statusSort, setStatusSort] =
+    useState<StatusSortType>("created_at_asc");
   const [searchTerm, setSearchTerm] = useState("");
 
   const tableHeaderProps = {
