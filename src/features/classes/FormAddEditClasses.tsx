@@ -4,23 +4,28 @@ import Form from "../../Compound component/Form";
 import { toEditedPrice } from "../../utils/convertToEditedPirce";
 import useCreateNewClass from "./useCreateNewClass";
 import useEditClass from "./useEditclass";
+import ClassesType from "../../types/class";
+interface FormAddEditClassesProps {
+  onClose?: () => void;
+  cls?: ClassesType | undefined;
+}
 
-function FormAddEditClasses({ onClose = "", cls = {} }) {
+function FormAddEditClasses({ onClose, cls }: FormAddEditClassesProps) {
   // console.log(cls);
-  const editedSeasion = Boolean(cls.id);
+  const editedSeasion = Boolean(cls?.id);
   const {
     register,
     handleSubmit,
     watch,
     reset,
     formState: { errors },
-  } = useForm({ defaultValues: editedSeasion ? cls : {} });
+  } = useForm<ClassesType>({ defaultValues: editedSeasion ? cls : {} });
 
   const { createClass, isCreating } = useCreateNewClass();
   const { editClass, isEditing } = useEditClass();
   const isWorking = isCreating || isEditing;
 
-  const onSubmit = (formData) => {
+  const onSubmit = (formData: ClassesType) => {
     console.log(formData);
 
     if (editedSeasion) {
@@ -34,21 +39,18 @@ function FormAddEditClasses({ onClose = "", cls = {} }) {
         }
       );
     } else {
-      createClass(
-        { newClass: { ...formData } },
-        {
-          onSuccess: () => {
-            onClose?.();
-            reset();
-          },
-        }
-      );
+      createClass(formData, {
+        onSuccess: () => {
+          onClose?.();
+          reset();
+        },
+      });
     }
   };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <Form.Label>
+      <Form.Label htmlFor="class_name">
         نام کلاس :
         <Form.Input
           id="class_name"
@@ -58,7 +60,7 @@ function FormAddEditClasses({ onClose = "", cls = {} }) {
           {...register("class_name", { required: "نام کلاس اجباری است" })}
         />
       </Form.Label>
-      <Form.Label>
+      <Form.Label htmlFor="coach_name">
         نام مربی:
         <Form.Input
           disabled={isWorking}
@@ -71,7 +73,7 @@ function FormAddEditClasses({ onClose = "", cls = {} }) {
         />
       </Form.Label>
 
-      <Form.Label>
+      <Form.Label htmlFor="price">
         شهریه:
         <InputWithPreview>
           <Form.Input
@@ -87,7 +89,7 @@ function FormAddEditClasses({ onClose = "", cls = {} }) {
         </InputWithPreview>
       </Form.Label>
 
-      <Form.Label>
+      <Form.Label htmlFor="capacity">
         ظرفیت:
         <Form.Input
           type="number"

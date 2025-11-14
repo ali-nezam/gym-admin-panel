@@ -12,7 +12,7 @@ import MemberType, { AddMemberApiData } from "../../types/member";
 
 interface FormAddEditMemberProps {
   onClose?: () => void;
-  member: MemberType;
+  member?: MemberType | undefined;
 }
 
 function FormAddEditMember({ onClose, member }: FormAddEditMemberProps) {

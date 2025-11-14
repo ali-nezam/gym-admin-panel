@@ -1,20 +1,28 @@
 import supabase from "./supabase";
+import ClassesType, { MemberOfClassType } from "../types/class";
 
-export async function getClasses() {
-  const { data, error } = await supabase
+export async function getClasses(
+  from: number,
+  to: number
+): Promise<{
+  data: ClassesType[] | null | undefined;
+  count: number | null;
+}> {
+  const { data, error, count } = await supabase
     .from("classes")
-    .select("*")
-    .order("id", { ascending: true });
+    .select("*", { count: "exact" })
+    .order("id", { ascending: true })
+    .range(from, to);
 
   if (error) {
     console.error(error.message);
     throw new Error("faild get classes");
   }
   // console.log(data);
-  return { data };
+  return { data, count };
 }
 
-export async function addclass({ newClass }) {
+export async function addclass(newClass: ClassesType) {
   const { data, error } = await supabase
     .from("classes")
     .insert({ ...newClass })
@@ -26,7 +34,7 @@ export async function addclass({ newClass }) {
   }
   return { data };
 }
-export async function editClassApi(editedClass, id) {
+export async function editClassApi(editedClass: ClassesType, id: number) {
   const { data, error } = await supabase
     .from("classes")
     .update({ ...editedClass })
@@ -40,7 +48,7 @@ export async function editClassApi(editedClass, id) {
   return { data };
 }
 
-export async function deleteClassApi({ classId }) {
+export async function deleteClassApi({ classId }: any) {
   const { data, error } = await supabase
     .from("classes")
     .delete()
@@ -57,10 +65,11 @@ export async function deleteClassApi({ classId }) {
 /////////////// member of class///////////////////////
 //////////////////////////////////////////////////////
 
-export async function addMemberToClassApi({ newMemberToClass }) {
+export async function addMemberToClassApi(newMemberToClass: MemberOfClassType) {
+  console.log(newMemberToClass);
   const { data, error } = await supabase
     .from("classes_members")
-    .insert([{ ...newMemberToClass }])
+    .insert(newMemberToClass)
     .select("*")
     .single();
   if (error) {
@@ -70,7 +79,7 @@ export async function addMemberToClassApi({ newMemberToClass }) {
   return { data };
 }
 
-export async function deleteMemberOfClassWithId({ memberId }) {
+export async function deleteMemberOfClassWithId(memberId: number) {
   const { data, error } = await supabase
     .from("classes_members")
     .delete()
@@ -83,7 +92,10 @@ export async function deleteMemberOfClassWithId({ memberId }) {
   return { data };
 }
 
-export async function getMembersOfClassWithId({ classId }) {
+export async function getMembersOfClassWithId(classId: number): Promise<{
+  data: MemberOfClassType[] | null | undefined;
+  count: number | null;
+}> {
   const { data, error, count } = await supabase
     .from("classes_members")
     .select("*", { count: "exact" })

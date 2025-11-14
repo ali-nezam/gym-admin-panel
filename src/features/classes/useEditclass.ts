@@ -1,11 +1,18 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { editClassApi } from "../../services/apiClasses";
 import toast from "react-hot-toast";
+import ClassesType from "../../types/class";
+
+interface EditClassParams {
+  editedClass: ClassesType;
+  id: number;
+}
 
 export default function useEditClass() {
   const queryClient = useQueryClient();
   const { mutate: editClass, isPending: isEditing } = useMutation({
-    mutationFn: ({ editedClass, id }) => editClassApi(editedClass, id),
+    mutationFn: ({ editedClass, id }: EditClassParams) =>
+      editClassApi(editedClass, id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["classes"] });
       queryClient.invalidateQueries({ queryKey: ["classes_stats"] });

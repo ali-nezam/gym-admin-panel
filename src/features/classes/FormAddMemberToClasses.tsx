@@ -2,27 +2,31 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import Form from "../../Compound component/Form";
 import useAddMembertoClass from "./useAddMemberToClass";
-
-function FormAddMemberToClasses({ onClose, classId }) {
+import { MemberOfClassType } from "../../types/class";
+interface FormAddMemberToClassesProps {
+  onClose?: () => void;
+  classId: number;
+}
+function FormAddMemberToClasses({
+  onClose,
+  classId,
+}: FormAddMemberToClassesProps) {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm({});
+  } = useForm<MemberOfClassType>({});
   const { addMemberToClass, isCreating } = useAddMembertoClass();
 
-  function onSubmit(memberData) {
+  function onSubmit(memberData: MemberOfClassType) {
     memberData.class_id = classId;
-    addMemberToClass(
-      { newMemberToClass: { ...memberData } },
-      {
-        onSuccess: () => {
-          onClose?.();
-          reset();
-        },
-      }
-    );
+    addMemberToClass(memberData as MemberOfClassType, {
+      onSuccess: () => {
+        onClose?.();
+        reset();
+      },
+    });
   }
 
   return (

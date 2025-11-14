@@ -5,7 +5,7 @@ import { deleteMemberOfClassWithId } from "../../services/apiClasses";
 export function useDleteMemberOfClass() {
   const queryClient = useQueryClient();
 
-  const { mutate: deleteMemberOfClass, isPening: isDeleting } = useMutation({
+  const { mutate: deleteMemberOfClass, isPending: isDeleting } = useMutation({
     mutationFn: deleteMemberOfClassWithId,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["classes_members"] });

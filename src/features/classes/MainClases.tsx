@@ -5,11 +5,15 @@ import RowClasses from "./RowClasses";
 import useGetClasses from "./useGetClasses";
 import FullScreenSpinner from "../../ui/Spinner";
 import TablePagination from "../common/TablePagination";
+import NotFound from "../../ui/NotFound";
 function MainClases() {
-  const { classes, /*erro,*/ isLoading } = useGetClasses();
+  const { classes, /*erro,*/ isLoading, count } = useGetClasses();
 
-  const count = 100;
+  // const count = 7;
+
   if (isLoading) return <FullScreenSpinner />;
+  if (!classes) return <NotFound />;
+
   return (
     <>
       <DashboardClasses />

@@ -1,27 +1,33 @@
 import styled from "styled-components";
-import useGetMemberOfClass from "./useGetMemberOfClass";
 import Icon from "../../ui/Icon";
 import { MdDelete } from "react-icons/md";
 import RowPhoneNumber from "../../ui/RowPhoneNumber";
 import { useDleteMemberOfClass } from "./useDleteMemberOfClass";
 import SpinnerMini from "../../ui/SpinnerMini";
+import { MemberOfClassType } from "../../types/class";
 
-function TabelMembersOfClass({ classId, enabled }) {
-  const { data: response, isLoading } = useGetMemberOfClass(classId, enabled);
-  const members = response?.data;
+interface TabelMembersOfClassProps {
+  listOfMemberOfClass: MemberOfClassType[] | null | undefined;
+}
+
+function TabelMembersOfClass({
+  listOfMemberOfClass,
+}: TabelMembersOfClassProps) {
+  const members = listOfMemberOfClass;
+  console.log(members);
   const { deleteMemberOfClass, isDeleting } = useDleteMemberOfClass();
-  function handleDelete(id) {
-    deleteMemberOfClass(
-      { memberId: id },
-      {
-        onSuccess: () => {
-          console.log("yeah booy");
-        },
-      }
-    );
+
+  function handleDelete(id: number) {
+    deleteMemberOfClass(id, {
+      onSuccess: () => {
+        console.log("yeah booy");
+      },
+    });
   }
 
-  if (isLoading || isDeleting) return <SpinnerMini />;
+  if (isDeleting) return <SpinnerMini />;
+
+  if (!members) return null;
 
   return (
     <Table2>
@@ -33,7 +39,6 @@ function TabelMembersOfClass({ classId, enabled }) {
             <h3>{member.name_member}</h3>
             <RowPhoneNumber>{member.number}</RowPhoneNumber>
             <Icon
-              disabled={isDeleting}
               type="delete"
               icon={<MdDelete />}
               onClick={() => handleDelete(member.id)}

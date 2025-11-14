@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { toPersianDigits } from "../../utils/convertNumberToPersianDigits";
-
-function Capacity({ capacity, currentCapacity, percent }) {
+interface CapaCityProps {
+  capacity: number;
+  currentCapacity: number;
+  percent: number;
+}
+function Capacity({ capacity, currentCapacity, percent }: CapaCityProps) {
   return (
     <CapacityWrapper>
       <span>
@@ -67,7 +71,7 @@ const BarContainer = styled.div`
   }
 `;
 
-const BarFiller = styled.div`
+const BarFiller = styled.div<{ $percent: number }>`
   width: ${({ $percent }) => `${$percent}%`};
   height: 100%;
   background-color: ${({ $percent }) => {

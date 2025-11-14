@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import styled from "styled-components";
 
 import RowActions from "../common/RowActions";
@@ -7,7 +7,7 @@ import Modal from "../../Compound component/Modal";
 import RowCellText from "../../ui/RowCellText";
 import RowButton from "../../ui/RowButton";
 import DropdownMenu from "../../ui/DropdownMenu";
-import Spinner from "../..//ui/Spinner";
+import Spinner from "../../ui/Spinner";
 
 import { toEditedPrice } from "../../utils/convertToEditedPirce";
 
@@ -16,20 +16,25 @@ import TabelMembersOfClass from "./TabelMembersOfClass";
 import Capacity from "./Capacity";
 
 import useGetMemberOfClass from "./useGetMemberOfClass";
+import ClassesType from "../../types/class";
+
+interface RowClassesProps {
+  cls: ClassesType;
+  index: number;
+}
 
 const titleBody = " اضافه کردن مربی";
-function RowClasses({ cls, index }) {
-  const [showTableMemberOfClass, setShowTableMemberOfClass] = useState(false);
+function RowClasses({ cls, index }: RowClassesProps) {
+  // const [showTableMemberOfClass, setShowTableMemberOfClass] = useState(false);
   const { capacity, class_name, price, coach_name } = cls;
   const { data, isLoading } = useGetMemberOfClass(cls.id);
-
   if (isLoading) return <Spinner />;
-
-  const currentCapacity = data.count;
+  if (!data) return;
+  const currentCapacity = data?.count ?? 0;
   const completionCapacity = Boolean(currentCapacity === capacity);
   const percent = Math.floor((currentCapacity / capacity) * 100);
   return (
-    <StyledRowClasses $isEven={index % 2 === 0}>
+    <StyledRowClasses $iseven={index % 2 === 0}>
       <RowCellText $type="class_name">{class_name}</RowCellText>
 
       <RowCellText $type="class_coach_name">{coach_name}</RowCellText>
@@ -38,7 +43,7 @@ function RowClasses({ cls, index }) {
         capacity={capacity}
         currentCapacity={currentCapacity}
         percent={percent}
-        $type="capacity_info"
+        // $type="capacity_info"
       />
 
       <RowCellText $type="class_price">{toEditedPrice(price)}</RowCellText>
@@ -53,19 +58,22 @@ function RowClasses({ cls, index }) {
           </Modal.Body>
         </Modal>
         <Modal>
-          <Modal.Open onClick={() => setShowTableMemberOfClass(true)}>
-            <RowButton>مشاهده شاگردان</RowButton>
+          <Modal.Open>
+            <RowButton disabled={currentCapacity === 0}>
+              مشاهده شاگردان
+            </RowButton>
           </Modal.Open>
           <Modal.Body title={titleBody}>
-            <TabelMembersOfClass
-              classId={cls.id}
-              enabled={showTableMemberOfClass}
-            />
+            <TabelMembersOfClass listOfMemberOfClass={data.data} />
           </Modal.Body>
         </Modal>
       </Buttons>
       <DropdownMenu $type="classes_menu">
-        <RowActions data={cls} type="classes" display="column" />
+        <RowActions
+          data={cls}
+          type="classes"
+          // display="column"
+        />
       </DropdownMenu>
     </StyledRowClasses>
   );
@@ -73,11 +81,11 @@ function RowClasses({ cls, index }) {
 
 export default RowClasses;
 
-const StyledRowClasses = styled.div`
+const StyledRowClasses = styled.div<{ $iseven: Boolean }>`
   display: grid;
   grid-template-columns: 1.2fr 1.5fr 1.5fr 1.3fr 2.2fr 0.2fr;
   align-items: center;
-  background-color: ${({ $isEven }) => ($isEven ? "#fff" : "#f9f9f9")};
+  background-color: ${({ $iseven }) => ($iseven ? "#fff" : "#f9f9f9")};
   gap: 2rem;
   font-size: 1.6rem;
   padding: 0 1rem;
