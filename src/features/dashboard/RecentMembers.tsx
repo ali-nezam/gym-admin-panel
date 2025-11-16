@@ -6,11 +6,11 @@ import Spinner from "../../ui/Spinner";
 function RecentMembers() {
   const { recentMembers, isLoading } = useGetRecentMember();
   if (isLoading) return <Spinner />;
-  const recentMembers2 = recentMembers.data;
+  if (!recentMembers) return;
   return (
     <StyledRecentMembers>
       <StyledTitle>اخرین اعضای ثبت نام شده</StyledTitle>
-      {recentMembers2.map((member, index) => (
+      {recentMembers.map((member, index) => (
         <RowRecentMembersDashboard
           member={member}
           index={index}

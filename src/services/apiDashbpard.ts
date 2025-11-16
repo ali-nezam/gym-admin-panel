@@ -1,3 +1,4 @@
+import MemberType from "../types/member";
 import supabase from "./supabase";
 
 export async function getDashboardCard() {
@@ -19,46 +20,21 @@ export async function getDashboardCard() {
 
   if (coachesError) throw new Error(coachesError.message);
 
-  const { data: totalClassesData, errorTotalClassesData } = await supabase
-    .from("classes")
-    .select("id, price, classes_members(id)")
-    .order("id", { ascending: true });
+  const { data: totalClassesData, error: errorTotalClassesData } =
+    await supabase
+      .from("classes")
+      .select("id, price, classes_members(id)")
+      .order("id", { ascending: true });
 
   if (errorTotalClassesData) {
     throw new Error("خطا در گرفتن اطلاعات کلاس‌ها");
   }
-
-  //   const { data, error } = await supabase
-  //     .from("classes_members")
-  //     .select("created_at, classes(price)")
-  //     .order("created_at", { ascending: true });
-  //   const revenueByDate = data.reduce((acc, item) => {
-  //     const date = item.created_at.split("T")[0]; // فقط روز
-  //     const price = item.classes?.price || 0;
-
-  //     if (!acc[date]) acc[date] = 0;
-  //     acc[date] += price;
-
-  //     return acc;
-  //   }, {});
-
-  //   // 3. تبدیل به آرایه برای نمودار
-  //   const dataForChart = Object.entries(revenueByDate).map(([date, revenue]) => ({
-  //     date,
-  //     revenue,
-  //   }));
-
-  //   if (error) {
-  //     throw new Error("خطا در گرفتن اطلاعات کلاس‌ها");
-  //   }
 
   return {
     classesCount,
     membersCount,
     coachesCount,
     totalClassesData,
-    // data,
-    // dataForChart,
   };
 }
 
@@ -69,9 +45,9 @@ export async function getDashboardCard() {
 export async function getDataForChart() {
   const { data, error } = await supabase
     .from("classes_members")
-    .select("created_at, classes(price)")
+    .select("*, classes(price)")
     .order("created_at", { ascending: true });
-  const revenueByDate = data.reduce((acc, item) => {
+  const revenueByDate = data?.reduce((acc, item) => {
     const date = item.created_at.split("T")[0]; // فقط روز
     const price = item.classes?.price || 0;
 
@@ -95,17 +71,18 @@ export async function getDataForChart() {
   };
 }
 
-export async function getRecentMember() {
+export async function getRecentMember(): Promise<{
+  data: Partial<MemberType>[] | undefined | null;
+}> {
   const { data, error } = await supabase
     .from("members")
-    .select(
-      "full_name,id,status,phone,profile_image_url,coachData:coach_id (expertise)"
-    )
+    .select("*,coachData:coach_id (expertise)")
     .order("id", { ascending: true })
     .range(0, 4);
 
   if (error) {
     throw error;
   }
+
   return { data };
 }

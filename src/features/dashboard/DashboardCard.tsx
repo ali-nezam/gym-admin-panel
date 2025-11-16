@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import Card from "../../ui/Card";
-import { HiOutlineUserGroup } from "react-icons/hi2";
 import { MdAttachMoney, MdOutlineClass } from "react-icons/md";
 import useDashboardCard from "./useDashboardCard";
 import { toEditedPrice } from "../../utils/convertToEditedPirce";
+import { RiGroupLine } from "react-icons/ri";
 
 export default function DashboardCard() {
   const { cards, isLoading } = useDashboardCard();
@@ -20,7 +20,7 @@ export default function DashboardCard() {
         isLoading={isLoading}
       />
       <Card
-        icon={<HiOutlineUserGroup />}
+        icon={<RiGroupLine />}
         title="تعداد کل مربیان"
         value={cards?.coachesCount || 0}
         percent={"24%"}
@@ -28,7 +28,7 @@ export default function DashboardCard() {
         isLoading={isLoading}
       />
       <Card
-        icon={<HiOutlineUserGroup />}
+        icon={<RiGroupLine />}
         type="gray"
         title="تعداد کل اعضا"
         value={cards?.membersCount || 0}
@@ -43,7 +43,6 @@ export default function DashboardCard() {
         value={cards ? toEditedPrice(cards?.totalRevenue) : ""}
         percent={"4%"}
         percentText="رشد در این ماه"
-        fontsmall={true}
         texttype="price-small"
         isLoading={isLoading}
       />

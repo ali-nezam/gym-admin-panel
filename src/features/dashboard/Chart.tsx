@@ -19,7 +19,8 @@ export default function Chart() {
   const legendLayout = isMobile ? "horizontal" : "vertical";
   const legendAlign = isMobile ? "center" : "right";
   const legendVAlign = isMobile ? "bottom" : "middle";
-  const legendWidth = isMobile ? "100%" : "40%";
+  // const legendWidth = isMobile ? "100%" : "40%";
+  const legendWidth = isMobile ? 400 : 230;
 
   const { data: status } = useGetMembersStatus();
   const data = [

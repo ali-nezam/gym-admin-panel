@@ -6,6 +6,6 @@ export function useGetRecentMember() {
     queryKey: ["dashboard-recent"],
     queryFn: getRecentMember,
   });
-  const recentMembers = data;
+  const recentMembers = data?.data;
   return { recentMembers, isLoading, error };
 }

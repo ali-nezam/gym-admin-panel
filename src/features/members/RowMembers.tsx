@@ -26,7 +26,9 @@ function RowMembers({ member, index }: RowMembersProps) {
         {coachData.full_name} <p>({coachData.expertise})</p>
       </RowCellText>
 
-      <RowCellText $type="end_date">{toPersianDate(end_date)}</RowCellText>
+      <RowCellText $type="end_date">
+        {toPersianDate(end_date ?? "نامشخص")}
+      </RowCellText>
 
       <StatusBadge type={status} />
 

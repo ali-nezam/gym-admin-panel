@@ -4,8 +4,16 @@ import RowCellText from "../../ui/RowCellText";
 import StatusBadge from "../../ui/StatusBadge";
 import AvatarPhoto from "../../ui/AvatarPhoto";
 import RowPhoneNumber from "../../ui/RowPhoneNumber";
-
-function RowRecentMembersDashboard({ member, index }) {
+import MemberType from "../../types/member";
+interface RowRecentMembersDashboardProps {
+  member: Partial<MemberType>;
+  index: number;
+}
+function RowRecentMembersDashboard({
+  member,
+  index,
+}: RowRecentMembersDashboardProps) {
+  // console.log(member);
   const { full_name, phone, status, profile_image_url, coachData } = member;
   return (
     <StyledRowRecentMembersDashboard index={index}>
@@ -13,7 +21,7 @@ function RowRecentMembersDashboard({ member, index }) {
 
       <RowCellText $type="full_name">{full_name}</RowCellText>
 
-      <RowCellText $type="expertise">{coachData.expertise}</RowCellText>
+      <RowCellText $type="expertise">{coachData?.expertise}</RowCellText>
 
       <StatusBadge type={status} $type="statusdashboard" />
 
@@ -23,7 +31,7 @@ function RowRecentMembersDashboard({ member, index }) {
 }
 
 export default RowRecentMembersDashboard;
-const StyledRowRecentMembersDashboard = styled.div`
+const StyledRowRecentMembersDashboard = styled.div<{ index: number }>`
   display: grid;
   grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr;
   align-items: center;
