@@ -1,4 +1,4 @@
-export default function formatPhoneNumber(number) {
+export default function formatPhoneNumber(number: string) {
   if (!number) return "";
 
   // حذف تمام کاراکترهای غیرعددی

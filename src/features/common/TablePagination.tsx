@@ -37,7 +37,7 @@ function TablePagination({ count, type }: TablePaginationProps) {
   const pageCount = Math.ceil(validCount / PAGE_SIZE);
 
   const from = currentPage === 1 ? 1 : (currentPage - 1) * PAGE_SIZE + 1;
-  const to = currentPage === pageCount ? count : from + PAGE_SIZE - 1;
+  const to = currentPage === pageCount ? validCount : from + PAGE_SIZE - 1;
 
   function handleNext() {
     if (currentPage < pageCount) {
@@ -76,7 +76,7 @@ function TablePagination({ count, type }: TablePaginationProps) {
         نمایش
         <span> {toPersianDigits(from)}</span> تا
         <span> {toPersianDigits(to)}</span> از
-        <span> {toPersianDigits(count)}</span> نتیجه
+        <span> {toPersianDigits(validCount)}</span> نتیجه
       </Result>
       <Modal>
         <Modal.Open>

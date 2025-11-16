@@ -3,7 +3,8 @@ import formatPhoneNumber from "../utils/formatPhoneNumber";
 import { toPersianDigits } from "../utils/convertNumberToPersianDigits";
 
 function RowPhoneNumber({ children }: { children: React.ReactNode }) {
-  const editedNumber = formatPhoneNumber(children);
+  const editedNumber =
+    typeof children === "string" ? formatPhoneNumber(children) : "";
   const editedPersinNumber = toPersianDigits(editedNumber);
   return <StyledRowPhoneNumber>{editedPersinNumber}</StyledRowPhoneNumber>;
 }

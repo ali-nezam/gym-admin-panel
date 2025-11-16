@@ -14,7 +14,6 @@ function TabelMembersOfClass({
   listOfMemberOfClass,
 }: TabelMembersOfClassProps) {
   const members = listOfMemberOfClass;
-  console.log(members);
   const { deleteMemberOfClass, isDeleting } = useDleteMemberOfClass();
 
   function handleDelete(id: number) {
