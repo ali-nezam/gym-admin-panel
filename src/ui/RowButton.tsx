@@ -1,6 +1,9 @@
 import styled from "styled-components";
-
-function RowButton({ children, disabled }) {
+interface RowButtonProps {
+  children: React.ReactNode;
+  disabled?: boolean;
+}
+function RowButton({ children, disabled }: RowButtonProps) {
   return <StyledButton disabled={disabled}>{children}</StyledButton>;
 }
 

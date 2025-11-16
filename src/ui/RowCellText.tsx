@@ -1,6 +1,8 @@
 import styled from "styled-components";
-
-const instructions = {
+interface InstructionsType {
+  [key: string]: string;
+}
+const instructions: InstructionsType = {
   end_date: "پایان اشتراک :",
   coach_name: "نام مربی :",
   expertise: "رشته :",
@@ -10,7 +12,7 @@ const instructions = {
   class_price: "قیمت :",
 };
 
-const StyledRowCellText = styled.div`
+const StyledRowCellText = styled.div<{ $type: string }>`
   font-size: 1.4rem;
   font-weight: 400;
   padding-top: 1.2rem;
@@ -97,7 +99,13 @@ const StyledRowCellText = styled.div`
         `};
 `;
 
-function RowCellText({ children, $type }) {
+function RowCellText({
+  children,
+  $type,
+}: {
+  children: React.ReactNode;
+  $type: string;
+}) {
   const text = instructions[$type] || "";
 
   return (

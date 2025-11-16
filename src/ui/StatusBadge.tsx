@@ -1,7 +1,15 @@
 import styled from "styled-components";
 
-function StatusBadge({ type, $type = "" }) {
-  const { color, background, label } = statusStyles[type] || {
+function StatusBadge({
+  type,
+  $type = "",
+}: {
+  type: string | boolean | null;
+  $type?: string;
+}) {
+  const typeKey = String(type);
+
+  const { color, background, label } = statusStyles[typeKey] || {
     color: "#adb5bd",
     background: "#f1f3f5",
     label: "نامشخص",
@@ -17,8 +25,15 @@ function StatusBadge({ type, $type = "" }) {
   );
 }
 export default StatusBadge;
+interface StatusStyle {
+  [key: string]: {
+    color: string;
+    background: string;
+    label: string;
+  };
+}
 
-const statusStyles = {
+const statusStyles: StatusStyle = {
   true: {
     color: "#37b24d",
     background: "#d3f9d8",
@@ -46,7 +61,7 @@ const statusStyles = {
   },
 };
 
-const StyledStatusWarper = styled.div`
+const StyledStatusWarper = styled.div<{ $type: string }>`
   display: flex;
   justify-content: center;
   @media (max-width: 768px) {
@@ -73,7 +88,7 @@ const StyledStatusWarper = styled.div`
       `};
 `;
 
-const StyledStatusBadge = styled.div`
+const StyledStatusBadge = styled.div<{ $color: string; $background: string }>`
   font-size: 1.2rem;
   font-weight: 500;
   display: flex;

@@ -25,13 +25,14 @@ function RowCoaches({ coach, index }: RowCoachesProps) {
   const displayName = full_name || "نام نامشخص";
   const displayExpertise = expertise || "-";
   const displayPhone = phone || "-";
+  const displayProfileImageUrl = profile_img || "";
   const displayDate = Membership_date
     ? toPersianDate(Membership_date)
     : "تاریخ نامشخص";
 
   return (
     <StyledRowCoaches $isEven={index % 2 === 0}>
-      <AvatarPhoto src={profile_img} alt={displayName} />
+      <AvatarPhoto src={displayProfileImageUrl} alt={displayName} />
 
       <RowCellText $type="full_name">{displayName}</RowCellText>
 

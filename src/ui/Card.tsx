@@ -1,6 +1,16 @@
 import styled from "styled-components";
 import SpinnerMini from "./SpinnerMini";
 import { toPersianDigits } from "../utils/convertNumberToPersianDigits";
+interface CardProps {
+  type?: "green" | "gray" | "gold" | "red" | "blue";
+  title: string;
+  value: number | string | null | undefined;
+  percent: number | string;
+  percentText: string;
+  icon: React.ReactNode;
+  isLoading?: boolean;
+  texttype?: "price" | "price-small";
+}
 
 function Card({
   type = "green",
@@ -10,9 +20,10 @@ function Card({
   percentText,
   icon,
   isLoading,
-  texttype = "",
-}) {
+  texttype,
+}: CardProps) {
   const { color, background } = instructions[type];
+  const dispalyValue = value ? toPersianDigits(value) : 0;
   const sizeprice =
     texttype === "price"
       ? "2rem"
@@ -25,7 +36,7 @@ function Card({
       {icon}
       <div>
         <h3>{title}</h3>
-        <h2>{toPersianDigits(value)}</h2>
+        <h2>{dispalyValue}</h2>
         <h4>
           <span>{toPersianDigits(percent)}</span> <p>{percentText}</p>
         </h4>
@@ -44,7 +55,11 @@ const instructions = {
   blue: { color: "#3B82F6", background: "#e3f2fd" },
 };
 
-const StyledCard = styled.div`
+const StyledCard = styled.div<{
+  $color: string;
+  $background: string;
+  $sizeprice: string;
+}>`
   display: grid;
   grid-template-columns: 1fr 2.5fr;
   gap: 2rem;

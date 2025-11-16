@@ -2,12 +2,17 @@ import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-function DropdownMenu({ children, $type }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const ref = useRef();
+interface DropdownMenuProps {
+  children: React.ReactNode;
+  $type: string;
+}
 
-  const handleClickOutside = (e) => {
-    if (ref.current && !ref.current.contains(e.target)) {
+function DropdownMenu({ children, $type }: DropdownMenuProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const handleClickOutside = (e: MouseEvent) => {
+    if (ref.current && !ref.current.contains(e.target as Node)) {
       setIsOpen(false);
     }
   };
@@ -18,7 +23,7 @@ function DropdownMenu({ children, $type }) {
   }, []);
 
   return (
-    <DropdownWrapper ref={ref} type={$type}>
+    <DropdownWrapper ref={ref} $type={$type}>
       <MenuButton onClick={() => setIsOpen((prev) => !prev)}>
         <BsThreeDotsVertical />
       </MenuButton>
@@ -29,7 +34,7 @@ function DropdownMenu({ children, $type }) {
 
 export default DropdownMenu;
 
-const DropdownWrapper = styled.div`
+const DropdownWrapper = styled.div<{ $type?: string }>`
   position: relative;
   display: inline-block;
 

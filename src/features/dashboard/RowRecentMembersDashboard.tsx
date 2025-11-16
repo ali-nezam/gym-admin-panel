@@ -15,17 +15,24 @@ function RowRecentMembersDashboard({
 }: RowRecentMembersDashboardProps) {
   // console.log(member);
   const { full_name, phone, status, profile_image_url, coachData } = member;
+
+  const displayFullName = full_name || "نام نامشخص";
+  const displayCoachDataExpertise = coachData?.expertise || "نام نامشخص";
+  const displayStatus = status || "-";
+  const displayPhone = phone || "-";
+  const displayProfileImageUrl = profile_image_url || "";
+
   return (
     <StyledRowRecentMembersDashboard index={index}>
-      <AvatarPhoto src={profile_image_url} alt="profile-img" />
+      <AvatarPhoto src={displayProfileImageUrl} alt="profile-img" />
 
-      <RowCellText $type="full_name">{full_name}</RowCellText>
+      <RowCellText $type="full_name">{displayFullName}</RowCellText>
 
-      <RowCellText $type="expertise">{coachData?.expertise}</RowCellText>
+      <RowCellText $type="expertise">{displayCoachDataExpertise}</RowCellText>
 
-      <StatusBadge type={status} $type="statusdashboard" />
+      <StatusBadge type={displayStatus} $type="statusdashboard" />
 
-      <RowPhoneNumber>{phone}</RowPhoneNumber>
+      <RowPhoneNumber>{displayPhone}</RowPhoneNumber>
     </StyledRowRecentMembersDashboard>
   );
 }

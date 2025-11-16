@@ -16,23 +16,29 @@ function RowMembers({ member, index }: RowMembersProps) {
   const { full_name, phone, end_date, status, profile_image_url, coachData } =
     member;
 
+  const displayFullName = full_name || "نام نامشخص";
+  const displayCoachDataFullName = coachData.full_name || "نام نامشخص";
+  const displayCoachDataExpertise = coachData.expertise || "نام نامشخص";
+  const displayStatus = status || "-";
+  const displayPhone = phone || "-";
+  const displayEndDate = end_date ? toPersianDate(end_date) : "تاریخ نامشخص";
+  const displayProfileImageUrl = profile_image_url || "";
+
   return (
     <StyledRowMembers $iseven={index % 2 === 0}>
-      <AvatarPhoto src={profile_image_url} alt="profile-img" />
+      <AvatarPhoto src={displayProfileImageUrl} alt="profile-img" />
 
-      <RowCellText $type="full_name">{full_name}</RowCellText>
+      <RowCellText $type="full_name">{displayFullName}</RowCellText>
 
       <RowCellText $type="coach_name">
-        {coachData.full_name} <p>({coachData.expertise})</p>
+        {displayCoachDataFullName} <p>({displayCoachDataExpertise})</p>
       </RowCellText>
 
-      <RowCellText $type="end_date">
-        {toPersianDate(end_date ?? "نامشخص")}
-      </RowCellText>
+      <RowCellText $type="end_date">{displayEndDate}</RowCellText>
 
-      <StatusBadge type={status} />
+      <StatusBadge type={displayStatus} />
 
-      <RowPhoneNumber>{phone}</RowPhoneNumber>
+      <RowPhoneNumber>{displayPhone}</RowPhoneNumber>
 
       <RowActions data={member} type="members" />
     </StyledRowMembers>

@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import SearchBox from "./SearchBox";
-function Header({ onToggleSidebar }) {
+import { useState } from "react";
+
+function Header({ onToggleSidebar }: { onToggleSidebar: () => void }) {
+  const [searchTerm, setSearchTerm] = useState("");
   return (
     <StyledHeader>
       <BurgerButton onClick={onToggleSidebar}>☰</BurgerButton>
-      <SearchBox />
+      <SearchBox searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
       <UserInfo>
         <img

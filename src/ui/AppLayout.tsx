@@ -51,7 +51,7 @@ const MainContent = styled.main`
   }
 `;
 
-const ModalOverlay = styled.div`
+const ModalOverlay = styled.div<{ $isOpen: boolean }>`
   display: none; /* در دسکتاپ مخفی */
 
   @media (max-width: 768px) {

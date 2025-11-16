@@ -9,8 +9,16 @@ import styled from "styled-components";
 import DateObject from "react-date-object";
 
 const StyledDatepicker = styled.div``;
-
-export default function PersianDatePicker({ name, control, disabled }) {
+interface PersianDatePickerProps {
+  name: string;
+  control: any;
+  disabled?: boolean;
+}
+export default function PersianDatePicker({
+  name,
+  control,
+  disabled,
+}: PersianDatePickerProps) {
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const { field } = useController({

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import formatPhoneNumber from "../utils/formatPhoneNumber";
 import { toPersianDigits } from "../utils/convertNumberToPersianDigits";
 
-function RowPhoneNumber({ children }) {
+function RowPhoneNumber({ children }: { children: React.ReactNode }) {
   const editedNumber = formatPhoneNumber(children);
   const editedPersinNumber = toPersianDigits(editedNumber);
   return <StyledRowPhoneNumber>{editedPersinNumber}</StyledRowPhoneNumber>;

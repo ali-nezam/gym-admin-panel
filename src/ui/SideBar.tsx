@@ -2,7 +2,11 @@ import styled, { css } from "styled-components";
 import MainNavbar from "./MainNavbar";
 import Logo from "./Logo";
 
-function SideBar({ $isOpen, onToggleSidebar }) {
+interface SideBarProps {
+  $isOpen: boolean;
+  onToggleSidebar: () => void;
+}
+function SideBar({ $isOpen, onToggleSidebar }: SideBarProps) {
   return (
     <StyledSideBar $isOpen={$isOpen} onClick={onToggleSidebar}>
       <Logo />
@@ -13,7 +17,7 @@ function SideBar({ $isOpen, onToggleSidebar }) {
 
 export default SideBar;
 
-const StyledSideBar = styled.aside`
+const StyledSideBar = styled.aside<{ $isOpen: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 4.8rem;

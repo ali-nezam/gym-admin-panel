@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-function AvatarPhoto({ src, alt }) {
+interface AvatarPhotoProps {
+  src: string;
+  alt: string;
+}
+
+function AvatarPhoto({ src, alt }: AvatarPhotoProps) {
   return <StyledAvatarPhoto src={src} alt={alt} />;
 }
 

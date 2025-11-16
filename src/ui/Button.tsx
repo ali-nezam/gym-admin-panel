@@ -1,16 +1,15 @@
 import styled from "styled-components";
 
-function Button({ children, onClick = "", disabled = "", type }) {
+interface ButtonProps {
+  children: React.ReactNode;
+  type: "Primary" | "Secondary";
+}
+
+function Button({ children, type }: ButtonProps) {
   const { color, background, hover } =
     instructions[type] || instructions.Primary;
   return (
-    <StyledButton
-      disabled={disabled}
-      onClick={onClick}
-      $color={color}
-      $background={background}
-      $hover={hover}
-    >
+    <StyledButton $color={color} $background={background} $hover={hover}>
       {children}
     </StyledButton>
   );
@@ -22,7 +21,11 @@ const instructions = {
   Primary: { background: "#5932ea", color: "#fff", hover: "#4721b8" },
   Secondary: { background: "#fff", color: "#5932ea", hover: "#f3f0ff" },
 };
-const StyledButton = styled.button`
+const StyledButton = styled.button<{
+  $color: string;
+  $background: string;
+  $hover: string;
+}>`
   color: ${({ $color }) => $color};
   background-color: ${({ $background }) => $background};
   &:hover {

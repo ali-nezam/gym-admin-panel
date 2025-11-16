@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import { HiOutlineSearch, HiX } from "react-icons/hi";
 import { useEffect, useState } from "react";
+interface SearchBoxProps {
+  placeholder?: string;
+  type?: string;
+  setSearchTerm: (value: string) => void;
+  searchTerm: string;
+  mobiletype?: string;
+}
 
 function SearchBox({
   placeholder = "جستجو...",
@@ -8,7 +15,7 @@ function SearchBox({
   setSearchTerm,
   searchTerm,
   mobiletype = "flex",
-}) {
+}: SearchBoxProps) {
   const [localValue, setLocalValue] = useState("");
 
   useEffect(() => {
@@ -21,7 +28,7 @@ function SearchBox({
     }
   }
 
-  function handleKeyDown(e) {
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
       handleSearch();
     }
@@ -58,7 +65,7 @@ function SearchBox({
 
 export default SearchBox;
 
-const SearchWrapper = styled.div`
+const SearchWrapper = styled.div<{ type: string; $mobiletype: string }>`
   display: flex;
   align-items: center;
   background-color: #fafbff;

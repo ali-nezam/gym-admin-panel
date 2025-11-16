@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-function Filter({ options }) {
+interface FilterProps {
+  options: string[];
+}
+
+function Filter({ options }: FilterProps) {
   return (
     <StyledFilter>
       {options.map((option) => (
