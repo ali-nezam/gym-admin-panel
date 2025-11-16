@@ -5,23 +5,22 @@ import Button from "../../ui/Button";
 import useCreateNewLoginData from "./useCreateNewLoginData";
 import Spinner from "../../ui/Spinner";
 import { useNavigate } from "react-router-dom";
+import LoginType from "../../types/login";
 function MainLogin() {
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<LoginType>();
 
   const { createNewLoginData, isCreating } = useCreateNewLoginData();
 
-  function onSubmit(data) {
-    createNewLoginData(
-      { newlogin: data },
-      {
-        onSuccess: () => navigate("/dashboard"),
-      }
-    );
+  function onSubmit(data: LoginType) {
+    console.log("data", data);
+    createNewLoginData(data, {
+      onSuccess: () => navigate("/dashboard"),
+    });
   }
   if (isCreating) return <Spinner />;
   return (
@@ -40,11 +39,11 @@ function MainLogin() {
           <label>ایمیل</label>
           <input
             {...register("email", {
-              required: "ایمیل اجباری است",
-              pattern: {
-                message: "ایمیل نامعتبر است",
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              },
+              // required: "ایمیل اجباری است",
+              // pattern: {
+              //   message: "ایمیل نامعتبر است",
+              //   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              // },
             })}
             type="email"
             placeholder="info@example.com"
@@ -54,15 +53,15 @@ function MainLogin() {
           <label>رمز عبور</label>
           <input
             {...register("password", {
-              required: "رمز عبور اجباری است",
-              minLength: {
-                value: 8,
-                message: "رمز عبور باید حداقل شامل 8 کاراکتر باشد",
-              },
-              pattern: {
-                message: "رمز عبور باید شامل حروف و عدد باشد",
-                value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-              },
+              // required: "رمز عبور اجباری است",
+              // minLength: {
+              //   value: 8,
+              //   message: "رمز عبور باید حداقل شامل 8 کاراکتر باشد",
+              // },
+              // pattern: {
+              //   message: "رمز عبور باید شامل حروف و عدد باشد",
+              //   value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+              // },
             })}
             type="password"
           />

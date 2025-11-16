@@ -1,5 +1,6 @@
+import LoginType from "../types/login";
 import supabase from "./supabase";
-export async function CreateNewlogin({ newlogin }) {
+export async function CreateNewlogin(newlogin: LoginType) {
   const { data, error } = await supabase
     .from("auth_logs")
     .insert([{ ...newlogin }])

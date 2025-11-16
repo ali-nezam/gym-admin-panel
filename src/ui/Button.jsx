@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-function Button({ children, onClick, disabled, type }) {
+function Button({ children, onClick = "", disabled = "", type }) {
   const { color, background, hover } =
     instructions[type] || instructions.Primary;
   return (
