@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import { lazy } from "react";
+import GlobalStyles from "./styles/GlobalStyles";
 
 const AppLayout = lazy(() => import("./ui/AppLayout"));
 const Coaches = lazy(() => import("./pages/Coaches"));
@@ -10,13 +11,11 @@ const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Members = lazy(() => import("./pages/Members"));
 const Settings = lazy(() => import("./pages/Settings"));
 const Classes = lazy(() => import("./pages/Classes"));
-const GlobalStyles = lazy(() => import("./styles/GlobalStyles"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 const Login = lazy(() => import("./pages/Login"));
-// import Login from "./pages/Login";
 
+const queryClient = new QueryClient();
 function App() {
-  const queryClient = new QueryClient();
   return (
     <>
       <QueryClientProvider client={queryClient}>
@@ -42,7 +41,7 @@ function App() {
           gutter={12}
           containerStyle={{ margin: "8px" }}
           toastOptions={{
-            sucssess: { duration: 3000 },
+            success: { duration: 3000 },
             error: { duration: 5000 },
             style: {
               fontSize: "16px",
