@@ -3,14 +3,15 @@ import styled from "styled-components";
 import Form from "../../Compound component/Form";
 import useAddMembertoClass from "./useAddMemberToClass";
 import { MemberOfClassType } from "../../types/class";
+import { useContext } from "react";
+import ModalContext from "../../context/ModalContext";
+
 interface FormAddMemberToClassesProps {
-  onClose?: () => void;
   classId: number;
 }
-function FormAddMemberToClasses({
-  onClose,
-  classId,
-}: FormAddMemberToClassesProps) {
+function FormAddMemberToClasses({ classId }: FormAddMemberToClassesProps) {
+  const { close } = useContext(ModalContext);
+
   const {
     register,
     handleSubmit,
@@ -23,7 +24,7 @@ function FormAddMemberToClasses({
     memberData.class_id = classId;
     addMemberToClass(memberData as MemberOfClassType, {
       onSuccess: () => {
-        onClose?.();
+        close?.();
         reset();
       },
     });
@@ -73,9 +74,13 @@ function FormAddMemberToClasses({
       </Form.Label>
 
       <Actions>
-        <Form.BtnSubmit>"افزودن"</Form.BtnSubmit>
+        <Form.BtnSubmit type="submit" disabled={isCreating}>
+          افزودن
+        </Form.BtnSubmit>
 
-        <Form.BtnCancel>انصراف</Form.BtnCancel>
+        <Form.BtnCancel onClick={close} disabled={isCreating}>
+          انصراف
+        </Form.BtnCancel>
       </Actions>
     </Form>
   );

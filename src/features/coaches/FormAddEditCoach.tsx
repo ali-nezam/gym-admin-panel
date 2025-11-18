@@ -10,9 +10,10 @@ import {
   toDatepersianFromMiladi,
 } from "../../utils/convertDate";
 import { DateObject } from "react-multi-date-picker";
+import { useContext } from "react";
+import ModalContext from "../../context/ModalContext";
 
 interface FormAddEditCoachProps {
-  onClose?: () => void;
   coach?: CoachType;
 }
 
@@ -20,8 +21,9 @@ type FormCoachType = Omit<CoachType, "Membership_date" | "id"> & {
   Membership_date: DateObject | string | null | undefined;
   id?: number | undefined;
 };
+function FormAddEditCoach({ coach }: FormAddEditCoachProps) {
+  const { close } = useContext(ModalContext);
 
-function FormAddEditCoach({ onClose, coach }: FormAddEditCoachProps) {
   const editedSession = Boolean(coach?.id);
   const initialDefaultValues = editedSession
     ? {
@@ -60,7 +62,7 @@ function FormAddEditCoach({ onClose, coach }: FormAddEditCoachProps) {
         {
           onSuccess: () => {
             reset();
-            onClose?.();
+            close?.();
           },
         }
       );
@@ -70,7 +72,7 @@ function FormAddEditCoach({ onClose, coach }: FormAddEditCoachProps) {
         {
           onSuccess: () => {
             reset();
-            onClose?.();
+            close?.();
           },
         }
       );
@@ -141,7 +143,7 @@ function FormAddEditCoach({ onClose, coach }: FormAddEditCoachProps) {
           {editedSession ? "ویرایش" : "افزودن"}
         </Form.BtnSubmit>
 
-        <Form.BtnCancel disabled={isWorking} onClick={onClose} type="button">
+        <Form.BtnCancel disabled={isWorking} onClick={close} type="button">
           انصراف
         </Form.BtnCancel>
       </Actions>

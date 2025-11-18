@@ -9,13 +9,15 @@ import {
 import useCreateNewMember from "./useAddNewMember";
 import useEditMember from "./useEditMember";
 import MemberType, { AddMemberApiData } from "../../types/member";
+import { useContext } from "react";
+import ModalContext from "../../context/ModalContext";
 
 interface FormAddEditMemberProps {
-  onClose?: () => void;
   member?: MemberType | undefined;
 }
 
-function FormAddEditMember({ onClose, member }: FormAddEditMemberProps) {
+function FormAddEditMember({ member }: FormAddEditMemberProps) {
+  const { close } = useContext(ModalContext);
   const editSeason = Boolean(member?.id);
   const initialDefaultValues = editSeason
     ? {
@@ -47,7 +49,7 @@ function FormAddEditMember({ onClose, member }: FormAddEditMemberProps) {
         },
         {
           onSuccess: () => {
-            onClose?.();
+            close?.();
             reset();
           },
           onError: (error) => {
@@ -60,7 +62,7 @@ function FormAddEditMember({ onClose, member }: FormAddEditMemberProps) {
         { memberCreated: newMember as AddMemberApiData },
         {
           onSuccess: () => {
-            onClose?.();
+            close?.();
             reset();
           },
         }
@@ -163,7 +165,7 @@ function FormAddEditMember({ onClose, member }: FormAddEditMemberProps) {
           "افزودن"
         </Form.BtnSubmit>
 
-        <Form.BtnCancel disabled={isWorking} onClick={onClose} type="button">
+        <Form.BtnCancel disabled={isWorking} onClick={close} type="button">
           انصراف
         </Form.BtnCancel>
       </Actions>

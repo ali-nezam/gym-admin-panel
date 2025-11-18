@@ -1,10 +1,10 @@
-import { cloneElement, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { HiXMark } from "react-icons/hi2";
 import Icon from "../ui/Icon";
 import ModalContext from "../context/ModalContext";
 
-function Modal({ children }) {
+function Modal({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsopen] = useState(false);
   function close() {
     setIsopen(false);
@@ -20,7 +20,13 @@ function Modal({ children }) {
   );
 }
 
-Modal.Body = function ModalBody({ children, title }) {
+Modal.Body = function ModalBody({
+  children,
+  title,
+}: {
+  children: React.ReactNode;
+  title: string;
+}) {
   const { isOpen, close } = useContext(ModalContext);
   if (!isOpen) return null;
 
@@ -29,16 +35,20 @@ Modal.Body = function ModalBody({ children, title }) {
       <ModalContent onClick={(e) => e.stopPropagation()}>
         <HeaderWrapper>
           <Title>{title}</Title>
-          <Icon icon={<HiXMark />} onClick={close} />
+          <Icon type="delete" icon={<HiXMark />} onClick={close} />
         </HeaderWrapper>
 
-        {cloneElement(children, { onClose: close })}
+        {children}
       </ModalContent>
     </Overlay>
   );
 };
 
-Modal.Open = function ModalOpenButton({ children }) {
+Modal.Open = function ModalOpenButton({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const { open } = useContext(ModalContext);
   return <div onClick={open}>{children}</div>;
 };

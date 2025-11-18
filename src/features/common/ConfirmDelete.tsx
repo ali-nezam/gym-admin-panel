@@ -2,15 +2,17 @@ import styled from "styled-components";
 import useDeleteCoach from "../coaches/useDeleteCoach";
 import useDeleteMember from "../members/useDeleteMember";
 import useDeleteClass from "../classes/useDeleteClass";
+import { useContext } from "react";
+import ModalContext from "../../context/ModalContext";
 
 const warningsMessage = { coaches: "مربی", members: "عضو", classes: "کلاس" };
 
 interface ConfirmDeleteProps {
-  onClose?: () => void;
   id: number;
   type: "coaches" | "members" | "classes";
 }
-function ConfirmDelete({ onClose, id, type }: ConfirmDeleteProps) {
+function ConfirmDelete({ id, type }: ConfirmDeleteProps) {
+  const { close } = useContext(ModalContext);
   const { deleteCoach, isDeleting } = useDeleteCoach();
   const { deleteMember, isDeletingMember } = useDeleteMember();
   const { deleteClass, isDeletingClass } = useDeleteClass();
@@ -20,21 +22,21 @@ function ConfirmDelete({ onClose, id, type }: ConfirmDeleteProps) {
   function handleSubmit() {
     if (type === "coaches")
       deleteCoach(id, {
-        onSuccess: () => onClose?.(),
+        onSuccess: () => close?.(),
       });
     else if (type === "members") {
       deleteMember(id, {
-        onSuccess: () => onClose?.(),
+        onSuccess: () => close?.(),
       });
     } else if (type === "classes") {
       deleteClass(
         { classId: id },
         {
-          onSuccess: () => onClose?.(),
+          onSuccess: () => close?.(),
         }
       );
     } else {
-      onClose?.();
+      close?.();
     }
   }
 
@@ -49,7 +51,7 @@ function ConfirmDelete({ onClose, id, type }: ConfirmDeleteProps) {
         <Button onClick={handleSubmit} disabled={disabled}>
           حذف
         </Button>
-        <CancelBtn onClick={onClose} disabled={disabled}>
+        <CancelBtn onClick={close} disabled={disabled}>
           لغو
         </CancelBtn>
       </StyledButtons>

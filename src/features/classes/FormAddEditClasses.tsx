@@ -5,13 +5,15 @@ import { toEditedPrice } from "../../utils/convertToEditedPirce";
 import useCreateNewClass from "./useCreateNewClass";
 import useEditClass from "./useEditclass";
 import ClassesType from "../../types/class";
+import { useContext } from "react";
+import ModalContext from "../../context/ModalContext";
 interface FormAddEditClassesProps {
-  onClose?: () => void;
   cls?: ClassesType | undefined;
 }
 
-function FormAddEditClasses({ onClose, cls }: FormAddEditClassesProps) {
-  // console.log(cls);
+function FormAddEditClasses({ cls }: FormAddEditClassesProps) {
+  const { close } = useContext(ModalContext);
+
   const editedSeasion = Boolean(cls?.id);
   const {
     register,
@@ -33,7 +35,7 @@ function FormAddEditClasses({ onClose, cls }: FormAddEditClassesProps) {
         { editedClass: { ...formData }, id: formData.id },
         {
           onSuccess: () => {
-            onClose?.();
+            close?.();
             reset();
           },
         }
@@ -41,7 +43,7 @@ function FormAddEditClasses({ onClose, cls }: FormAddEditClassesProps) {
     } else {
       createClass(formData, {
         onSuccess: () => {
-          onClose?.();
+          close?.();
           reset();
         },
       });
@@ -107,7 +109,7 @@ function FormAddEditClasses({ onClose, cls }: FormAddEditClassesProps) {
           {editedSeasion ? "ویرایش" : "افزودن"}
         </Form.BtnSubmit>
 
-        <Form.BtnCancel disabled={isWorking} onClick={onClose} type="button">
+        <Form.BtnCancel disabled={isWorking} onClick={close} type="button">
           انصراف
         </Form.BtnCancel>
       </Actions>
