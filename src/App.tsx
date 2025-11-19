@@ -6,13 +6,19 @@ import { lazy } from "react";
 import GlobalStyles from "./styles/GlobalStyles";
 
 const AppLayout = lazy(() => import("./ui/AppLayout"));
-const Coaches = lazy(() => import("./features/coaches/MainCoaches"));
-const Dashboard = lazy(() => import("./features/dashboard/MainDashboard"));
-const Members = lazy(() => import("./features/members/MainMembers"));
-const Settings = lazy(() => import("./features/settings/MainSettings"));
-const Classes = lazy(() => import("./features/classes/MainClases"));
-const PageNotFound = lazy(() => import("./ui/NotFound"));
+const Coaches = lazy(() => import("./features/coaches/components/MainCoaches"));
+const Members = lazy(() => import("./features/members/components/MainMembers"));
+const Classes = lazy(() => import("./features/classes/components/MainClases"));
 const Login = lazy(() => import("./features/login/MainLogin"));
+const PageNotFound = lazy(() => import("./ui/NotFound"));
+
+const Dashboard = lazy(
+  () => import("./features/dashboard/components/MainDashboard")
+);
+
+const Settings = lazy(
+  () => import("./features/settings/components/MainSettings")
+);
 
 const queryClient = new QueryClient();
 function App() {

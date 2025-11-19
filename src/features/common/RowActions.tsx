@@ -7,11 +7,11 @@ import styled from "styled-components";
 import Icon from "../../ui/Icon";
 import ConfirmDelete from "./ConfirmDelete";
 
-import Modal from "../../Compound component/Modal";
+import Modal from "../../ui/Compound_component/Modal";
 
-import FormAddEditCoach from "../coaches/FormAddEditCoach";
-import FormAddEditMember from "../members/FormAddEditMember";
-import FormAddEditClasses from "../classes/FormAddEditClasses";
+import FormAddEditCoach from "../coaches/components/FormAddEditCoach";
+import FormAddEditMember from "../members/components/FormAddEditMember";
+import FormAddEditClasses from "../classes/components/FormAddEditClasses";
 
 function getForm(type: string, coachOrMember: any) {
   if (type === "coaches") return <FormAddEditCoach coach={coachOrMember} />;

@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import useDeleteCoach from "../coaches/useDeleteCoach";
-import useDeleteMember from "../members/useDeleteMember";
-import useDeleteClass from "../classes/useDeleteClass";
-import { useContext } from "react";
-import ModalContext from "../../context/ModalContext";
+import useDeleteCoach from "../coaches/hooks/useDeleteCoach";
+import useDeleteMember from "../members/hooks/useDeleteMember";
+import useDeleteClass from "../classes/hooks/useDeleteClass";
+import { useModalContext } from "../../context/ModalContext";
 
 const warningsMessage = { coaches: "مربی", members: "عضو", classes: "کلاس" };
 
@@ -12,7 +11,7 @@ interface ConfirmDeleteProps {
   type: "coaches" | "members" | "classes";
 }
 function ConfirmDelete({ id, type }: ConfirmDeleteProps) {
-  const { close } = useContext(ModalContext);
+  const { close } = useModalContext();
   const { deleteCoach, isDeleting } = useDeleteCoach();
   const { deleteMember, isDeletingMember } = useDeleteMember();
   const { deleteClass, isDeletingClass } = useDeleteClass();

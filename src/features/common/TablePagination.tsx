@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import Modal from "../../Compound component/Modal";
+import Modal from "../../ui/Compound_component/Modal";
 import { useSearchParams } from "react-router-dom";
 import { IoPersonAddOutline } from "react-icons/io5";
 import Icon from "../../ui/Icon";
 import { PAGE_SIZE } from "../../utils/constants";
 import { toPersianDigits } from "../../utils/convertNumberToPersianDigits";
-import FormAddEditCoach from "../coaches/FormAddEditCoach";
-import FormAddEditMember from "../members/FormAddEditMember";
-import FormAddEditClasses from "../classes/FormAddEditClasses";
+import FormAddEditCoach from "../coaches/components/FormAddEditCoach";
+import FormAddEditMember from "../members/components/FormAddEditMember";
+import FormAddEditClasses from "../classes/components/FormAddEditClasses";
 import { ReactNode } from "react";
 
 type TableType = "coaches" | "members" | "classes";
