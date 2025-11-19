@@ -1,13 +1,14 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { CreateNewlogin } from "../../services/apiLogin";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom"; // 👈 اضافه کردن useNavigate
 
 export default function useCreateNewLoginData() {
-  const queryClient = useQueryClient();
+  const navigate = useNavigate(); // 👈 فراخوانی useNavigate
   const { mutate: createNewLoginData, isPending: isCreating } = useMutation({
     mutationFn: CreateNewlogin,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["members"] });
+      navigate("/dashboard"); // 👈 هدایت به داشبورد پس از موفقیت
       toast.success("ورود با موفقیت انجام شد");
     },
     onError: (error) => {

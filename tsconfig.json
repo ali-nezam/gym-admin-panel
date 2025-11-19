@@ -51,28 +51,57 @@
 //   }
 // }
 
+// {
+//   "compilerOptions": {
+//     "target": "ES6", // نسخه‌ی خروجی جاوااسکریپت
+//     "module": "ESNext", // ماژول‌ها به صورت ES Modules
+//     "jsx": "react-jsx", // JSX برای React 18
+
+//     "allowJs": true, // اجازه استفاده از فایل‌های JS در پروژه
+//     "checkJs": false, // بررسی نوع‌ها در JS را غیرفعال می‌کند
+
+//     "strict": true, // فعال کردن بررسی‌های سخت‌گیرانه (اختیاری، بعداً می‌توان فعال کرد)
+//     "esModuleInterop": true, // برای import ماژول‌های CommonJS راحت‌تر
+//     "forceConsistentCasingInFileNames": true, // جلوگیری از اشتباهات بزرگ و کوچک بودن حروف فایل‌ها
+//     "skipLibCheck": true, // از بررسی type definition های node_modules صرف‌نظر می‌کند
+
+//     // "outDir": "./dist", // مسیر خروجی کامپایل TS/JS
+//     // "rootDir": "./src", // مسیر سورس‌های اصلی
+
+//     "moduleResolution": "node", // روش شناسایی ماژول‌ها شبیه Node.js
+//     "resolveJsonModule": true, // اجازه ایمپورت فایل JSON
+//     "isolatedModules": true, // برای استفاده با Vite و React
+
+//     "noEmit": true
+//   },
+//   "include": ["src"], // فقط پوشه src را شامل می‌کنیم
+//   "exclude": [
+//     "node_modules",
+//     "dist",
+//     "vite.config.js" // از فایل‌های config خارج می‌کنیم
+//   ]
+// }
+
 {
   "compilerOptions": {
-    "target": "ES6", // نسخه‌ی خروجی جاوااسکریپت
-    "module": "ESNext", // ماژول‌ها به صورت ES Modules
-    "jsx": "react-jsx", // JSX برای React 18
-    "allowJs": true, // اجازه استفاده از فایل‌های JS در پروژه
-    "checkJs": false, // بررسی نوع‌ها در JS را غیرفعال می‌کند
-    // "noImplicitAny": false, // اجازه می‌دهد هر چیزی که نوعش مشخص نیست، any باشد
-    "esModuleInterop": true, // برای import ماژول‌های CommonJS راحت‌تر
-    "forceConsistentCasingInFileNames": true, // جلوگیری از اشتباهات بزرگ و کوچک بودن حروف فایل‌ها
-    "strict": true, // فعال کردن بررسی‌های سخت‌گیرانه (اختیاری، بعداً می‌توان فعال کرد)
-    "skipLibCheck": true, // از بررسی type definition های node_modules صرف‌نظر می‌کند
-    "outDir": "./dist", // مسیر خروجی کامپایل TS/JS
-    "rootDir": "./src", // مسیر سورس‌های اصلی
-    "moduleResolution": "node", // روش شناسایی ماژول‌ها شبیه Node.js
-    "resolveJsonModule": true, // اجازه ایمپورت فایل JSON
-    "isolatedModules": true // برای استفاده با Vite و React
+    "target": "ES6",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+
+    "allowJs": true,
+    "checkJs": false,
+
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+
+    "noEmit": true
   },
-  "include": ["src"], // فقط پوشه src را شامل می‌کنیم
-  "exclude": [
-    "node_modules",
-    "dist",
-    "vite.config.js" // از فایل‌های config خارج می‌کنیم
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "vite.config.js"]
 }
