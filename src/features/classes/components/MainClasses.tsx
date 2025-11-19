@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import DashboardClasses from "./DashboardClasses";
-import TabelColumnHeaderClasses from "./TabelColumnHeaderClasses";
+import TabelColumnHeaderClasses from "./TableColumnHeaderClasses";
 import RowClasses from "./RowClasses";
 import useGetClasses from "../hooks/useGetClasses";
-import FullScreenSpinner from "../../../ui/Spinner";
+import FullScreenSpinner from "../../../ui/feedback/Spinner";
 import TablePagination from "../../common/TablePagination";
-import NotFound from "../../../ui/NotFound";
-function MainClases() {
+import NotFound from "../../../ui/feedback/NotFound";
+function MainClasses() {
   const { classes, /*erro,*/ isLoading, count } = useGetClasses();
 
   // const count = 7;
@@ -28,7 +28,7 @@ function MainClases() {
   );
 }
 
-export default MainClases;
+export default MainClasses;
 const StyledClass = styled.div`
   display: flex;
   flex-direction: column;

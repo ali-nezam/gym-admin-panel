@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { toPersianDate } from "../../../utils/convertDate";
-import RowCellText from "../../../ui/RowCellText";
+import RowCellText from "../../../ui/data-display/RowCellText";
 import RowActions from "../../common/RowActions";
 
-import StatusBadge from "../../../ui/StatusBadge";
-import AvatarPhoto from "../../../ui/AvatarPhoto";
-import RowPhoneNumber from "../../../ui/RowPhoneNumber";
+import StatusBadge from "../../../ui/data-display/StatusBadge";
+import AvatarPhoto from "../../../ui/data-display/AvatarPhoto";
+import RowPhoneNumber from "../../../ui/data-display/RowPhoneNumber";
 import MemberType from "../../../types/member";
 
 interface RowMembersProps {

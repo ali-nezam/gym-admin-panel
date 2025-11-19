@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import Form from "../../../ui/Compound_component/Form";
+import Form from "../../../ui/compound/Form";
 import useAddMembertoClass from "../hooks/useAddMemberToClass";
 import { MemberOfClassType } from "../../../types/class";
 import { useModalContext } from "../../../context/ModalContext";

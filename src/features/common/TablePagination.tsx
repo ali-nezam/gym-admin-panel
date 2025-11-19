@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Modal from "../../ui/Compound_component/Modal";
+import Modal from "../../ui/compound/Modal";
 import { useSearchParams } from "react-router-dom";
 import { IoPersonAddOutline } from "react-icons/io5";
-import Icon from "../../ui/Icon";
+import Icon from "../../ui/data-display/Icon";
 import { PAGE_SIZE } from "../../utils/constants";
 import { toPersianDigits } from "../../utils/convertNumberToPersianDigits";
 import FormAddEditCoach from "../coaches/components/FormAddEditCoach";

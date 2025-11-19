@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import SearchBox from "../../../ui/SearchBox";
+import SearchBox from "../../../ui/data-display/SearchBox";
 import { StatusFilterType, StatusSortType } from "../../../types/member";
 
 interface TableHeaderProps {

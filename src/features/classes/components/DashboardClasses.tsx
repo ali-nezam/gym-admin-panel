@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Card from "../../../ui/Card";
+import Card from "../../../ui/data-display/Card";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { MdAttachMoney, MdOutlineClass } from "react-icons/md";
 import useGetClassesStats from "../hooks/useGetDashboard";

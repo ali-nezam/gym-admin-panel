@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { HiXMark } from "react-icons/hi2";
-import Icon from "../Icon";
+import Icon from "../data-display/Icon";
 import ModalContext, { useModalContext } from "../../context/ModalContext";
 
 function Modal({ children }: { children: React.ReactNode }) {

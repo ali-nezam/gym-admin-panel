@@ -4,10 +4,10 @@ import { HiEye } from "react-icons/hi2";
 
 import styled from "styled-components";
 
-import Icon from "../../ui/Icon";
+import Icon from "../../ui/data-display/Icon";
 import ConfirmDelete from "./ConfirmDelete";
 
-import Modal from "../../ui/Compound_component/Modal";
+import Modal from "../../ui/compound/Modal";
 
 import FormAddEditCoach from "../coaches/components/FormAddEditCoach";
 import FormAddEditMember from "../members/components/FormAddEditMember";

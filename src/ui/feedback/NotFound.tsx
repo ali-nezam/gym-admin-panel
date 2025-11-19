@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Lottie from "lottie-react";
-import pagenotFound from "../assets/pageNotFound.json";
+import pagenotFound from "../../assets/pageNotFound.json";
 
 export default function NotFound() {
   return (

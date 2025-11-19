@@ -2,17 +2,17 @@
 import styled from "styled-components";
 
 import RowActions from "../../common/RowActions";
-import Modal from "../../../ui/Compound_component/Modal";
+import Modal from "../../../ui/compound/Modal";
 
-import RowCellText from "../../../ui/RowCellText";
-import RowButton from "../../../ui/RowButton";
-import DropdownMenu from "../../../ui/DropdownMenu";
-import Spinner from "../../../ui/Spinner";
+import RowCellText from "../../../ui/data-display/RowCellText";
+import RowButton from "../../../ui/data-display/RowButton";
+import DropdownMenu from "../../../ui/data-display/DropdownMenu";
+import Spinner from "../../../ui/feedback/Spinner";
 
 import { toEditedPrice } from "../../../utils/convertToEditedPirce";
 
 import FormAddMemberToClasses from "./FormAddMemberToClasses";
-import TabelMembersOfClass from "./TabelMembersOfClass";
+import TabelMembersOfClass from "./TableMembersOfClass";
 import Capacity from "./Capacity";
 
 import useGetMemberOfClass from "../hooks/useGetMemberOfClass";

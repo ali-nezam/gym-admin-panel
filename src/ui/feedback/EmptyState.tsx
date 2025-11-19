@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Lottie from "lottie-react";
-import emptyAnimation from "../assets/empty.json";
+import emptyAnimation from "../../assets/empty.json";
 
 export default function EmptyState({ text = "هنوز هیچ داده‌ای ثبت نشده." }) {
   return (

@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import Form from "../../../ui/Compound_component/Form";
+import Form from "../../../ui/compound/Form";
 import { useForm } from "react-hook-form";
 import useEditsettings from "../hooks/useEditSettings";
 import useGetSettings from "../hooks/useGetSettings";
 import { useEffect } from "react";
-import FullScreenSpinner from "../../../ui/Spinner";
+import FullScreenSpinner from "../../../ui/feedback/Spinner";
 import { toEditedPrice } from "../../../utils/convertToEditedPirce";
 import settings from "../../../types/settings";
 

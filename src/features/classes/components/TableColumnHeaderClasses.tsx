@@ -1,21 +1,21 @@
 import styled from "styled-components";
 
-function TabelColumnHeaderClasses() {
+function TableColumnHeaderClasses() {
   return (
-    <StyledTabelColumnHeaderClasses>
+    <StyledTableColumnHeaderClasses>
       <ColumnHeader>نام کلاس</ColumnHeader>
       <ColumnHeader>نام مربی</ColumnHeader>
       <ColumnHeader>ظرفیت کل / تکمیل شده</ColumnHeader>
       <ColumnHeader>قیمت</ColumnHeader>
       <ColumnHeader>افزودن عضو</ColumnHeader>
       <ColumnHeader></ColumnHeader>
-    </StyledTabelColumnHeaderClasses>
+    </StyledTableColumnHeaderClasses>
   );
 }
 
-export default TabelColumnHeaderClasses;
+export default TableColumnHeaderClasses;
 
-const StyledTabelColumnHeaderClasses = styled.header`
+const StyledTableColumnHeaderClasses = styled.header`
   display: grid;
   grid-template-columns: 1.2fr 1.5fr 1.5fr 1.3fr 2.2fr 0.2fr;
   padding: 1.3rem 1rem;

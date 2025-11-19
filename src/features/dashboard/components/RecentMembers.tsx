@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import RowRecentMembersDashboard from "./RowRecentMembersDashboard";
 import { useGetRecentMember } from "../hooks/useGetRecentMember";
-import Spinner from "../../../ui/Spinner";
+import Spinner from "../../../ui/feedback/Spinner";
 
 function RecentMembers() {
   const { recentMembers, isLoading } = useGetRecentMember();

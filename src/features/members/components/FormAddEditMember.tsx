@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import Form from "../../../ui/Compound_component/Form";
-import PersianDatePicker from "../../../ui/PersianDatePicker";
+import Form from "../../../ui/compound/Form";
+import PersianDatePicker from "../../../ui/data-display/PersianDatePicker";
 import {
   convertToMiladiFromObject,
   toDatepersianFromMiladi,

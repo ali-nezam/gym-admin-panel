@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import LoginImg from "../../assets/LoginImg.svg";
-import Button from "../../ui/Button";
+import Button from "../../ui/data-display/Button";
 import useCreateNewLoginData from "./useCreateNewLoginData";
-import Spinner from "../../ui/Spinner";
+import Spinner from "../../ui/feedback/Spinner";
 // import { useNavigate } from "react-router-dom";
 import LoginType from "../../types/login";
 function MainLogin() {

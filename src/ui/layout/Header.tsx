@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import SearchBox from "./SearchBox";
+import SearchBox from "../data-display/SearchBox";
 import { useState } from "react";
 
 function Header({ onToggleSidebar }: { onToggleSidebar: () => void }) {

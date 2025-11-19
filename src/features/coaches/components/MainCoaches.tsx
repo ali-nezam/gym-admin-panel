@@ -10,9 +10,9 @@ import TablePagination from "../../common/TablePagination";
 
 import useCoaches from "../hooks/useCoaches";
 
-import EmptyState from "../../../ui/EmptyState";
-import Spinner from "../../../ui/Spinner";
-import NotFound from "../../../ui/NotFound";
+import EmptyState from "../../../ui/feedback/EmptyState";
+import Spinner from "../../../ui/feedback/Spinner";
+import NotFound from "../../../ui/feedback/NotFound";
 import { StatusFilterType, StatusSortType } from "../../../types/coaches";
 
 function MainCoaches() {

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import PersianDatePicker from "../../../ui/PersianDatePicker";
+import PersianDatePicker from "../../../ui/data-display/PersianDatePicker";
 import useCreateNewCoach from "../hooks/useCreateNewCoach";
 import useEditCoach from "../hooks/useEditCoach";
-import Form from "../../../ui/Compound_component/Form";
+import Form from "../../../ui/compound/Form";
 import { CoachType } from "../../../types/coaches";
 import {
   convertToMiladiFromObject,

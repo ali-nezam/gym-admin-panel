@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { deleteMemberOfClassWithId } from "../../../services/apiClasses";
 
-export function useDleteMemberOfClass() {
+export function useDeleteMemberOfClass() {
   const queryClient = useQueryClient();
 
   const { mutate: deleteMemberOfClass, isPending: isDeleting } = useMutation({

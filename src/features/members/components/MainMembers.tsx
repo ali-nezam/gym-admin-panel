@@ -11,9 +11,9 @@ import TablePagination from "../../common/TablePagination";
 import useGetMembers from "../hooks/useGetMembers";
 import { StatusFilterType, StatusSortType } from "../../../types/member";
 
-import EmptyState from "../../../ui/EmptyState";
-import NotFound from "../../../ui/NotFound";
-import Spinner from "../../../ui/Spinner";
+import EmptyState from "../../../ui/feedback/EmptyState";
+import NotFound from "../../../ui/feedback/NotFound";
+import Spinner from "../../../ui/feedback/Spinner";
 
 function MainMembers() {
   const [statusFilter, setStatusFilter] = useState<StatusFilterType>("all");

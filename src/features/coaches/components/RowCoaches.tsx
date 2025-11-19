@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { toPersianDate } from "../../../utils/convertDate";
 import RowActions from "../../common/RowActions";
-import AvatarPhoto from "../../../ui/AvatarPhoto";
-import StatusBadge from "../../../ui/StatusBadge";
-import RowCellText from "../../../ui/RowCellText";
-import RowPhoneNumber from "../../../ui/RowPhoneNumber";
+import AvatarPhoto from "../../../ui/data-display/AvatarPhoto";
+import StatusBadge from "../../../ui/data-display/StatusBadge";
+import RowCellText from "../../../ui/data-display/RowCellText";
+import RowPhoneNumber from "../../../ui/data-display/RowPhoneNumber";
 import { CoachType } from "../../../types/coaches";
 
 interface RowCoachesProps {

@@ -1,20 +1,20 @@
 import styled from "styled-components";
-import Icon from "../../../ui/Icon";
+import Icon from "../../../ui/data-display/Icon";
 import { MdDelete } from "react-icons/md";
-import RowPhoneNumber from "../../../ui/RowPhoneNumber";
-import { useDleteMemberOfClass } from "../hooks/useDleteMemberOfClass";
-import SpinnerMini from "../../../ui/SpinnerMini";
+import RowPhoneNumber from "../../../ui/data-display/RowPhoneNumber";
+import { useDeleteMemberOfClass } from "../hooks/useDeleteMemberOfClass";
+import SpinnerMini from "../../../ui/feedback/SpinnerMini";
 import { MemberOfClassType } from "../../../types/class";
 
-interface TabelMembersOfClassProps {
+interface TableMembersOfClassProps {
   listOfMemberOfClass: MemberOfClassType[] | null | undefined;
 }
 
-function TabelMembersOfClass({
+function TableMembersOfClass({
   listOfMemberOfClass,
-}: TabelMembersOfClassProps) {
+}: TableMembersOfClassProps) {
   const members = listOfMemberOfClass;
-  const { deleteMemberOfClass, isDeleting } = useDleteMemberOfClass();
+  const { deleteMemberOfClass, isDeleting } = useDeleteMemberOfClass();
 
   function handleDelete(id: number) {
     deleteMemberOfClass(id, {
@@ -49,7 +49,7 @@ function TabelMembersOfClass({
   );
 }
 
-export default TabelMembersOfClass;
+export default TableMembersOfClass;
 
 const Table = styled.div`
   display: flex;

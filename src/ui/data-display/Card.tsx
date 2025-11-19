@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import SpinnerMini from "./SpinnerMini";
-import { toPersianDigits } from "../utils/convertNumberToPersianDigits";
+import SpinnerMini from "../feedback/SpinnerMini";
+import { toPersianDigits } from "../../utils/convertNumberToPersianDigits";
 interface CardProps {
   type?: "green" | "gray" | "gold" | "red" | "blue";
   title: string;

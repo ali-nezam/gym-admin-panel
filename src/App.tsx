@@ -5,12 +5,12 @@ import { Toaster } from "react-hot-toast";
 import { lazy } from "react";
 import GlobalStyles from "./styles/GlobalStyles";
 
-const AppLayout = lazy(() => import("./ui/AppLayout"));
+const AppLayout = lazy(() => import("./ui/layout/AppLayout"));
 const Coaches = lazy(() => import("./features/coaches/components/MainCoaches"));
 const Members = lazy(() => import("./features/members/components/MainMembers"));
-const Classes = lazy(() => import("./features/classes/components/MainClases"));
+const Classes = lazy(() => import("./features/classes/components/MainClasses"));
 const Login = lazy(() => import("./features/login/MainLogin"));
-const PageNotFound = lazy(() => import("./ui/NotFound"));
+const PageNotFound = lazy(() => import("./ui/feedback/NotFound"));
 
 const Dashboard = lazy(
   () => import("./features/dashboard/components/MainDashboard")

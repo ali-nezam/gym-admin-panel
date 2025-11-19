@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import Form from "../../../ui/Compound_component/Form";
+import Form from "../../../ui/compound/Form";
 import { toEditedPrice } from "../../../utils/convertToEditedPirce";
 import useCreateNewClass from "../hooks/useCreateNewClass";
 import useEditClass from "../hooks/useEditclass";

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Card from "../../../ui/Card";
+import Card from "../../../ui/data-display/Card";
 import { MdAttachMoney, MdOutlineClass } from "react-icons/md";
 import useDashboardCard from "../hooks/useDashboardCard";
 import { toEditedPrice } from "../../../utils/convertToEditedPirce";

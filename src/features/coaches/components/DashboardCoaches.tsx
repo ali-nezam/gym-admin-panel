@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Card from "../../../ui/Card";
+import Card from "../../../ui/data-display/Card";
 import { RiUserFollowLine } from "react-icons/ri";
 // import { HiOutlineUserGroup } from "react-icons/hi2";
 import { PiDesktop } from "react-icons/pi";

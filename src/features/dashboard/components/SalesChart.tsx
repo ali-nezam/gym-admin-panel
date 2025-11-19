@@ -12,7 +12,7 @@ import styled from "styled-components";
 
 import { useGetDataForChart } from "../hooks/useGetDataForChart";
 
-import Spinner from "../../../ui/Spinner";
+import Spinner from "../../../ui/feedback/Spinner";
 import { toPersianDate } from "../../../utils/convertDate";
 import {
   toEditedPrice,
